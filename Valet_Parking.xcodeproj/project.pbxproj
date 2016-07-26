@@ -1,0 +1,549 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		944E64931D4711840024B977 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64921D4711840024B977 /* main.m */; };
+		944E64961D4711840024B977 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64951D4711840024B977 /* AppDelegate.m */; };
+		944E64991D4711840024B977 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64981D4711840024B977 /* ViewController.m */; };
+		944E649C1D4711840024B977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944E649A1D4711840024B977 /* Main.storyboard */; };
+		944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 944E649D1D4711840024B977 /* Valet_Parking.xcdatamodeld */; };
+		944E64A11D4711840024B977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944E64A01D4711840024B977 /* Assets.xcassets */; };
+		944E64A41D4711840024B977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944E64A21D4711840024B977 /* LaunchScreen.storyboard */; };
+		944E64AF1D4711850024B977 /* Valet_ParkingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64AE1D4711850024B977 /* Valet_ParkingTests.m */; };
+		944E64BA1D4711850024B977 /* Valet_ParkingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64B91D4711850024B977 /* Valet_ParkingUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		944E64AB1D4711850024B977 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 944E64861D4711840024B977 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 944E648D1D4711840024B977;
+			remoteInfo = Valet_Parking;
+		};
+		944E64B61D4711850024B977 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 944E64861D4711840024B977 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 944E648D1D4711840024B977;
+			remoteInfo = Valet_Parking;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		944E648E1D4711840024B977 /* Valet_Parking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valet_Parking.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		944E64921D4711840024B977 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		944E64941D4711840024B977 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		944E64951D4711840024B977 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		944E64971D4711840024B977 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		944E64981D4711840024B977 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		944E649B1D4711840024B977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		944E649E1D4711840024B977 /* Valet_Parking.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Valet_Parking.xcdatamodel; sourceTree = "<group>"; };
+		944E64A01D4711840024B977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		944E64A31D4711840024B977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		944E64A51D4711840024B977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		944E64AA1D4711850024B977 /* Valet_ParkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Valet_ParkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		944E64AE1D4711850024B977 /* Valet_ParkingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Valet_ParkingTests.m; sourceTree = "<group>"; };
+		944E64B01D4711850024B977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		944E64B51D4711850024B977 /* Valet_ParkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Valet_ParkingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		944E64B91D4711850024B977 /* Valet_ParkingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Valet_ParkingUITests.m; sourceTree = "<group>"; };
+		944E64BB1D4711850024B977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		944E648B1D4711840024B977 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		944E64A71D4711850024B977 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		944E64B21D4711850024B977 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		944E64851D4711840024B977 = {
+			isa = PBXGroup;
+			children = (
+				944E64901D4711840024B977 /* Valet_Parking */,
+				944E64AD1D4711850024B977 /* Valet_ParkingTests */,
+				944E64B81D4711850024B977 /* Valet_ParkingUITests */,
+				944E648F1D4711840024B977 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		944E648F1D4711840024B977 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				944E648E1D4711840024B977 /* Valet_Parking.app */,
+				944E64AA1D4711850024B977 /* Valet_ParkingTests.xctest */,
+				944E64B51D4711850024B977 /* Valet_ParkingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		944E64901D4711840024B977 /* Valet_Parking */ = {
+			isa = PBXGroup;
+			children = (
+				944E64941D4711840024B977 /* AppDelegate.h */,
+				944E64951D4711840024B977 /* AppDelegate.m */,
+				944E64971D4711840024B977 /* ViewController.h */,
+				944E64981D4711840024B977 /* ViewController.m */,
+				944E649A1D4711840024B977 /* Main.storyboard */,
+				944E64A01D4711840024B977 /* Assets.xcassets */,
+				944E64A21D4711840024B977 /* LaunchScreen.storyboard */,
+				944E64A51D4711840024B977 /* Info.plist */,
+				944E649D1D4711840024B977 /* Valet_Parking.xcdatamodeld */,
+				944E64911D4711840024B977 /* Supporting Files */,
+			);
+			path = Valet_Parking;
+			sourceTree = "<group>";
+		};
+		944E64911D4711840024B977 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				944E64921D4711840024B977 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		944E64AD1D4711850024B977 /* Valet_ParkingTests */ = {
+			isa = PBXGroup;
+			children = (
+				944E64AE1D4711850024B977 /* Valet_ParkingTests.m */,
+				944E64B01D4711850024B977 /* Info.plist */,
+			);
+			path = Valet_ParkingTests;
+			sourceTree = "<group>";
+		};
+		944E64B81D4711850024B977 /* Valet_ParkingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				944E64B91D4711850024B977 /* Valet_ParkingUITests.m */,
+				944E64BB1D4711850024B977 /* Info.plist */,
+			);
+			path = Valet_ParkingUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		944E648D1D4711840024B977 /* Valet_Parking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 944E64BE1D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_Parking" */;
+			buildPhases = (
+				944E648A1D4711840024B977 /* Sources */,
+				944E648B1D4711840024B977 /* Frameworks */,
+				944E648C1D4711840024B977 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Valet_Parking;
+			productName = Valet_Parking;
+			productReference = 944E648E1D4711840024B977 /* Valet_Parking.app */;
+			productType = "com.apple.product-type.application";
+		};
+		944E64A91D4711850024B977 /* Valet_ParkingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 944E64C11D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingTests" */;
+			buildPhases = (
+				944E64A61D4711850024B977 /* Sources */,
+				944E64A71D4711850024B977 /* Frameworks */,
+				944E64A81D4711850024B977 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				944E64AC1D4711850024B977 /* PBXTargetDependency */,
+			);
+			name = Valet_ParkingTests;
+			productName = Valet_ParkingTests;
+			productReference = 944E64AA1D4711850024B977 /* Valet_ParkingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		944E64B41D4711850024B977 /* Valet_ParkingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 944E64C41D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingUITests" */;
+			buildPhases = (
+				944E64B11D4711850024B977 /* Sources */,
+				944E64B21D4711850024B977 /* Frameworks */,
+				944E64B31D4711850024B977 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				944E64B71D4711850024B977 /* PBXTargetDependency */,
+			);
+			name = Valet_ParkingUITests;
+			productName = Valet_ParkingUITests;
+			productReference = 944E64B51D4711850024B977 /* Valet_ParkingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		944E64861D4711840024B977 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = xianyang;
+				TargetAttributes = {
+					944E648D1D4711840024B977 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = K5J44K984X;
+						DevelopmentTeamName = "XIANYANG LUO";
+						ProvisioningStyle = Automatic;
+					};
+					944E64A91D4711850024B977 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = K5J44K984X;
+						DevelopmentTeamName = "XIANYANG LUO";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 944E648D1D4711840024B977;
+					};
+					944E64B41D4711850024B977 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = K5J44K984X;
+						DevelopmentTeamName = "XIANYANG LUO";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 944E648D1D4711840024B977;
+					};
+				};
+			};
+			buildConfigurationList = 944E64891D4711840024B977 /* Build configuration list for PBXProject "Valet_Parking" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 944E64851D4711840024B977;
+			productRefGroup = 944E648F1D4711840024B977 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				944E648D1D4711840024B977 /* Valet_Parking */,
+				944E64A91D4711850024B977 /* Valet_ParkingTests */,
+				944E64B41D4711850024B977 /* Valet_ParkingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		944E648C1D4711840024B977 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				944E64A41D4711840024B977 /* LaunchScreen.storyboard in Resources */,
+				944E64A11D4711840024B977 /* Assets.xcassets in Resources */,
+				944E649C1D4711840024B977 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		944E64A81D4711850024B977 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		944E64B31D4711850024B977 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		944E648A1D4711840024B977 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				944E64991D4711840024B977 /* ViewController.m in Sources */,
+				944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */,
+				944E64961D4711840024B977 /* AppDelegate.m in Sources */,
+				944E64931D4711840024B977 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		944E64A61D4711850024B977 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				944E64AF1D4711850024B977 /* Valet_ParkingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		944E64B11D4711850024B977 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				944E64BA1D4711850024B977 /* Valet_ParkingUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		944E64AC1D4711850024B977 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 944E648D1D4711840024B977 /* Valet_Parking */;
+			targetProxy = 944E64AB1D4711850024B977 /* PBXContainerItemProxy */;
+		};
+		944E64B71D4711850024B977 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 944E648D1D4711840024B977 /* Valet_Parking */;
+			targetProxy = 944E64B61D4711850024B977 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		944E649A1D4711840024B977 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				944E649B1D4711840024B977 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		944E64A21D4711840024B977 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				944E64A31D4711840024B977 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		944E64BC1D4711850024B977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		944E64BD1D4711850024B977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		944E64BF1D4711850024B977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Valet_Parking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luoxianyang.Valet-Parking";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		944E64C01D4711850024B977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Valet_Parking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luoxianyang.Valet-Parking";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		944E64C21D4711850024B977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Valet_ParkingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luoxianyang.Valet-ParkingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Valet_Parking.app/Valet_Parking";
+			};
+			name = Debug;
+		};
+		944E64C31D4711850024B977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Valet_ParkingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luoxianyang.Valet-ParkingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Valet_Parking.app/Valet_Parking";
+			};
+			name = Release;
+		};
+		944E64C51D4711850024B977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Valet_ParkingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luoxianyang.Valet-ParkingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Valet_Parking;
+			};
+			name = Debug;
+		};
+		944E64C61D4711850024B977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Valet_ParkingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luoxianyang.Valet-ParkingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Valet_Parking;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		944E64891D4711840024B977 /* Build configuration list for PBXProject "Valet_Parking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				944E64BC1D4711850024B977 /* Debug */,
+				944E64BD1D4711850024B977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		944E64BE1D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_Parking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				944E64BF1D4711850024B977 /* Debug */,
+				944E64C01D4711850024B977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		944E64C11D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				944E64C21D4711850024B977 /* Debug */,
+				944E64C31D4711850024B977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		944E64C41D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				944E64C51D4711850024B977 /* Debug */,
+				944E64C61D4711850024B977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		944E649D1D4711840024B977 /* Valet_Parking.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				944E649E1D4711840024B977 /* Valet_Parking.xcdatamodel */,
+			);
+			currentVersion = 944E649E1D4711840024B977 /* Valet_Parking.xcdatamodel */;
+			path = Valet_Parking.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 944E64861D4711840024B977 /* Project object */;
+}
