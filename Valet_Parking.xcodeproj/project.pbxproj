@@ -9,13 +9,34 @@
 /* Begin PBXBuildFile section */
 		944E64931D4711840024B977 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64921D4711840024B977 /* main.m */; };
 		944E64961D4711840024B977 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64951D4711840024B977 /* AppDelegate.m */; };
-		944E64991D4711840024B977 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64981D4711840024B977 /* ViewController.m */; };
-		944E649C1D4711840024B977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944E649A1D4711840024B977 /* Main.storyboard */; };
 		944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 944E649D1D4711840024B977 /* Valet_Parking.xcdatamodeld */; };
 		944E64A11D4711840024B977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944E64A01D4711840024B977 /* Assets.xcassets */; };
 		944E64A41D4711840024B977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944E64A21D4711840024B977 /* LaunchScreen.storyboard */; };
 		944E64AF1D4711850024B977 /* Valet_ParkingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64AE1D4711850024B977 /* Valet_ParkingTests.m */; };
 		944E64BA1D4711850024B977 /* Valet_ParkingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64B91D4711850024B977 /* Valet_ParkingUITests.m */; };
+		944E65131D4711F30024B977 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64ED1D4711F20024B977 /* WelcomeViewController.m */; };
+		944E65141D4711F30024B977 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64EF1D4711F20024B977 /* RegisterViewController.m */; };
+		944E65151D4711F30024B977 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F11D4711F20024B977 /* ForgetPasswordViewController.m */; };
+		944E65161D4711F30024B977 /* ValetServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F31D4711F20024B977 /* ValetServiceViewController.m */; };
+		944E65171D4711F30024B977 /* ParkNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F51D4711F20024B977 /* ParkNowViewController.m */; };
+		944E65181D4711F30024B977 /* BookServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F71D4711F20024B977 /* BookServiceViewController.m */; };
+		944E65191D4711F30024B977 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F91D4711F20024B977 /* UserInfoViewController.m */; };
+		944E651A1D4711F30024B977 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64FB1D4711F20024B977 /* SettingViewController.m */; };
+		944E651B1D4711F30024B977 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64FD1D4711F20024B977 /* MyProfileViewController.m */; };
+		944E651C1D4711F30024B977 /* MyOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64FF1D4711F20024B977 /* MyOrdersViewController.m */; };
+		944E651D1D4711F30024B977 /* MyCarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65011D4711F20024B977 /* MyCarsViewController.m */; };
+		944E651E1D4711F30024B977 /* AddCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65031D4711F20024B977 /* AddCarViewController.m */; };
+		944E651F1D4711F30024B977 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65051D4711F30024B977 /* UserInfoCell.m */; };
+		944E65201D4711F30024B977 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65071D4711F30024B977 /* UserModel.m */; };
+		944E65211D4711F30024B977 /* ValetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65091D4711F30024B977 /* ValetModel.m */; };
+		944E65221D4711F30024B977 /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E650B1D4711F30024B977 /* CarModel.m */; };
+		944E65231D4711F30024B977 /* LibraryAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E650D1D4711F30024B977 /* LibraryAPI.m */; };
+		944E65241D4711F30024B977 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E650F1D4711F30024B977 /* HttpClient.m */; };
+		944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65111D4711F30024B977 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		944E65261D4711F30024B977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944E65121D4711F30024B977 /* Main.storyboard */; };
+		A9FF8864E16A39CDCAB0BC91 /* libPods-Valet_ParkingUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */; };
+		D202C2F25FEDDDAE253F860E /* libPods-Valet_Parking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D8BDC69B131A61F9CA19A0 /* libPods-Valet_Parking.a */; };
+		D2A0157E2649C825489C9F09 /* libPods-Valet_ParkingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4059980DC2665C228F860C4E /* libPods-Valet_ParkingTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,13 +57,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22120E60B324F8BE227022A7 /* Pods-Valet_ParkingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_ParkingUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_ParkingUITests/Pods-Valet_ParkingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		23AF8A8268957E8563D958D8 /* Pods-Valet_ParkingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_ParkingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests.release.xcconfig"; sourceTree = "<group>"; };
+		28D8BDC69B131A61F9CA19A0 /* libPods-Valet_Parking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_Parking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4059980DC2665C228F860C4E /* libPods-Valet_ParkingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E75954F6DD895B0A3B3A53F /* Pods-Valet_ParkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_ParkingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking.release.xcconfig"; sourceTree = "<group>"; };
+		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		944E648E1D4711840024B977 /* Valet_Parking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valet_Parking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944E64921D4711840024B977 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		944E64941D4711840024B977 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		944E64951D4711840024B977 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		944E64971D4711840024B977 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		944E64981D4711840024B977 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		944E649B1D4711840024B977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		944E649E1D4711840024B977 /* Valet_Parking.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Valet_Parking.xcdatamodel; sourceTree = "<group>"; };
 		944E64A01D4711840024B977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		944E64A31D4711840024B977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +78,47 @@
 		944E64B51D4711850024B977 /* Valet_ParkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Valet_ParkingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		944E64B91D4711850024B977 /* Valet_ParkingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Valet_ParkingUITests.m; sourceTree = "<group>"; };
 		944E64BB1D4711850024B977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		944E64EC1D4711F20024B977 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		944E64ED1D4711F20024B977 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		944E64EE1D4711F20024B977 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		944E64EF1D4711F20024B977 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		944E64F01D4711F20024B977 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		944E64F11D4711F20024B977 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		944E64F21D4711F20024B977 /* ValetServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValetServiceViewController.h; sourceTree = "<group>"; };
+		944E64F31D4711F20024B977 /* ValetServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValetServiceViewController.m; sourceTree = "<group>"; };
+		944E64F41D4711F20024B977 /* ParkNowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkNowViewController.h; sourceTree = "<group>"; };
+		944E64F51D4711F20024B977 /* ParkNowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkNowViewController.m; sourceTree = "<group>"; };
+		944E64F61D4711F20024B977 /* BookServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookServiceViewController.h; sourceTree = "<group>"; };
+		944E64F71D4711F20024B977 /* BookServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookServiceViewController.m; sourceTree = "<group>"; };
+		944E64F81D4711F20024B977 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		944E64F91D4711F20024B977 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		944E64FA1D4711F20024B977 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		944E64FB1D4711F20024B977 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		944E64FC1D4711F20024B977 /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
+		944E64FD1D4711F20024B977 /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
+		944E64FE1D4711F20024B977 /* MyOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrdersViewController.h; sourceTree = "<group>"; };
+		944E64FF1D4711F20024B977 /* MyOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrdersViewController.m; sourceTree = "<group>"; };
+		944E65001D4711F20024B977 /* MyCarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCarsViewController.h; sourceTree = "<group>"; };
+		944E65011D4711F20024B977 /* MyCarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCarsViewController.m; sourceTree = "<group>"; };
+		944E65021D4711F20024B977 /* AddCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCarViewController.h; sourceTree = "<group>"; };
+		944E65031D4711F20024B977 /* AddCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCarViewController.m; sourceTree = "<group>"; };
+		944E65041D4711F20024B977 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		944E65051D4711F30024B977 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
+		944E65061D4711F30024B977 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		944E65071D4711F30024B977 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		944E65081D4711F30024B977 /* ValetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValetModel.h; sourceTree = "<group>"; };
+		944E65091D4711F30024B977 /* ValetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValetModel.m; sourceTree = "<group>"; };
+		944E650A1D4711F30024B977 /* CarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarModel.h; sourceTree = "<group>"; };
+		944E650B1D4711F30024B977 /* CarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarModel.m; sourceTree = "<group>"; };
+		944E650C1D4711F30024B977 /* LibraryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryAPI.h; sourceTree = "<group>"; };
+		944E650D1D4711F30024B977 /* LibraryAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryAPI.m; sourceTree = "<group>"; };
+		944E650E1D4711F30024B977 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
+		944E650F1D4711F30024B977 /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
+		944E65101D4711F30024B977 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		944E65111D4711F30024B977 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		944E65121D4711F30024B977 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		97DED36F8CD5826CE7FF58E1 /* Pods-Valet_Parking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking.debug.xcconfig"; sourceTree = "<group>"; };
+		BA6B352EE49CBD6B92FE19E8 /* Pods-Valet_ParkingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_ParkingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_ParkingUITests/Pods-Valet_ParkingUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D202C2F25FEDDDAE253F860E /* libPods-Valet_Parking.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A0157E2649C825489C9F09 /* libPods-Valet_ParkingTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +142,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9FF8864E16A39CDCAB0BC91 /* libPods-Valet_ParkingUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		008D4C609A6843E3715504F7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				97DED36F8CD5826CE7FF58E1 /* Pods-Valet_Parking.debug.xcconfig */,
+				75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */,
+				6E75954F6DD895B0A3B3A53F /* Pods-Valet_ParkingTests.debug.xcconfig */,
+				23AF8A8268957E8563D958D8 /* Pods-Valet_ParkingTests.release.xcconfig */,
+				22120E60B324F8BE227022A7 /* Pods-Valet_ParkingUITests.debug.xcconfig */,
+				BA6B352EE49CBD6B92FE19E8 /* Pods-Valet_ParkingUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		833205B6256987C79EEAE831 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28D8BDC69B131A61F9CA19A0 /* libPods-Valet_Parking.a */,
+				4059980DC2665C228F860C4E /* libPods-Valet_ParkingTests.a */,
+				90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		944E64851D4711840024B977 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +179,8 @@
 				944E64AD1D4711850024B977 /* Valet_ParkingTests */,
 				944E64B81D4711850024B977 /* Valet_ParkingUITests */,
 				944E648F1D4711840024B977 /* Products */,
+				008D4C609A6843E3715504F7 /* Pods */,
+				833205B6256987C79EEAE831 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,9 +199,45 @@
 			children = (
 				944E64941D4711840024B977 /* AppDelegate.h */,
 				944E64951D4711840024B977 /* AppDelegate.m */,
-				944E64971D4711840024B977 /* ViewController.h */,
-				944E64981D4711840024B977 /* ViewController.m */,
-				944E649A1D4711840024B977 /* Main.storyboard */,
+				944E64EC1D4711F20024B977 /* WelcomeViewController.h */,
+				944E64ED1D4711F20024B977 /* WelcomeViewController.m */,
+				944E64EE1D4711F20024B977 /* RegisterViewController.h */,
+				944E64EF1D4711F20024B977 /* RegisterViewController.m */,
+				944E64F01D4711F20024B977 /* ForgetPasswordViewController.h */,
+				944E64F11D4711F20024B977 /* ForgetPasswordViewController.m */,
+				944E64F21D4711F20024B977 /* ValetServiceViewController.h */,
+				944E64F31D4711F20024B977 /* ValetServiceViewController.m */,
+				944E64F41D4711F20024B977 /* ParkNowViewController.h */,
+				944E64F51D4711F20024B977 /* ParkNowViewController.m */,
+				944E64F61D4711F20024B977 /* BookServiceViewController.h */,
+				944E64F71D4711F20024B977 /* BookServiceViewController.m */,
+				944E64F81D4711F20024B977 /* UserInfoViewController.h */,
+				944E64F91D4711F20024B977 /* UserInfoViewController.m */,
+				944E64FA1D4711F20024B977 /* SettingViewController.h */,
+				944E64FB1D4711F20024B977 /* SettingViewController.m */,
+				944E64FC1D4711F20024B977 /* MyProfileViewController.h */,
+				944E64FD1D4711F20024B977 /* MyProfileViewController.m */,
+				944E64FE1D4711F20024B977 /* MyOrdersViewController.h */,
+				944E64FF1D4711F20024B977 /* MyOrdersViewController.m */,
+				944E65001D4711F20024B977 /* MyCarsViewController.h */,
+				944E65011D4711F20024B977 /* MyCarsViewController.m */,
+				944E65021D4711F20024B977 /* AddCarViewController.h */,
+				944E65031D4711F20024B977 /* AddCarViewController.m */,
+				944E65041D4711F20024B977 /* UserInfoCell.h */,
+				944E65051D4711F30024B977 /* UserInfoCell.m */,
+				944E65061D4711F30024B977 /* UserModel.h */,
+				944E65071D4711F30024B977 /* UserModel.m */,
+				944E65081D4711F30024B977 /* ValetModel.h */,
+				944E65091D4711F30024B977 /* ValetModel.m */,
+				944E650A1D4711F30024B977 /* CarModel.h */,
+				944E650B1D4711F30024B977 /* CarModel.m */,
+				944E650C1D4711F30024B977 /* LibraryAPI.h */,
+				944E650D1D4711F30024B977 /* LibraryAPI.m */,
+				944E650E1D4711F30024B977 /* HttpClient.h */,
+				944E650F1D4711F30024B977 /* HttpClient.m */,
+				944E65101D4711F30024B977 /* KeychainItemWrapper.h */,
+				944E65111D4711F30024B977 /* KeychainItemWrapper.m */,
+				944E65121D4711F30024B977 /* Main.storyboard */,
 				944E64A01D4711840024B977 /* Assets.xcassets */,
 				944E64A21D4711840024B977 /* LaunchScreen.storyboard */,
 				944E64A51D4711840024B977 /* Info.plist */,
@@ -150,9 +280,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 944E64BE1D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_Parking" */;
 			buildPhases = (
+				6D84A4ECF497191D5FA65EF6 /* [CP] Check Pods Manifest.lock */,
 				944E648A1D4711840024B977 /* Sources */,
 				944E648B1D4711840024B977 /* Frameworks */,
 				944E648C1D4711840024B977 /* Resources */,
+				8205EBB67AD51B4499E0EDDE /* [CP] Embed Pods Frameworks */,
+				59B96547D7AF237F0543FA26 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +300,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 944E64C11D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingTests" */;
 			buildPhases = (
+				AB1A6F4D5E811A77BDA3A393 /* [CP] Check Pods Manifest.lock */,
 				944E64A61D4711850024B977 /* Sources */,
 				944E64A71D4711850024B977 /* Frameworks */,
 				944E64A81D4711850024B977 /* Resources */,
+				D2EB230ADAD2AA23D2FB56A2 /* [CP] Embed Pods Frameworks */,
+				01557F220FAB2D6DD3416208 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,9 +321,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 944E64C41D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingUITests" */;
 			buildPhases = (
+				A0A91AB5F915173D80CEDBD3 /* [CP] Check Pods Manifest.lock */,
 				944E64B11D4711850024B977 /* Sources */,
 				944E64B21D4711850024B977 /* Frameworks */,
 				944E64B31D4711850024B977 /* Resources */,
+				2A7D2920F9CDB6A702B78142 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -255,9 +393,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944E65261D4711F30024B977 /* Main.storyboard in Resources */,
 				944E64A41D4711840024B977 /* LaunchScreen.storyboard in Resources */,
 				944E64A11D4711840024B977 /* Assets.xcassets in Resources */,
-				944E649C1D4711840024B977 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,15 +415,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01557F220FAB2D6DD3416208 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A7D2920F9CDB6A702B78142 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_ParkingUITests/Pods-Valet_ParkingUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59B96547D7AF237F0543FA26 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D84A4ECF497191D5FA65EF6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8205EBB67AD51B4499E0EDDE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0A91AB5F915173D80CEDBD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AB1A6F4D5E811A77BDA3A393 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2EB230ADAD2AA23D2FB56A2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		944E648A1D4711840024B977 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				944E64991D4711840024B977 /* ViewController.m in Sources */,
+				944E65221D4711F30024B977 /* CarModel.m in Sources */,
+				944E65141D4711F30024B977 /* RegisterViewController.m in Sources */,
+				944E65181D4711F30024B977 /* BookServiceViewController.m in Sources */,
+				944E651C1D4711F30024B977 /* MyOrdersViewController.m in Sources */,
 				944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */,
+				944E651F1D4711F30024B977 /* UserInfoCell.m in Sources */,
+				944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */,
+				944E65201D4711F30024B977 /* UserModel.m in Sources */,
+				944E65151D4711F30024B977 /* ForgetPasswordViewController.m in Sources */,
+				944E65171D4711F30024B977 /* ParkNowViewController.m in Sources */,
+				944E65191D4711F30024B977 /* UserInfoViewController.m in Sources */,
+				944E65131D4711F30024B977 /* WelcomeViewController.m in Sources */,
+				944E65211D4711F30024B977 /* ValetModel.m in Sources */,
+				944E65241D4711F30024B977 /* HttpClient.m in Sources */,
+				944E651E1D4711F30024B977 /* AddCarViewController.m in Sources */,
 				944E64961D4711840024B977 /* AppDelegate.m in Sources */,
+				944E65231D4711F30024B977 /* LibraryAPI.m in Sources */,
+				944E65161D4711F30024B977 /* ValetServiceViewController.m in Sources */,
+				944E651A1D4711F30024B977 /* SettingViewController.m in Sources */,
+				944E651B1D4711F30024B977 /* MyProfileViewController.m in Sources */,
 				944E64931D4711840024B977 /* main.m in Sources */,
+				944E651D1D4711F30024B977 /* MyCarsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,14 +600,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		944E649A1D4711840024B977 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				944E649B1D4711840024B977 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		944E64A21D4711840024B977 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -428,6 +699,7 @@
 		};
 		944E64BF1D4711850024B977 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97DED36F8CD5826CE7FF58E1 /* Pods-Valet_Parking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Valet_Parking/Info.plist;
@@ -439,6 +711,7 @@
 		};
 		944E64C01D4711850024B977 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Valet_Parking/Info.plist;
@@ -450,6 +723,7 @@
 		};
 		944E64C21D4711850024B977 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E75954F6DD895B0A3B3A53F /* Pods-Valet_ParkingTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Valet_ParkingTests/Info.plist;
@@ -462,6 +736,7 @@
 		};
 		944E64C31D4711850024B977 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23AF8A8268957E8563D958D8 /* Pods-Valet_ParkingTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Valet_ParkingTests/Info.plist;
@@ -474,6 +749,7 @@
 		};
 		944E64C51D4711850024B977 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22120E60B324F8BE227022A7 /* Pods-Valet_ParkingUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = Valet_ParkingUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -485,6 +761,7 @@
 		};
 		944E64C61D4711850024B977 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA6B352EE49CBD6B92FE19E8 /* Pods-Valet_ParkingUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = Valet_ParkingUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -513,6 +790,7 @@
 				944E64C01D4711850024B977 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		944E64C11D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +799,7 @@
 				944E64C31D4711850024B977 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		944E64C41D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +808,7 @@
 				944E64C61D4711850024B977 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

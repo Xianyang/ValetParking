@@ -1,0 +1,27 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Valet_Parking' do
+  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for ValetParking
+  pod 'MBProgressHUD', '~> 1.0.0'
+  # pod 'AFNetworkActivityLogger', '~> 2.0.4'
+  pod 'INTULocationManager', '~> 4.2.0'
+  pod 'UMengAnalytics', '~> 4.0.4'
+  pod 'NJKWebViewProgress', '~> 0.2.3'
+  pod 'AFNetworking', '~> 3.1.0'
+  pod 'JSONModel', '~> 1.3.0'
+
+  target 'Valet_ParkingTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'Valet_ParkingUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
