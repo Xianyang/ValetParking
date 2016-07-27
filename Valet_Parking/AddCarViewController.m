@@ -7,6 +7,8 @@
 //
 
 #import "AddCarViewController.h"
+#import "CarModel.h"
+#import "LibraryAPI.h"
 
 @interface AddCarViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelAddCarBtn;
@@ -38,11 +40,23 @@
 }
 
 - (void)cancelAddCar {
+    // TODO add a alert
     [self.delegate cancelAddCar];
 }
 
 - (void)finishAddCar {
-    [self.delegate finishAddCar];
+    CarModel *newCar = [[CarModel alloc] initWithPlate:self.plateTextField.text
+                                                 brand:self.brandTextField.text
+                                                 color:self.colorTextField.text];
+    
+    [[LibraryAPI sharedInstance] addACar:newCar
+                                 succeed:^(NSString *message) {
+                                     NSLog(@"%@", message);
+                                     [self.delegate finishAddCar];
+                                 }
+                                    fail:^(NSError *error) {
+                                        
+                                    }];
 }
 
 - (void)didReceiveMemoryWarning {

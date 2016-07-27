@@ -8,10 +8,11 @@
 
 #import "MyCarsViewController.h"
 #import "AddCarViewController.h"
+#import "LibraryAPI.h"
 
 @interface MyCarsViewController () <AddCarViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addCarBtn;
-
+@property (strong, nonatomic) NSArray *cars;
 @end
 
 @implementation MyCarsViewController
@@ -21,6 +22,16 @@
     
     [self.addCarBtn setTarget:self];
     [self.addCarBtn setAction:@selector(addCarbtnPressed)];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.cars = [[LibraryAPI sharedInstance] getAllCars];
+    
+    for (CarModel *car in self.cars) {
+        NSLog(@"%@", car.carPlate);
+    }
 }
 
 - (void)addCarbtnPressed {
@@ -40,7 +51,7 @@
 }
 
 - (void)finishAddCar {
-    // TODO add a car
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 # pragma mark - UITableView

@@ -10,4 +10,15 @@
 
 @implementation CarModel
 
+- (id)initWithPlate:(NSString *)plate brand:(NSString *)brand color:(NSString *)color {
+    if (self = [super init]) {
+        self.carNo = @"default";
+        self.carPlate = plate;
+        self.carBrand = brand;
+        self.carColor = color;
+    }
+    
+    return self;
+}
+
 @end

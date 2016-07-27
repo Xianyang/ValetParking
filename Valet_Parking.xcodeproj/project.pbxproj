@@ -64,6 +64,7 @@
 		6E75954F6DD895B0A3B3A53F /* Pods-Valet_ParkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_ParkingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking.release.xcconfig"; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9424E8841D47494800051EFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		944E648E1D4711840024B977 /* Valet_Parking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valet_Parking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944E64921D4711840024B977 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		944E64941D4711840024B977 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -199,44 +200,10 @@
 			children = (
 				944E64941D4711840024B977 /* AppDelegate.h */,
 				944E64951D4711840024B977 /* AppDelegate.m */,
-				944E64EC1D4711F20024B977 /* WelcomeViewController.h */,
-				944E64ED1D4711F20024B977 /* WelcomeViewController.m */,
-				944E64EE1D4711F20024B977 /* RegisterViewController.h */,
-				944E64EF1D4711F20024B977 /* RegisterViewController.m */,
-				944E64F01D4711F20024B977 /* ForgetPasswordViewController.h */,
-				944E64F11D4711F20024B977 /* ForgetPasswordViewController.m */,
-				944E64F21D4711F20024B977 /* ValetServiceViewController.h */,
-				944E64F31D4711F20024B977 /* ValetServiceViewController.m */,
-				944E64F41D4711F20024B977 /* ParkNowViewController.h */,
-				944E64F51D4711F20024B977 /* ParkNowViewController.m */,
-				944E64F61D4711F20024B977 /* BookServiceViewController.h */,
-				944E64F71D4711F20024B977 /* BookServiceViewController.m */,
-				944E64F81D4711F20024B977 /* UserInfoViewController.h */,
-				944E64F91D4711F20024B977 /* UserInfoViewController.m */,
-				944E64FA1D4711F20024B977 /* SettingViewController.h */,
-				944E64FB1D4711F20024B977 /* SettingViewController.m */,
-				944E64FC1D4711F20024B977 /* MyProfileViewController.h */,
-				944E64FD1D4711F20024B977 /* MyProfileViewController.m */,
-				944E64FE1D4711F20024B977 /* MyOrdersViewController.h */,
-				944E64FF1D4711F20024B977 /* MyOrdersViewController.m */,
-				944E65001D4711F20024B977 /* MyCarsViewController.h */,
-				944E65011D4711F20024B977 /* MyCarsViewController.m */,
-				944E65021D4711F20024B977 /* AddCarViewController.h */,
-				944E65031D4711F20024B977 /* AddCarViewController.m */,
-				944E65041D4711F20024B977 /* UserInfoCell.h */,
-				944E65051D4711F30024B977 /* UserInfoCell.m */,
-				944E65061D4711F30024B977 /* UserModel.h */,
-				944E65071D4711F30024B977 /* UserModel.m */,
-				944E65081D4711F30024B977 /* ValetModel.h */,
-				944E65091D4711F30024B977 /* ValetModel.m */,
-				944E650A1D4711F30024B977 /* CarModel.h */,
-				944E650B1D4711F30024B977 /* CarModel.m */,
-				944E650C1D4711F30024B977 /* LibraryAPI.h */,
-				944E650D1D4711F30024B977 /* LibraryAPI.m */,
-				944E650E1D4711F30024B977 /* HttpClient.h */,
-				944E650F1D4711F30024B977 /* HttpClient.m */,
-				944E65101D4711F30024B977 /* KeychainItemWrapper.h */,
-				944E65111D4711F30024B977 /* KeychainItemWrapper.m */,
+				944E65271D4713BF0024B977 /* ViewController */,
+				944E65281D4713CD0024B977 /* View */,
+				944E65291D4713D30024B977 /* Model */,
+				944E652A1D4713DB0024B977 /* API */,
 				944E65121D4711F30024B977 /* Main.storyboard */,
 				944E64A01D4711840024B977 /* Assets.xcassets */,
 				944E64A21D4711840024B977 /* LaunchScreen.storyboard */,
@@ -251,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				944E64921D4711840024B977 /* main.m */,
+				9424E8841D47494800051EFF /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -271,6 +239,96 @@
 				944E64BB1D4711850024B977 /* Info.plist */,
 			);
 			path = Valet_ParkingUITests;
+			sourceTree = "<group>";
+		};
+		944E65271D4713BF0024B977 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				944E652B1D4713E30024B977 /* Welcome */,
+				944E652C1D4713EB0024B977 /* Tab1 */,
+				944E652D1D4713F30024B977 /* Tab2 */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		944E65281D4713CD0024B977 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				944E65041D4711F20024B977 /* UserInfoCell.h */,
+				944E65051D4711F30024B977 /* UserInfoCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		944E65291D4713D30024B977 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				944E65061D4711F30024B977 /* UserModel.h */,
+				944E65071D4711F30024B977 /* UserModel.m */,
+				944E65081D4711F30024B977 /* ValetModel.h */,
+				944E65091D4711F30024B977 /* ValetModel.m */,
+				944E650A1D4711F30024B977 /* CarModel.h */,
+				944E650B1D4711F30024B977 /* CarModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		944E652A1D4713DB0024B977 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				944E650C1D4711F30024B977 /* LibraryAPI.h */,
+				944E650D1D4711F30024B977 /* LibraryAPI.m */,
+				944E650E1D4711F30024B977 /* HttpClient.h */,
+				944E650F1D4711F30024B977 /* HttpClient.m */,
+				944E65101D4711F30024B977 /* KeychainItemWrapper.h */,
+				944E65111D4711F30024B977 /* KeychainItemWrapper.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		944E652B1D4713E30024B977 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				944E64EC1D4711F20024B977 /* WelcomeViewController.h */,
+				944E64ED1D4711F20024B977 /* WelcomeViewController.m */,
+				944E64EE1D4711F20024B977 /* RegisterViewController.h */,
+				944E64EF1D4711F20024B977 /* RegisterViewController.m */,
+				944E64F01D4711F20024B977 /* ForgetPasswordViewController.h */,
+				944E64F11D4711F20024B977 /* ForgetPasswordViewController.m */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		944E652C1D4713EB0024B977 /* Tab1 */ = {
+			isa = PBXGroup;
+			children = (
+				944E64F21D4711F20024B977 /* ValetServiceViewController.h */,
+				944E64F31D4711F20024B977 /* ValetServiceViewController.m */,
+				944E64F41D4711F20024B977 /* ParkNowViewController.h */,
+				944E64F51D4711F20024B977 /* ParkNowViewController.m */,
+				944E64F61D4711F20024B977 /* BookServiceViewController.h */,
+				944E64F71D4711F20024B977 /* BookServiceViewController.m */,
+			);
+			name = Tab1;
+			sourceTree = "<group>";
+		};
+		944E652D1D4713F30024B977 /* Tab2 */ = {
+			isa = PBXGroup;
+			children = (
+				944E64F81D4711F20024B977 /* UserInfoViewController.h */,
+				944E64F91D4711F20024B977 /* UserInfoViewController.m */,
+				944E64FA1D4711F20024B977 /* SettingViewController.h */,
+				944E64FB1D4711F20024B977 /* SettingViewController.m */,
+				944E64FC1D4711F20024B977 /* MyProfileViewController.h */,
+				944E64FD1D4711F20024B977 /* MyProfileViewController.m */,
+				944E64FE1D4711F20024B977 /* MyOrdersViewController.h */,
+				944E64FF1D4711F20024B977 /* MyOrdersViewController.m */,
+				944E65001D4711F20024B977 /* MyCarsViewController.h */,
+				944E65011D4711F20024B977 /* MyCarsViewController.m */,
+				944E65021D4711F20024B977 /* AddCarViewController.h */,
+				944E65031D4711F20024B977 /* AddCarViewController.m */,
+			);
+			name = Tab2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -702,6 +760,8 @@
 			baseConfigurationReference = 97DED36F8CD5826CE7FF58E1 /* Pods-Valet_Parking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = Valet_Parking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.luoxianyang.Valet-Parking";
@@ -714,6 +774,8 @@
 			baseConfigurationReference = 75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = Valet_Parking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.luoxianyang.Valet-Parking";

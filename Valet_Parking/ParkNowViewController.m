@@ -7,8 +7,12 @@
 //
 
 #import "ParkNowViewController.h"
+#import "AddCarViewController.h"
+#import "LibraryAPI.h"
 
-@interface ParkNowViewController ()
+
+@interface ParkNowViewController () <AddCarViewControllerDelegate>
+@property (strong, nonatomic) NSArray *cars;
 
 @end
 
@@ -22,8 +26,32 @@
 }
 
 - (void)checkCars {
+    self.cars = [[LibraryAPI sharedInstance] getAllCars];
     
+    if (self.cars.count > 0) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        AddCarViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AddCarViewController"];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        vc.delegate = self;
+        [self.navigationController presentViewController:nav
+                                                animated:YES
+                                              completion:nil];
+    }
 }
+
+# pragma mark - AddCarViewControllerDelegate
+
+- (void)cancelAddCar {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)finishAddCar {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // TODO present the service page
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

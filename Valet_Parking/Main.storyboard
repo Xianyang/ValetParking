@@ -166,7 +166,8 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgS-rB-HRD">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLU-Dt-gL8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLU-Dt-gL8">
+                                        <frame key="frameInset" minX="113" minY="35" width="151" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="a4F-P6-VkF"/>
                                             <constraint firstAttribute="width" constant="151" id="uW4-8W-qZy"/>
@@ -422,7 +423,8 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A03-Qm-bnL">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set New Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XB3-HX-c3f">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Set New Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XB3-HX-c3f">
+                                        <frame key="frameInset" minX="113" minY="35" width="151" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="151" id="7n4-KU-q3Q"/>
                                             <constraint firstAttribute="height" constant="20" id="Ig5-Of-3yI"/>
@@ -688,7 +690,8 @@
                                                         <constraint firstAttribute="height" constant="25" id="Dnc-jh-43r"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="txt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROG-fp-Qu7">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="txt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROG-fp-Qu7">
+                                                    <frame key="frameInset" minX="51" minY="11" width="516" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -912,7 +915,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="546-4z-M52" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Valet" id="vzZ-Hg-Wy7"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="tqo-hD-6jR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tqo-hD-6jR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -930,7 +933,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Udn-9k-cE2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="x0i-l6-Vbh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x0i-l6-Vbh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -967,7 +970,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k5q-vd-haM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="User" id="JnI-u8-SJv"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0a0-NW-ltR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0a0-NW-ltR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
