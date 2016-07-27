@@ -7,16 +7,19 @@
 //
 
 #import "MyProfileViewController.h"
+#import "UserModel.h"
 
 @interface MyProfileViewController ()
-
+@property (strong, nonatomic) UserModel *userModel;
 @end
 
 @implementation MyProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.userModel = [[LibraryAPI sharedInstance] getCurrentUserModel];
+    NSLog(@"current user is %@, first name %@, last name %@, id %@", self.userModel.phone, self.userModel.firstName, self.userModel.lastName, self.userModel.identifier);
 }
 
 - (void)didReceiveMemoryWarning {

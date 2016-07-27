@@ -36,7 +36,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     
     if (![userNo isEqualToString:@""] && ![userPassword isEqualToString:@""]) {
         // TODO user already logged in once
-        // [self popUpWelcomeView];
+        [self popUpWelcomeView];
     } else {
         [self popUpWelcomeView];
     }

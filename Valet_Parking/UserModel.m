@@ -10,4 +10,16 @@
 
 @implementation UserModel
 
+- (id)initWithIdentifier:(NSString *)identifier firstName:(NSString *)firstName lastName:(NSString *)lastName phone:(NSString *)phone
+{
+    if (self = [super init]) {
+        self.identifier = identifier;
+        self.firstName = firstName;
+        self.lastName = lastName;
+        self.phone = phone;
+    }
+    
+    return self;
+}
+
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "CarModel.h"
+#import "UserModel.h"
 
 @interface LibraryAPI : NSObject
 
@@ -16,6 +17,11 @@
 
 - (NSManagedObjectContext *)getManagedObjectContext;
 
+// log in and sign up
+- (void)loginWithAccount:(NSString *)account password:(NSString *)password succeed:(void(^)(UserModel *userModel))successBlock fail:(void(^)(NSError *error))failBlock;
+- (void)signUpWithPhone:(NSString *)phone firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password succeed:(void(^)(NSString *userIdentifier))successBlock fail:(void(^)(NSError *error))failBlock;
+- (void)logout;
+- (UserModel *)getCurrentUserModel;
 
 // cars
 - (void)addACar:(CarModel *)carModel succeed:(void(^)(NSString *message))successBlock fail:(void(^)(NSError *error))failBlock;

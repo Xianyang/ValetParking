@@ -11,14 +11,13 @@
 #import "LibraryAPI.h"
 #import "HttpClient.h"
 #import "UserModel.h"
+#import "KeychainItemWrapper.h"
 
 @interface LibraryAPI()
 
 @property (strong, nonatomic) HttpClient *httpClient;
 @property (strong, nonatomic) UserModel *userModel;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
-
 @end
 
 @implementation LibraryAPI
@@ -63,6 +62,99 @@
 - (NSManagedObjectContext *)getManagedObjectContext {
     return self.managedObjectContext;
 }
+
+- (void)saveContext {
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Can't save! %@ %@", error, [error localizedDescription]);
+    }
+}
+
+# pragma mark - Log in and Sign up
+
+- (UserModel *)getFakeUserModel {
+    return [[UserModel alloc] initWithIdentifier:@"0001"
+                                       firstName:@"xianyang"
+                                        lastName:@"luo"
+                                           phone:@"51709669"];
+}
+
+- (void)loginWithAccount:(NSString *)account password:(NSString *)password succeed:(void (^)(UserModel *))successBlock fail:(void (^)(NSError *))failBlock {
+    // TODO communicate with server
+    
+    // temp code: if log in successfully, then do the following
+    UserModel *returnUserModelFromServer = [self getFakeUserModel]; // will change to get from server
+    [self saveUserModelToCoreData:returnUserModelFromServer];
+    [self saveAccountToKeychain:account password:password];
+    
+    
+    NSLog(@"%@ logs in", account);
+    successBlock(returnUserModelFromServer);
+}
+
+- (void)signUpWithPhone:(NSString *)phone firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
+    // TODO communicate with server
+    
+    // temp code: if sign in succussfully, save user info locally
+    NSString *returnIDFromServer = @"0001";
+    UserModel *userModel = [[UserModel alloc] initWithIdentifier:returnIDFromServer
+                                                       firstName:firstName
+                                                        lastName:lastName
+                                                           phone:phone];
+    
+    [self saveUserModelToCoreData:userModel];
+    [self saveAccountToKeychain:phone password:password];
+
+    NSLog(@"%@ signs up", phone);
+    successBlock(returnIDFromServer);
+}
+
+- (void)saveUserModelToCoreData:(UserModel *)userModel {
+    NSManagedObject *userMO = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                            inManagedObjectContext:self.managedObjectContext];
+    [userMO setValue:userModel.identifier forKey:@"identifier"];
+    [userMO setValue:userModel.firstName forKey:@"firstName"];
+    [userMO setValue:userModel.lastName forKey:@"lastName"];
+    [userMO setValue:userModel.phone forKey:@"phone"];
+    
+    [self saveContext];
+}
+
+- (void)saveAccountToKeychain:(NSString *)userAccount password:(NSString *)userPassword {
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ValetLogin"
+                                                                        accessGroup:nil];
+    [keychain setObject:userAccount forKey:(__bridge id)(kSecAttrAccount)];
+    [keychain setObject:userPassword forKey:(__bridge id)(kSecValueData)];
+
+}
+
+- (void)logout {
+    // delete user mo
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSArray *userMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
+                                                                 error:nil] copy];
+    for (NSManagedObject *userMO in userMOs) {
+        [self.managedObjectContext deleteObject:userMO];
+    }
+    
+    [self saveContext];
+    NSLog(@"user logs out");
+}
+
+- (UserModel *)getCurrentUserModel {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSArray *userMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
+                                                                 error:nil] copy];
+    
+    NSManagedObject *userMO = userMOs[0];
+    UserModel *currentUserModel = [[UserModel alloc]
+                                   initWithIdentifier:[userMO valueForKey:@"identifier"]
+                                   firstName:[userMO valueForKey:@"firstName"]
+                                   lastName:[userMO valueForKey:@"lastName"]
+                                   phone:[userMO valueForKey:@"phone"]];
+    return currentUserModel;
+}
+
 
 # pragma mark - Cars
 
@@ -136,10 +228,7 @@
     [newCar setValue:carModel.carBrand forKey:@"brand"];
     [newCar setValue:carModel.carColor forKey:@"color"];
     
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Can't save! %@ %@", error, [error localizedDescription]);
-    }
+    [self saveContext];
     
     successBlock([@"add a car successfully, plate is " stringByAppendingString:carModel.carPlate]);
 }
@@ -155,10 +244,7 @@
         }
     }
     
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Can't save! %@ %@", error, [error localizedDescription]);
-    }
+    [self saveContext];
     
     successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.carPlate]);
 }

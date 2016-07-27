@@ -12,10 +12,12 @@
 #import "MyProfileViewController.h"
 #import "MyOrdersViewController.h"
 #import "MyCarsViewController.h"
+#import "WelcomeViewController.h"
+#import "LibraryAPI.h"
 
 static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
 
-@interface UserInfoViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface UserInfoViewController () <UITableViewDelegate, UITableViewDataSource, WelcomeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -32,6 +34,20 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
+- (void)popUpWelcomeView {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WelcomeViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
+    viewController.delegate = self;
+    [self.navigationController presentViewController:viewController
+                                            animated:YES
+                                          completion:nil];
+}
+
+- (void)loginSuccessfully {
+    [self.tabBarController setSelectedIndex:0];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 # pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -39,20 +55,29 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    if (indexPath.row == 0 && indexPath.section == 0) {
-        MyProfileViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.row == 1 && indexPath.section == 0) {
-        MyOrdersViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyOrdersViewController"];
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.row == 2 && indexPath.section == 0) {
-        MyCarsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyCarsViewController"];
-        [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            MyProfileViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 1) {
+            MyOrdersViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyOrdersViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 2) {
+            MyCarsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyCarsViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    } else if (indexPath.section == 1) {
+        [[LibraryAPI sharedInstance] logout];
+        [self popUpWelcomeView];
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return section?1:3;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,11 +85,20 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UserInfoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:UserInfoCellIdentifier
-                                                              forIndexPath:indexPath];
-    [self configureImageCell:cell atIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        UserInfoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:UserInfoCellIdentifier
+                                                                  forIndexPath:indexPath];
+        [self configureImageCell:cell atIndexPath:indexPath];
+        
+        return cell;
+    } else {
+        UITableViewCell *logoutCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                             reuseIdentifier:nil];
+        logoutCell.textLabel.text = @"Log Out";
+        
+        return logoutCell;
+    }
     
-    return cell;
 }
 
 - (void)configureImageCell:(UserInfoCell *)cell atIndexPath:(NSIndexPath *)indexPath

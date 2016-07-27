@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+#import "LibraryAPI.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UIView *inputView;
@@ -33,6 +34,9 @@
                        action:@selector(cancalBtnPressed)
              forControlEvents:UIControlEventTouchUpInside];
     [self.signUpBtn.layer setCornerRadius:3.0];
+    [self.signUpBtn addTarget:self
+                       action:@selector(signupBtnPressed)
+             forControlEvents:UIControlEventTouchUpInside];
     [self.userAccountTextField addTarget:self
                                   action:@selector(textFieldDidChange:)
                         forControlEvents:UIControlEventEditingChanged];
@@ -47,6 +51,20 @@
 
 - (void)cancalBtnPressed {
     [self.delegate cancelRegister];
+}
+
+- (void)signupBtnPressed {
+    [[LibraryAPI sharedInstance] signUpWithPhone:self.userAccountTextField.text
+                                       firstName:self.userFirstNameTextField.text
+                                        lastName:self.userLastNameTextField.text
+                                        password:self.userPasswordTextField.text
+                                         succeed:^(NSString *userIdentifier) {
+                                             // TODO dismiss this page and log in
+                                             [self.delegate registerSucceed];
+                                         }
+                                            fail:^(NSError *error) {
+                                                
+                                            }];
 }
 
 - (void)textFieldDidChange:(UITextField *)textField {

@@ -57,40 +57,48 @@
     
     if ([userAccount isEqualToString:@"51709669"] && [userPassword isEqualToString:@"000000"]) {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            // Do something...
-            sleep(1);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                
-                KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ValetLogin"
-                                                                                    accessGroup:nil];
-                [keychain setObject:userPassword forKey:(__bridge id)(kSecAttrAccount)];
-                [keychain setObject:userAccount forKey:(__bridge id)(kSecValueData)];
-                
-                
-                [self.delegate loginSuccessfully];
-            });
-        });
+        
+        [[LibraryAPI sharedInstance] loginWithAccount:userAccount
+                                             password:userPassword
+                                              succeed:^(UserModel *userModel) {
+                                                  [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                  [self.view endEditing:YES];
+                                                  [self.delegate loginSuccessfully];
+                                              }
+                                                 fail:^(NSError *error) {
+                                                     
+                                                 }];
     }
     
 }
 
 - (void)signupBtnPressed {
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    RegisterViewController *viewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
-//    [self.navigationController presentViewController:viewcontroller
-//                                            animated:YES
-//                                          completion:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RegisterViewController *viewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+    [self.navigationController presentViewController:viewcontroller
+                                            animated:YES
+                                          completion:nil];
+}
+
+# pragma mark - RegisterViewControllerDelegate
+
+- (void)registerSucceed {
+    [self.delegate loginSuccessfully];
+
+    // [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)cancelRegister {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+# pragma mark - ForgetPasswordViewControllerDelegate
+
 - (void)cancelSetNewPassword {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+# pragma mark
 
 - (void)textFieldDidChange:(UITextField *)textField {
     if ([self.userAccountTextField.text isEqualToString:@""] ||

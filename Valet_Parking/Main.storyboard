@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A12A4FA6-526B-43C6-846D-C35550517EAD" translatesAutoresizingMaskIntoConstraints="NO" id="y0G-pc-TLZ"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg4" translatesAutoresizingMaskIntoConstraints="NO" id="y0G-pc-TLZ"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxI-FW-Dvj">
                                 <color key="backgroundColor" red="0.72941176470000002" green="0.54117647059999996" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -58,13 +58,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5B9E220F-479E-4D4E-B459-8098D0A67F86" translatesAutoresizingMaskIntoConstraints="NO" id="F2Q-lx-huE">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_account" translatesAutoresizingMaskIntoConstraints="NO" id="F2Q-lx-huE">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="SbZ-Zp-S97"/>
                                             <constraint firstAttribute="width" constant="25" id="WEf-0U-fx3"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1D8C1848-D446-4277-BB96-918D4569C9D1" translatesAutoresizingMaskIntoConstraints="NO" id="AQT-ai-HUa">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_pw" translatesAutoresizingMaskIntoConstraints="NO" id="AQT-ai-HUa">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="cwv-dP-LMB"/>
                                             <constraint firstAttribute="height" constant="25" id="sNd-dc-9kw"/>
@@ -230,25 +230,25 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5B9E220F-479E-4D4E-B459-8098D0A67F86" translatesAutoresizingMaskIntoConstraints="NO" id="vjh-Nh-HXA">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_account" translatesAutoresizingMaskIntoConstraints="NO" id="vjh-Nh-HXA">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="Efp-k4-S9V"/>
                                             <constraint firstAttribute="height" constant="25" id="Vhc-bw-3C4"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5B9E220F-479E-4D4E-B459-8098D0A67F86" translatesAutoresizingMaskIntoConstraints="NO" id="XIx-0w-4f9">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_account" translatesAutoresizingMaskIntoConstraints="NO" id="XIx-0w-4f9">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="Vp1-Bx-L0H"/>
                                             <constraint firstAttribute="width" constant="25" id="fCx-9x-N3B"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1D8C1848-D446-4277-BB96-918D4569C9D1" translatesAutoresizingMaskIntoConstraints="NO" id="O9U-Dv-O6x">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_pw" translatesAutoresizingMaskIntoConstraints="NO" id="O9U-Dv-O6x">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="P10-df-h6D"/>
                                             <constraint firstAttribute="width" constant="25" id="XVt-wx-Kdz"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1D8C1848-D446-4277-BB96-918D4569C9D1" translatesAutoresizingMaskIntoConstraints="NO" id="BCu-Je-nGZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_pw" translatesAutoresizingMaskIntoConstraints="NO" id="BCu-Je-nGZ">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="6mb-SW-02C"/>
                                             <constraint firstAttribute="width" constant="25" id="cJj-f0-Kxu"/>
@@ -406,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qn8-T9-sIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1939" y="-306"/>
+            <point key="canvasLocation" x="1938" y="-384"/>
         </scene>
         <!--Forget Password View Controller-->
         <scene sceneID="4YU-6c-DnF">
@@ -478,19 +478,19 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5B9E220F-479E-4D4E-B459-8098D0A67F86" translatesAutoresizingMaskIntoConstraints="NO" id="GU8-sc-hrG">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BDE256FA-2E9E-4BD7-BE35-E34EB1B7816C" translatesAutoresizingMaskIntoConstraints="NO" id="GU8-sc-hrG">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="Rsc-3x-DSP"/>
                                             <constraint firstAttribute="height" constant="25" id="prG-xX-dBX"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1D8C1848-D446-4277-BB96-918D4569C9D1" translatesAutoresizingMaskIntoConstraints="NO" id="4Zh-Nd-OzW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A518A503-A9C4-4444-BF99-844E492C983E" translatesAutoresizingMaskIntoConstraints="NO" id="4Zh-Nd-OzW">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="QcJ-U3-uUL"/>
                                             <constraint firstAttribute="width" constant="25" id="UCs-eu-8Sz"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1D8C1848-D446-4277-BB96-918D4569C9D1" translatesAutoresizingMaskIntoConstraints="NO" id="53z-K0-bJ1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A518A503-A9C4-4444-BF99-844E492C983E" translatesAutoresizingMaskIntoConstraints="NO" id="53z-K0-bJ1">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="b9G-Pr-D5y"/>
                                             <constraint firstAttribute="height" constant="25" id="sNy-Pf-U02"/>
@@ -734,7 +734,7 @@
                                             <frame key="frameInset" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A12A4FA6-526B-43C6-846D-C35550517EAD" translatesAutoresizingMaskIntoConstraints="NO" id="pKN-kP-ofU">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_account" translatesAutoresizingMaskIntoConstraints="NO" id="pKN-kP-ofU">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="4Pm-em-U1n"/>
                                                         <constraint firstAttribute="height" constant="25" id="Dnc-jh-43r"/>
@@ -1108,7 +1108,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1D8C1848-D446-4277-BB96-918D4569C9D1" width="32" height="32">
+        <image name="A518A503-A9C4-4444-BF99-844E492C983E" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
 GR4fJSYsLzU4VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
@@ -1124,7 +1124,7 @@ kQGZAZwBowGrAbgBvQG/AcEBxgHOAdEB1gHeAeEB8wH2AfsAAAAAAAACAQAAAAAAAAA/AAAAAAAAAAAA
 AAAAAAAB/Q
 </mutableData>
         </image>
-        <image name="5B9E220F-479E-4D4E-B459-8098D0A67F86" width="22" height="22">
+        <image name="BDE256FA-2E9E-4BD7-BE35-E34EB1B7816C" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
 GR4fJSYsLzU4VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
@@ -1140,21 +1140,8 @@ kQGZAZwBowGrAbgBvQG/AcEBxgHOAdEB1gHeAeEB8wH2AfsAAAAAAAACAQAAAAAAAAA/AAAAAAAAAAAA
 AAAAAAAB/Q
 </mutableData>
         </image>
-        <image name="A12A4FA6-526B-43C6-846D-C35550517EAD" width="480" height="835">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
-GR4fJSYsLzU4VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
-V05TQ29sb3KAAoAMEiTAAACAA4AKWns0ODAsIDgzNX3SFQoWGFpOUy5vYmplY3RzoReABIAJ0hUKGhii
-GxyABYAGgAkQBdMgCiEiIyRXTlMuYmFzZVtOUy5yZWxhdGl2ZYAAgAiAB18QgWZpbGU6Ly8vQXBwbGlj
-YXRpb25zL1hjb2RlLWJldGEuYXBwL0NvbnRlbnRzL1BsdWdJbnMvSURFSW50ZXJmYWNlQnVpbGRlcktp
-dC5pZGVwbHVnaW4vQ29udGVudHMvUmVzb3VyY2VzL0lCTWlzc2luZ0ltYWdlR2x5cGgudGlmZtInKCkq
-WiRjbGFzc25hbWVYJGNsYXNzZXNVTlNVUkyiKStYTlNPYmplY3TSJygtLldOU0FycmF5oi0r0zAxCjIz
-NFdOU1doaXRlXE5TQ29sb3JTcGFjZUQwIDAAEAOAC9InKDY3V05TQ29sb3KiNivSJyg5OldOU0ltYWdl
-ojkrXxAPTlNLZXllZEFyY2hpdmVy0T0+VHJvb3SAAQAIABEAGgAjAC0AMgA3AEUASwBWAF0AZABxAHgA
-gACCAIQAiQCLAI0AmACdAKgAqgCsAK4AswC2ALgAugC8AL4AxQDNANkA2wDdAN8BYwFoAXMBfAGCAYUB
-jgGTAZsBngGlAa0BugG/AcEBwwHIAdAB0wHYAeAB4wH1AfgB/QAAAAAAAAIBAAAAAAAAAD8AAAAAAAAA
-AAAAAAAAAAH/A
-</mutableData>
-        </image>
+        <image name="bg4" width="480" height="835"/>
+        <image name="login_account" width="22" height="22"/>
+        <image name="login_pw" width="32" height="32"/>
     </resources>
 </document>

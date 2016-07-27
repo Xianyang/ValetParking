@@ -11,12 +11,13 @@
 
 @interface UserModel : JSONModel
 
-@property (strong, nonatomic) NSString *userNo;
-@property (strong, nonatomic) NSString *userFirstName;
-@property (strong, nonatomic) NSString *userLastName;
-@property (strong, nonatomic) NSString *userNickName;
-@property (strong, nonatomic) NSString *userPhone;
-@property (strong, nonatomic) NSArray <CarModel> *userCars;
+- (id)initWithIdentifier:(NSString *)identifier firstName:(NSString *)firstName lastName:(NSString *)lastName phone:(NSString *)phone;
+
+@property (strong, nonatomic) NSString *identifier;
+@property (strong, nonatomic) NSString *firstName;
+@property (strong, nonatomic) NSString *lastName;
+@property (strong, nonatomic) NSString *phone;
+
 
 
 @end

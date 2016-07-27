@@ -11,6 +11,7 @@
 @protocol RegisterViewControllerDelegate
 
 - (void)cancelRegister;
+- (void)registerSucceed;
 
 @end
 
