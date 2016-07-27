@@ -8,11 +8,14 @@
 
 #import "ParkNowViewController.h"
 #import "AddCarViewController.h"
+#import "TwoLabelCell.h"
 #import "LibraryAPI.h"
 
+static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
-@interface ParkNowViewController () <AddCarViewControllerDelegate>
+@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSArray *cars;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -26,9 +29,9 @@
 }
 
 - (void)checkCars {
-    self.cars = [[LibraryAPI sharedInstance] getAllCars];
+    self.cars = [[LibraryAPI sharedInstance] getAllCarModels];
     
-    if (self.cars.count > 0) {
+    if (self.cars.count == 0) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         AddCarViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AddCarViewController"];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -37,6 +40,36 @@
                                                 animated:YES
                                               completion:nil];
     }
+}
+
+# pragma mark - UI Table View
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 4;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.0f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TwoLabelCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TwoLabelCellIdentifier];
+    
+    [self configureCell:cell atIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)configureCell:(TwoLabelCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.leftLabel.text = [ParkNowViewController leftTextForCell][indexPath.row];
+    
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        cell.rightLabel.text = @"Califonia Tower";
+    }
+}
+
++ (NSArray *)leftTextForCell {
+    return @[@"Place", @"Name", @"Phone", @"Car"];
 }
 
 # pragma mark - AddCarViewControllerDelegate

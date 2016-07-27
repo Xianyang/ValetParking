@@ -21,4 +21,14 @@
     return self;
 }
 
+- (BOOL)isSameCar:(CarModel *)car {
+    if ([self.carPlate isEqualToString:car.carPlate] &&
+        [self.carBrand isEqualToString:car.carBrand] &&
+        [self.carColor isEqualToString:car.carColor]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 @end

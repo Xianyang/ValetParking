@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CarModel.h"
 
 @protocol AddCarViewControllerDelegate
 
@@ -14,11 +15,15 @@
 - (void)finishAddCar;
 
 
-
 @end
 
 @interface AddCarViewController : UIViewController
+{
+    BOOL _editMode;
+    CarModel *_oldCar;
+}
 
 @property (assign, nonatomic) id <AddCarViewControllerDelegate> delegate;
+- (void)enterEditModeWithCar:(CarModel *)car;
 
 @end

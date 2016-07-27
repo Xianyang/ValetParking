@@ -19,7 +19,8 @@
 
 // cars
 - (void)addACar:(CarModel *)carModel succeed:(void(^)(NSString *message))successBlock fail:(void(^)(NSError *error))failBlock;
+- (void)deleteCar:(CarModel *)carModel succeed:(void(^)(NSString *message))successBlock fail:(void(^)(NSError *error))failBlock;
 - (CarModel *)getACar:(NSString *)carNO;
-- (NSArray *)getAllCars;
+- (NSArray *)getAllCarModels;
 
 @end

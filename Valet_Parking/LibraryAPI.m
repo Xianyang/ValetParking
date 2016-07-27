@@ -6,6 +6,8 @@
 //  Copyright © 2016 xianyang. All rights reserved.
 //
 
+// error domain 201: reduplicate car
+
 #import "LibraryAPI.h"
 #import "HttpClient.h"
 #import "UserModel.h"
@@ -64,28 +66,67 @@
 
 # pragma mark - Cars
 
-- (NSArray *)transferToCarModel:(NSArray *)cars {
+- (NSArray *)transferToCarModel:(NSArray *)carMOs {
     NSMutableArray *carModels = [[NSMutableArray alloc] init];
-    for (NSManagedObject *carObject in cars) {
-        CarModel *carModel = [[CarModel alloc] initWithPlate:[carObject valueForKey:@"plate"]
-                                                       brand:[carObject valueForKey:@"brand"]
-                                                       color:[carObject valueForKey:@"color"]];
+    for (NSManagedObject *carMO in carMOs) {
+        CarModel *carModel = [[CarModel alloc] initWithPlate:[carMO valueForKey:@"plate"]
+                                                       brand:[carMO valueForKey:@"brand"]
+                                                       color:[carMO valueForKey:@"color"]];
         [carModels addObject:carModel];
     }
     
     return [carModels copy];
 }
 
-- (NSArray *)getAllCars {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
-    NSArray *cars = [[self.managedObjectContext executeFetchRequest:fetchRequest
-                                                          error:nil] mutableCopy];
-    NSArray *carModels = [self transferToCarModel:cars];
+- (NSArray *)getAllCarModels {
+    NSArray *carMOs = [self getAllCarMOs];
+    NSArray *carModels = [self transferToCarModel:carMOs];
     
     return carModels;
 }
 
+- (NSArray *)getAllCarMOs {
+    // NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Car"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"plate" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSArray *cars = [[self.managedObjectContext executeFetchRequest:fetchRequest
+                                                              error:nil] mutableCopy];
+    if (cars == nil) {
+        // error
+    }
+    
+    return cars;
+}
+
+- (BOOL)checkCarMO:(NSManagedObject *)carMO andModel:(CarModel *)carModel {
+    if ([[carMO valueForKey:@"plate"] isEqualToString:carModel.carPlate] &&
+        [[carMO valueForKey:@"brand"] isEqualToString:carModel.carBrand] &&
+        [[carMO valueForKey:@"color"] isEqualToString:carModel.carColor]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 - (void)addACar:(CarModel *)carModel succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
+    // Step0 - check redundancy
+    NSArray *carModels = [self getAllCarModels];
+    for (CarModel *savedCarModel in carModels) {
+        if ([carModel isSameCar:savedCarModel]) {
+            NSError *error = [NSError errorWithDomain:@"reduplicate car" code:201 userInfo:nil];
+            failBlock(error);
+            return;
+        }
+    }
+    
     // Step1 - TODO upload this car to server
     
     // Step2 - create a new car object and save it locally
@@ -100,7 +141,26 @@
         NSLog(@"Can't save! %@ %@", error, [error localizedDescription]);
     }
     
-    successBlock(@"add a car successfully");
+    successBlock([@"add a car successfully, plate is " stringByAppendingString:carModel.carPlate]);
+}
+
+- (void)deleteCar:(CarModel *)carModel succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
+    // Step1 - TODO delete this car from server
+    
+    // Step2 - delete this car locally
+    NSArray *carMOs = [self getAllCarMOs];
+    for (NSManagedObject *carMO in carMOs) {
+        if ([self checkCarMO:carMO andModel:carModel]) {
+            [self.managedObjectContext deleteObject:carMO];
+        }
+    }
+    
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Can't save! %@ %@", error, [error localizedDescription]);
+    }
+    
+    successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.carPlate]);
 }
 
 // cars

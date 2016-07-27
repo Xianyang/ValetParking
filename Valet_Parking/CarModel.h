@@ -14,6 +14,7 @@
 @interface CarModel : JSONModel
 
 - (id)initWithPlate:(NSString *)plate brand:(NSString *)brand color:(NSString *)color;
+- (BOOL)isSameCar:(CarModel *)car;
 
 @property (strong, nonatomic) NSString *carNo;
 @property (strong, nonatomic) NSString *carBrand;

@@ -34,6 +34,8 @@
 		944E65241D4711F30024B977 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E650F1D4711F30024B977 /* HttpClient.m */; };
 		944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65111D4711F30024B977 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		944E65261D4711F30024B977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944E65121D4711F30024B977 /* Main.storyboard */; };
+		94FE2BDA1D4858840096B408 /* CarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE2BD91D4858840096B408 /* CarCell.m */; };
+		94FE2BDD1D48ABC20096B408 /* TwoLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE2BDC1D48ABC20096B408 /* TwoLabelCell.m */; };
 		A9FF8864E16A39CDCAB0BC91 /* libPods-Valet_ParkingUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */; };
 		D202C2F25FEDDDAE253F860E /* libPods-Valet_Parking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D8BDC69B131A61F9CA19A0 /* libPods-Valet_Parking.a */; };
 		D2A0157E2649C825489C9F09 /* libPods-Valet_ParkingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4059980DC2665C228F860C4E /* libPods-Valet_ParkingTests.a */; };
@@ -118,6 +120,10 @@
 		944E65101D4711F30024B977 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		944E65111D4711F30024B977 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		944E65121D4711F30024B977 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		94FE2BD81D4858840096B408 /* CarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarCell.h; sourceTree = "<group>"; };
+		94FE2BD91D4858840096B408 /* CarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarCell.m; sourceTree = "<group>"; };
+		94FE2BDB1D48ABC20096B408 /* TwoLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelCell.h; sourceTree = "<group>"; };
+		94FE2BDC1D48ABC20096B408 /* TwoLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelCell.m; sourceTree = "<group>"; };
 		97DED36F8CD5826CE7FF58E1 /* Pods-Valet_Parking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking.debug.xcconfig"; sourceTree = "<group>"; };
 		BA6B352EE49CBD6B92FE19E8 /* Pods-Valet_ParkingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_ParkingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_ParkingUITests/Pods-Valet_ParkingUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,6 +262,10 @@
 			children = (
 				944E65041D4711F20024B977 /* UserInfoCell.h */,
 				944E65051D4711F30024B977 /* UserInfoCell.m */,
+				94FE2BD81D4858840096B408 /* CarCell.h */,
+				94FE2BD91D4858840096B408 /* CarCell.m */,
+				94FE2BDB1D48ABC20096B408 /* TwoLabelCell.h */,
+				94FE2BDC1D48ABC20096B408 /* TwoLabelCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -620,8 +630,10 @@
 				944E65231D4711F30024B977 /* LibraryAPI.m in Sources */,
 				944E65161D4711F30024B977 /* ValetServiceViewController.m in Sources */,
 				944E651A1D4711F30024B977 /* SettingViewController.m in Sources */,
+				94FE2BDD1D48ABC20096B408 /* TwoLabelCell.m in Sources */,
 				944E651B1D4711F30024B977 /* MyProfileViewController.m in Sources */,
 				944E64931D4711840024B977 /* main.m in Sources */,
+				94FE2BDA1D4858840096B408 /* CarCell.m in Sources */,
 				944E651D1D4711F30024B977 /* MyCarsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

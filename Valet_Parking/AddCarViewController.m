@@ -37,10 +37,23 @@
     [self.finishAddCarBtn setAction:@selector(finishAddCar)];
     
     [self.plateTextField becomeFirstResponder];
+    
+    if (_editMode) {
+        self.navigationItem.title = @"Edit";
+        self.plateTextField.text = _oldCar.carPlate;
+        self.brandTextField.text = _oldCar.carBrand;
+        self.colorTextField.text = _oldCar.carColor;
+    }
+}
+
+- (void)enterEditModeWithCar:(CarModel *)car {
+    _editMode = YES;
+    _oldCar = car;
 }
 
 - (void)cancelAddCar {
     // TODO add a alert
+    [self.view endEditing:YES];
     [self.delegate cancelAddCar];
 }
 
@@ -49,14 +62,54 @@
                                                  brand:self.brandTextField.text
                                                  color:self.colorTextField.text];
     
+    void (^deleteCar)(void) = ^()
+    {
+        [[LibraryAPI sharedInstance] deleteCar:_oldCar
+                                       succeed:^(NSString *message) {
+                                           NSLog(@"%@", message);
+                                       }
+                                          fail:^(NSError *error) {
+                                              
+                                          }];
+    };
+    
+    __block BOOL addSuccessfully = NO;
     [[LibraryAPI sharedInstance] addACar:newCar
                                  succeed:^(NSString *message) {
+                                     addSuccessfully = YES;
                                      NSLog(@"%@", message);
+                                     [self.view endEditing:YES];
                                      [self.delegate finishAddCar];
                                  }
                                     fail:^(NSError *error) {
-                                        
+                                        NSLog(@"%@", error);
+                                        // TODO if same car, alert user
+                                        if (error.code == 201 && _editMode == NO) {
+                                            // user add a car that already exist
+                                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reduplicate Car"
+                                                                                                           message:@"You have already added this car"
+                                                                                                    preferredStyle:UIAlertControllerStyleAlert];
+                                            
+                                            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                  style:UIAlertActionStyleDefault
+                                                                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                                                                    
+                                                                                                }];
+                                            [alert addAction:defaultAction];
+                                            [self presentViewController:alert animated:YES completion:nil];
+                                        }
                                     }];
+    
+    
+    if (_editMode && addSuccessfully) {
+        [[LibraryAPI sharedInstance] deleteCar:_oldCar
+                                       succeed:^(NSString *message) {
+                                           NSLog(@"%@", message);
+                                       }
+                                          fail:^(NSError *error) {
+                                              
+                                          }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
