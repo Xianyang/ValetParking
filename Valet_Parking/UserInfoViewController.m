@@ -95,6 +95,7 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
         UITableViewCell *logoutCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                              reuseIdentifier:nil];
         logoutCell.textLabel.text = @"Log Out";
+        logoutCell.textLabel.textAlignment = NSTextAlignmentCenter;
         
         return logoutCell;
     }

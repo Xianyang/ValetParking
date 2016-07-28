@@ -33,13 +33,21 @@
     [self.cancelBtn addTarget:self
                        action:@selector(cancalBtnPressed)
              forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.signUpBtn setEnabled:NO];
+    [self.signUpBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    
+    // sign up button
     [self.signUpBtn.layer setCornerRadius:3.0];
     [self.signUpBtn addTarget:self
                        action:@selector(signupBtnPressed)
              forControlEvents:UIControlEventTouchUpInside];
-    [self.userAccountTextField addTarget:self
-                                  action:@selector(textFieldDidChange:)
-                        forControlEvents:UIControlEventEditingChanged];
+    
+    // set target of text field
+    [self addTargetToTextFields:@[self.userFirstNameTextField, self.userLastNameTextField,
+                                  self.userAccountTextField, self.verificationCodeTextField, self.userPasswordTextField]];
+    
+    // set verficate button
     [self.getVerificationCodeBtn setEnabled:NO];
     [self.getVerificationCodeBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:227.0/255.0
                                                                alpha:1.0]
@@ -49,7 +57,16 @@
 
 }
 
+- (void)addTargetToTextFields:(NSArray *)textfields {
+    for (UITextField *textfield in textfields) {
+        [textfield addTarget:self
+                      action:@selector(textFieldDidChange:)
+            forControlEvents:UIControlEventEditingChanged];
+    }
+}
+
 - (void)cancalBtnPressed {
+    [self.view endEditing:YES];
     [self.delegate cancelRegister];
 }
 
@@ -78,6 +95,18 @@
         [self.getVerificationCodeBtn setTitleColor:[UIColor colorWithRed:186.0/255.0 green:138.0/255.0 blue:87.0/255.0
                                                                    alpha:1.0]
                                           forState:UIControlStateNormal];
+    }
+    
+    if ([self.userFirstNameTextField.text isEqualToString:@""] ||
+        [self.userLastNameTextField.text isEqualToString:@""] ||
+        [self.userAccountTextField.text isEqualToString:@""] ||
+        [self.verificationCodeTextField.text isEqualToString:@""] ||
+        [self.userPasswordTextField.text isEqualToString:@""]) {
+        [self.signUpBtn setEnabled:NO];
+        [self.signUpBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    } else {
+        [self.signUpBtn setEnabled:YES];
+        [self.signUpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9448F48F1D49EFDE008AD1E2 /* GetCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9448F48E1D49EFDE008AD1E2 /* GetCarViewController.m */; };
+		9448F4921D49F27E008AD1E2 /* ParkTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9448F4911D49F27E008AD1E2 /* ParkTicketViewController.m */; };
 		944E64931D4711840024B977 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64921D4711840024B977 /* main.m */; };
 		944E64961D4711840024B977 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64951D4711840024B977 /* AppDelegate.m */; };
 		944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 944E649D1D4711840024B977 /* Valet_Parking.xcdatamodeld */; };
@@ -67,6 +69,10 @@
 		75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking.release.xcconfig"; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424E8841D47494800051EFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9448F48D1D49EFDE008AD1E2 /* GetCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCarViewController.h; sourceTree = "<group>"; };
+		9448F48E1D49EFDE008AD1E2 /* GetCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCarViewController.m; sourceTree = "<group>"; };
+		9448F4901D49F27E008AD1E2 /* ParkTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkTicketViewController.h; sourceTree = "<group>"; };
+		9448F4911D49F27E008AD1E2 /* ParkTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkTicketViewController.m; sourceTree = "<group>"; };
 		944E648E1D4711840024B977 /* Valet_Parking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valet_Parking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944E64921D4711840024B977 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		944E64941D4711840024B977 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -318,6 +324,10 @@
 				944E64F51D4711F20024B977 /* ParkNowViewController.m */,
 				944E64F61D4711F20024B977 /* BookServiceViewController.h */,
 				944E64F71D4711F20024B977 /* BookServiceViewController.m */,
+				9448F48D1D49EFDE008AD1E2 /* GetCarViewController.h */,
+				9448F48E1D49EFDE008AD1E2 /* GetCarViewController.m */,
+				9448F4901D49F27E008AD1E2 /* ParkTicketViewController.h */,
+				9448F4911D49F27E008AD1E2 /* ParkTicketViewController.m */,
 			);
 			name = Tab1;
 			sourceTree = "<group>";
@@ -627,11 +637,13 @@
 				944E65241D4711F30024B977 /* HttpClient.m in Sources */,
 				944E651E1D4711F30024B977 /* AddCarViewController.m in Sources */,
 				944E64961D4711840024B977 /* AppDelegate.m in Sources */,
+				9448F48F1D49EFDE008AD1E2 /* GetCarViewController.m in Sources */,
 				944E65231D4711F30024B977 /* LibraryAPI.m in Sources */,
 				944E65161D4711F30024B977 /* ValetServiceViewController.m in Sources */,
 				944E651A1D4711F30024B977 /* SettingViewController.m in Sources */,
 				94FE2BDD1D48ABC20096B408 /* TwoLabelCell.m in Sources */,
 				944E651B1D4711F30024B977 /* MyProfileViewController.m in Sources */,
+				9448F4921D49F27E008AD1E2 /* ParkTicketViewController.m in Sources */,
 				944E64931D4711840024B977 /* main.m in Sources */,
 				94FE2BDA1D4858840096B408 /* CarCell.m in Sources */,
 				944E651D1D4711F30024B977 /* MyCarsViewController.m in Sources */,

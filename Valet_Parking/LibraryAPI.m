@@ -138,6 +138,10 @@
     }
     
     [self saveContext];
+    
+    // delete key chain
+    [self saveAccountToKeychain:@"" password:@""];
+    
     NSLog(@"user logs out");
 }
 
@@ -146,7 +150,7 @@
     NSArray *userMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
                                                                  error:nil] copy];
     
-    NSManagedObject *userMO = userMOs[0];
+    NSManagedObject *userMO = [userMOs lastObject];
     UserModel *currentUserModel = [[UserModel alloc]
                                    initWithIdentifier:[userMO valueForKey:@"identifier"]
                                    firstName:[userMO valueForKey:@"firstName"]
@@ -241,12 +245,14 @@
     for (NSManagedObject *carMO in carMOs) {
         if ([self checkCarMO:carMO andModel:carModel]) {
             [self.managedObjectContext deleteObject:carMO];
+            [self saveContext];
+            
+            successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.carPlate]);
+            return;
         }
     }
     
-    [self saveContext];
-    
-    successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.carPlate]);
+    NSLog(@"delete fail, car not find");
 }
 
 // cars
@@ -255,6 +261,32 @@
     
     // save the car info locally
     
+}
+
+# pragma mark - QR 
+- (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height
+{
+    CIImage *qrCIImage = [self qrCIImageForString:qrString];
+    CGFloat scaleX = width / qrCIImage.extent.size.width;
+    CGFloat scaleY = height / qrCIImage.extent.size.height;
+    CIImage *transformedImage = [qrCIImage imageByApplyingTransform:CGAffineTransformMakeScale(scaleX, scaleY)];
+    
+    return [UIImage imageWithCIImage:transformedImage];
+}
+
+- (CIImage *)qrCIImageForString:(NSString *)qrString {
+    // Need to convert the string to a UTF-8 encoded NSData object
+    NSData *stringData = [qrString dataUsingEncoding:NSISOLatin1StringEncoding
+                                allowLossyConversion:NO];
+    
+    // Create the filter
+    CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    // Set the message content and error-correction level
+    [qrFilter setValue:stringData forKey:@"inputMessage"];
+    [qrFilter setValue:@"H" forKey:@"inputCorrectionLevel"];
+    
+    // Send the image back
+    return qrFilter.outputImage;
 }
 
 

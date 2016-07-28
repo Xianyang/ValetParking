@@ -62,7 +62,7 @@
                                                  brand:self.brandTextField.text
                                                  color:self.colorTextField.text];
     
-    void (^deleteCar)(void) = ^()
+    void (^deleteCar)(CarModel *) = ^(CarModel *oldCar)
     {
         [[LibraryAPI sharedInstance] deleteCar:_oldCar
                                        succeed:^(NSString *message) {
@@ -79,6 +79,11 @@
                                      addSuccessfully = YES;
                                      NSLog(@"%@", message);
                                      [self.view endEditing:YES];
+                                     
+                                     if (_editMode) {
+                                         deleteCar(_oldCar);
+                                     }
+                                     
                                      [self.delegate finishAddCar];
                                  }
                                     fail:^(NSError *error) {
@@ -101,15 +106,16 @@
                                     }];
     
     
-    if (_editMode && addSuccessfully) {
-        [[LibraryAPI sharedInstance] deleteCar:_oldCar
-                                       succeed:^(NSString *message) {
-                                           NSLog(@"%@", message);
-                                       }
-                                          fail:^(NSError *error) {
-                                              
-                                          }];
-    }
+//    if (_editMode && addSuccessfully) {
+//        [[LibraryAPI sharedInstance] deleteCar:_oldCar
+//                                       succeed:^(NSString *message) {
+//                                           NSLog(@"%@", message);
+//                                           
+//                                       }
+//                                          fail:^(NSError *error) {
+//                                              
+//                                          }];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

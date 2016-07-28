@@ -104,7 +104,7 @@
     if ([self.userAccountTextField.text isEqualToString:@""] ||
         [self.userPasswordTextField.text isEqualToString:@""]) {
         [self.loginBtn setEnabled:NO];
-        [self.loginBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [self.loginBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     } else {
         [self.loginBtn setEnabled:YES];
         [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

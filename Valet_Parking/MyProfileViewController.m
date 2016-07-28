@@ -8,8 +8,12 @@
 
 #import "MyProfileViewController.h"
 #import "UserModel.h"
+#import "TwoLabelCell.h"
 
-@interface MyProfileViewController ()
+static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
+
+@interface MyProfileViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UserModel *userModel;
 @end
 
@@ -20,6 +24,38 @@
     
     self.userModel = [[LibraryAPI sharedInstance] getCurrentUserModel];
     NSLog(@"current user is %@, first name %@, last name %@, id %@", self.userModel.phone, self.userModel.firstName, self.userModel.lastName, self.userModel.identifier);
+}
+
+# pragma mark - UITableView
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.0f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TwoLabelCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TwoLabelCellIdentifier];
+    
+    [self configureCell:cell atIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)configureCell:(TwoLabelCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.leftLabel.text = [MyProfileViewController leftTextForCell][indexPath.row];
+    
+    if (indexPath.row == 0) {
+        cell.rightLabel.text = [[self.userModel.firstName stringByAppendingString:@" "] stringByAppendingString:self.userModel.lastName];
+    } else if (indexPath.row == 1) {
+        cell.rightLabel.text = self.userModel.phone;
+    }
+}
+
++ (NSArray *)leftTextForCell {
+    return @[@"Name", @"Phone"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -43,6 +43,7 @@
 }
 
 - (void)cancalBtnPressed {
+    [self.view endEditing:YES];
     [self.delegate cancelSetNewPassword];
 }
 

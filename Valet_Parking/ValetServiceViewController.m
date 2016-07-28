@@ -32,11 +32,19 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                                                         accessGroup:nil];
     
     NSString *userPassword = [keychain objectForKey:(__bridge id)(kSecValueData)];
-    NSString *userNo = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
+    NSString *userAccount = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
     
-    if (![userNo isEqualToString:@""] && ![userPassword isEqualToString:@""]) {
+    if (![userAccount isEqualToString:@""] && ![userPassword isEqualToString:@""]) {
         // TODO user already logged in once
-        [self popUpWelcomeView];
+        // [self popUpWelcomeView];
+        [[LibraryAPI sharedInstance] loginWithAccount:userAccount
+                                             password:userPassword
+                                              succeed:^(UserModel *userModel) {
+                                                  
+                                              }
+                                                 fail:^(NSError *error) {
+                                                     
+                                                 }];
     } else {
         [self popUpWelcomeView];
     }

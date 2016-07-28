@@ -29,4 +29,7 @@
 - (CarModel *)getACar:(NSString *)carNO;
 - (NSArray *)getAllCarModels;
 
+// qr
+- (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height;
+
 @end
