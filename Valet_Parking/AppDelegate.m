@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <SMS_SDK/SMSSDK.h>
 
 @interface AppDelegate ()
 
@@ -16,7 +17,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [SMSSDK registerApp:@"f3fc6baa9ac4"
+             withSecret:@"7f3dedcb36d92deebcb373af921d635a"];
+    
+//    [SMSSDK registerApp:@"158a3305baeaa"
+//             withSecret:@"a905df802b5e5f23c4bf5707055ee030"];
     return YES;
 }
 

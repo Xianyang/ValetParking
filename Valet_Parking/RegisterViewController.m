@@ -8,6 +8,11 @@
 
 #import "RegisterViewController.h"
 #import "LibraryAPI.h"
+#import <SMS_SDK/SMSSDK.h>
+#import <SMS_SDK/Extend/SMSSDKCountryAndAreaCode.h>
+#import <SMS_SDK/Extend/SMSSDK+DeprecatedMethods.h>
+#import <SMS_SDK/Extend/SMSSDK+ExtexdMethods.h>
+#import <MOBFoundation/MOBFoundation.h>
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UIView *inputView;
@@ -52,10 +57,27 @@
     [self.getVerificationCodeBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:227.0/255.0
                                                                alpha:1.0]
                                       forState:UIControlStateNormal];
+    [self.getVerificationCodeBtn addTarget:self
+                                    action:@selector(getVC)
+                          forControlEvents:UIControlEventTouchUpInside];
     
     [self.userFirstNameTextField becomeFirstResponder];
 
 }
+
+- (void)getVC {
+    [self.getVerificationCodeBtn setEnabled:NO];
+    [self.getVerificationCodeBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:227.0/255.0
+                                                               alpha:1.0]
+                                      forState:UIControlStateNormal];
+    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS
+                            phoneNumber:self.userAccountTextField.text
+                                   zone:@"852"
+                       customIdentifier:nil
+                                 result:nil];
+}
+
+
 
 - (void)addTargetToTextFields:(NSArray *)textfields {
     for (UITextField *textfield in textfields) {

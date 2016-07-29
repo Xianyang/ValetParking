@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9446570E1D4B35DC004AB5D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */; };
+		9446570F1D4B35DC004AB5D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */; };
+		944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944657121D4B3A24004AB5D2 /* EditItemViewController.m */; };
 		9448F48F1D49EFDE008AD1E2 /* GetCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9448F48E1D49EFDE008AD1E2 /* GetCarViewController.m */; };
 		9448F4921D49F27E008AD1E2 /* ParkTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9448F4911D49F27E008AD1E2 /* ParkTicketViewController.m */; };
 		944E64931D4711840024B977 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64921D4711840024B977 /* main.m */; };
 		944E64961D4711840024B977 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64951D4711840024B977 /* AppDelegate.m */; };
 		944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 944E649D1D4711840024B977 /* Valet_Parking.xcdatamodeld */; };
 		944E64A11D4711840024B977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944E64A01D4711840024B977 /* Assets.xcassets */; };
-		944E64A41D4711840024B977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944E64A21D4711840024B977 /* LaunchScreen.storyboard */; };
 		944E64AF1D4711850024B977 /* Valet_ParkingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64AE1D4711850024B977 /* Valet_ParkingTests.m */; };
 		944E64BA1D4711850024B977 /* Valet_ParkingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64B91D4711850024B977 /* Valet_ParkingUITests.m */; };
 		944E65131D4711F30024B977 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64ED1D4711F20024B977 /* WelcomeViewController.m */; };
@@ -36,6 +38,11 @@
 		944E65241D4711F30024B977 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E650F1D4711F30024B977 /* HttpClient.m */; };
 		944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65111D4711F30024B977 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		944E65261D4711F30024B977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944E65121D4711F30024B977 /* Main.storyboard */; };
+		9491A0451D4B3074009D737D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9491A0441D4B3074009D737D /* MessageUI.framework */; };
+		9491A0471D4B30E3009D737D /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9491A0461D4B30E3009D737D /* libstdc++.tbd */; };
+		9491A0491D4B30E9009D737D /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9491A0481D4B30E9009D737D /* libicucore.tbd */; };
+		9491A04B1D4B31D2009D737D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9491A04A1D4B31D2009D737D /* libz.tbd */; };
+		9491A04F1D4B31E8009D737D /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9491A04E1D4B31E8009D737D /* JavaScriptCore.framework */; };
 		94FE2BDA1D4858840096B408 /* CarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE2BD91D4858840096B408 /* CarCell.m */; };
 		94FE2BDD1D48ABC20096B408 /* TwoLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FE2BDC1D48ABC20096B408 /* TwoLabelCell.m */; };
 		A9FF8864E16A39CDCAB0BC91 /* libPods-Valet_ParkingUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */; };
@@ -69,6 +76,10 @@
 		75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking.release.xcconfig"; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424E8841D47494800051EFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
+		944657111D4B3A24004AB5D2 /* EditItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditItemViewController.h; sourceTree = "<group>"; };
+		944657121D4B3A24004AB5D2 /* EditItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditItemViewController.m; sourceTree = "<group>"; };
 		9448F48D1D49EFDE008AD1E2 /* GetCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCarViewController.h; sourceTree = "<group>"; };
 		9448F48E1D49EFDE008AD1E2 /* GetCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCarViewController.m; sourceTree = "<group>"; };
 		9448F4901D49F27E008AD1E2 /* ParkTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkTicketViewController.h; sourceTree = "<group>"; };
@@ -79,7 +90,6 @@
 		944E64951D4711840024B977 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		944E649E1D4711840024B977 /* Valet_Parking.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Valet_Parking.xcdatamodel; sourceTree = "<group>"; };
 		944E64A01D4711840024B977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		944E64A31D4711840024B977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		944E64A51D4711840024B977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944E64AA1D4711850024B977 /* Valet_ParkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Valet_ParkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		944E64AE1D4711850024B977 /* Valet_ParkingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Valet_ParkingTests.m; sourceTree = "<group>"; };
@@ -126,6 +136,11 @@
 		944E65101D4711F30024B977 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		944E65111D4711F30024B977 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		944E65121D4711F30024B977 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9491A0441D4B3074009D737D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		9491A0461D4B30E3009D737D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		9491A0481D4B30E9009D737D /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		9491A04A1D4B31D2009D737D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9491A04E1D4B31E8009D737D /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		94FE2BD81D4858840096B408 /* CarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarCell.h; sourceTree = "<group>"; };
 		94FE2BD91D4858840096B408 /* CarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarCell.m; sourceTree = "<group>"; };
 		94FE2BDB1D48ABC20096B408 /* TwoLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelCell.h; sourceTree = "<group>"; };
@@ -139,7 +154,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9491A04F1D4B31E8009D737D /* JavaScriptCore.framework in Frameworks */,
+				9446570F1D4B35DC004AB5D2 /* SMS_SDK.framework in Frameworks */,
+				9491A04B1D4B31D2009D737D /* libz.tbd in Frameworks */,
+				9491A0491D4B30E9009D737D /* libicucore.tbd in Frameworks */,
+				9491A0471D4B30E3009D737D /* libstdc++.tbd in Frameworks */,
+				9491A0451D4B3074009D737D /* MessageUI.framework in Frameworks */,
 				D202C2F25FEDDDAE253F860E /* libPods-Valet_Parking.a in Frameworks */,
+				9446570E1D4B35DC004AB5D2 /* MOBFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,11 +200,25 @@
 		833205B6256987C79EEAE831 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9491A04E1D4B31E8009D737D /* JavaScriptCore.framework */,
+				9491A04A1D4B31D2009D737D /* libz.tbd */,
+				9491A0481D4B30E9009D737D /* libicucore.tbd */,
+				9491A0461D4B30E3009D737D /* libstdc++.tbd */,
+				9491A0441D4B3074009D737D /* MessageUI.framework */,
 				28D8BDC69B131A61F9CA19A0 /* libPods-Valet_Parking.a */,
 				4059980DC2665C228F860C4E /* libPods-Valet_ParkingTests.a */,
 				90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9446570B1D4B35DC004AB5D2 /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */,
+				9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */,
+			);
+			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
 		944E64851D4711840024B977 = {
@@ -218,7 +254,6 @@
 				944E652A1D4713DB0024B977 /* API */,
 				944E65121D4711F30024B977 /* Main.storyboard */,
 				944E64A01D4711840024B977 /* Assets.xcassets */,
-				944E64A21D4711840024B977 /* LaunchScreen.storyboard */,
 				944E64A51D4711840024B977 /* Info.plist */,
 				944E649D1D4711840024B977 /* Valet_Parking.xcdatamodeld */,
 				944E64911D4711840024B977 /* Supporting Files */,
@@ -256,6 +291,8 @@
 		944E65271D4713BF0024B977 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				944657111D4B3A24004AB5D2 /* EditItemViewController.h */,
+				944657121D4B3A24004AB5D2 /* EditItemViewController.m */,
 				944E652B1D4713E30024B977 /* Welcome */,
 				944E652C1D4713EB0024B977 /* Tab1 */,
 				944E652D1D4713F30024B977 /* Tab2 */,
@@ -292,6 +329,7 @@
 		944E652A1D4713DB0024B977 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				9446570B1D4B35DC004AB5D2 /* SMS_SDK */,
 				944E650C1D4711F30024B977 /* LibraryAPI.h */,
 				944E650D1D4711F30024B977 /* LibraryAPI.m */,
 				944E650E1D4711F30024B977 /* HttpClient.h */,
@@ -472,7 +510,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				944E65261D4711F30024B977 /* Main.storyboard in Resources */,
-				944E64A41D4711840024B977 /* LaunchScreen.storyboard in Resources */,
 				944E64A11D4711840024B977 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,6 +665,7 @@
 				944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */,
 				944E651F1D4711F30024B977 /* UserInfoCell.m in Sources */,
 				944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */,
+				944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */,
 				944E65201D4711F30024B977 /* UserModel.m in Sources */,
 				944E65151D4711F30024B977 /* ForgetPasswordViewController.m in Sources */,
 				944E65171D4711F30024B977 /* ParkNowViewController.m in Sources */,
@@ -681,17 +719,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		944E64A21D4711840024B977 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				944E64A31D4711840024B977 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		944E64BC1D4711850024B977 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -731,7 +758,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -771,7 +798,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -784,6 +811,11 @@
 			baseConfigurationReference = 97DED36F8CD5826CE7FF58E1 /* Pods-Valet_Parking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Valet_Parking/SMS_SDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = Valet_Parking/Info.plist;
@@ -798,6 +830,11 @@
 			baseConfigurationReference = 75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Valet_Parking/SMS_SDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = Valet_Parking/Info.plist;

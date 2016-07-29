@@ -9,13 +9,14 @@
 #import "ParkNowViewController.h"
 #import "AddCarViewController.h"
 #import "ParkTicketViewController.h"
+#import "EditItemViewController.h"
 #import "TwoLabelCell.h"
 #import "UserModel.h"
 #import "CarModel.h"
 
 static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
-@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, EditItemViewControllerDelegate>
 @property (strong, nonatomic) NSArray *cars;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UserModel *userModel;
@@ -56,6 +57,10 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     }
 }
 
+- (void)finishChangeText:(NSString *)newText {
+    
+}
+
 # pragma mark - UI Table View
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,6 +72,22 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
         [vc setPlace:self.chosenPlace userModel:self.userModel carModel:self.chosenCar];
         
         [self.navigationController pushViewController:vc animated:YES];
+    } else if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            EditItemViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"EditItemViewController"];
+            TwoLabelCell *cell = (TwoLabelCell *)[tableView cellForRowAtIndexPath:indexPath];
+            [vc setNavTitle:@"Change Name" oldString:cell.rightLabel.text];
+            vc.delegate = self;
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 2) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            EditItemViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"EditItemViewController"];
+            TwoLabelCell *cell = (TwoLabelCell *)[tableView cellForRowAtIndexPath:indexPath];
+            [vc setNavTitle:@"Change Phone" oldString:cell.rightLabel.text];
+            vc.delegate = self;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
@@ -131,6 +152,11 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 }
 
 - (void)finishAddCar {
+    self.userCars = [[LibraryAPI sharedInstance] getAllCarModels];
+    if (self.userCars.count) {
+        self.chosenCar = [self.userCars lastObject];
+    }
+    [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     // TODO present the service page

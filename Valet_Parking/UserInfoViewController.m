@@ -67,8 +67,28 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
             [self.navigationController pushViewController:vc animated:YES];
         }
     } else if (indexPath.section == 1) {
-        [[LibraryAPI sharedInstance] logout];
-        [self popUpWelcomeView];
+        UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:@""
+                                             message:@"Logout wil delete data. You can log in to use our service"
+                                      preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *logoutAction = [UIAlertAction actionWithTitle:@"Log Out"
+                                                               style:UIAlertActionStyleDestructive
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 [[LibraryAPI sharedInstance] logout];
+                                                                 [self popUpWelcomeView];
+                                                             }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 
+                                                             }];
+        [alert addAction:logoutAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert
+                           animated:YES
+                         completion:nil];
+//        [[LibraryAPI sharedInstance] logout];
+//        [self popUpWelcomeView];
     }
 }
 
