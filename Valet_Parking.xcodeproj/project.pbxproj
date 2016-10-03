@@ -74,6 +74,7 @@
 		4059980DC2665C228F860C4E /* libPods-Valet_ParkingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E75954F6DD895B0A3B3A53F /* Pods-Valet_ParkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_ParkingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking.release.xcconfig"; sourceTree = "<group>"; };
+		864275CF1DA22EC40017E888 /* Valet_Parking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Valet_Parking.entitlements; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424E8841D47494800051EFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
@@ -246,6 +247,7 @@
 		944E64901D4711840024B977 /* Valet_Parking */ = {
 			isa = PBXGroup;
 			children = (
+				864275CF1DA22EC40017E888 /* Valet_Parking.entitlements */,
 				944E64941D4711840024B977 /* AppDelegate.h */,
 				944E64951D4711840024B977 /* AppDelegate.m */,
 				944E65271D4713BF0024B977 /* ViewController */,
@@ -396,12 +398,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 944E64BE1D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_Parking" */;
 			buildPhases = (
+				DA6AC334408978495647F8DE /* 📦 Check Pods Manifest.lock */,
 				6D84A4ECF497191D5FA65EF6 /* [CP] Check Pods Manifest.lock */,
 				944E648A1D4711840024B977 /* Sources */,
 				944E648B1D4711840024B977 /* Frameworks */,
 				944E648C1D4711840024B977 /* Resources */,
 				8205EBB67AD51B4499E0EDDE /* [CP] Embed Pods Frameworks */,
 				59B96547D7AF237F0543FA26 /* [CP] Copy Pods Resources */,
+				F1765CF82CCC863557CE04DF /* 📦 Embed Pods Frameworks */,
+				60C0B14A5DF3C991A58F55CE /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -416,12 +421,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 944E64C11D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingTests" */;
 			buildPhases = (
+				31DD227DC76CEF636A605D08 /* 📦 Check Pods Manifest.lock */,
 				AB1A6F4D5E811A77BDA3A393 /* [CP] Check Pods Manifest.lock */,
 				944E64A61D4711850024B977 /* Sources */,
 				944E64A71D4711850024B977 /* Frameworks */,
 				944E64A81D4711850024B977 /* Resources */,
 				D2EB230ADAD2AA23D2FB56A2 /* [CP] Embed Pods Frameworks */,
 				01557F220FAB2D6DD3416208 /* [CP] Copy Pods Resources */,
+				6F2456C2D045647A665FE861 /* 📦 Embed Pods Frameworks */,
+				E183DB9CBB322946AE667C34 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -437,11 +445,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 944E64C41D4711850024B977 /* Build configuration list for PBXNativeTarget "Valet_ParkingUITests" */;
 			buildPhases = (
+				39BE764757EA1D9D3AED8A19 /* 📦 Check Pods Manifest.lock */,
 				A0A91AB5F915173D80CEDBD3 /* [CP] Check Pods Manifest.lock */,
 				944E64B11D4711850024B977 /* Sources */,
 				944E64B21D4711850024B977 /* Frameworks */,
 				944E64B31D4711850024B977 /* Resources */,
 				2A7D2920F9CDB6A702B78142 /* [CP] Copy Pods Resources */,
+				C36CA3B8B4710480070690AB /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -467,6 +477,11 @@
 						DevelopmentTeam = K5J44K984X;
 						DevelopmentTeamName = "XIANYANG LUO";
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					944E64A91D4711850024B977 = {
 						CreatedOnToolsVersion = 8.0;
@@ -561,6 +576,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_ParkingUITests/Pods-Valet_ParkingUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		31DD227DC76CEF636A605D08 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		39BE764757EA1D9D3AED8A19 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		59B96547D7AF237F0543FA26 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -569,6 +614,21 @@
 			inputPaths = (
 			);
 			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60C0B14A5DF3C991A58F55CE /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,6 +649,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6F2456C2D045647A665FE861 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8205EBB67AD51B4499E0EDDE /* [CP] Embed Pods Frameworks */ = {
@@ -636,6 +711,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		C36CA3B8B4710480070690AB /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_ParkingUITests/Pods-Valet_ParkingUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D2EB230ADAD2AA23D2FB56A2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -649,6 +739,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA6AC334408978495647F8DE /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E183DB9CBB322946AE667C34 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1765CF82CCC863557CE04DF /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -812,6 +947,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
+				CODE_SIGN_ENTITLEMENTS = Valet_Parking/Valet_Parking.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Valet_Parking/SMS_SDK",
@@ -831,6 +967,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
+				CODE_SIGN_ENTITLEMENTS = Valet_Parking/Valet_Parking.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Valet_Parking/SMS_SDK",
