@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CarModel.h"
+
+@protocol MyCarsViewControllerDelegate
+
+@optional
+- (void)setChosenCarModel:(CarModel *)aCarModel;
+
+@end
 
 @interface MyCarsViewController : UIViewController
+
+@property (assign, nonatomic) id <MyCarsViewControllerDelegate> delegate;
+
+- (void)setEditable:(BOOL)editable chosenCar:(CarModel *)aCarModel;
 
 @end

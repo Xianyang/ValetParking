@@ -51,7 +51,7 @@
 - (void)loginBtnPressed {
     // TODO add log in network process
     
-    // temp code
+    // temp code(need to be deleted)
     NSString *userAccount = self.userAccountTextField.text;
     NSString *userPassword = self.userPasswordTextField.text;
     

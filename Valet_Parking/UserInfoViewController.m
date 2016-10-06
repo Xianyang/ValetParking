@@ -64,6 +64,7 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 2) {
             MyCarsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyCarsViewController"];
+            [vc setEditable:YES chosenCar:nil];
             [self.navigationController pushViewController:vc animated:YES];
         }
     } else if (indexPath.section == 1) {

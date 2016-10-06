@@ -10,13 +10,14 @@
 #import "AddCarViewController.h"
 #import "ParkTicketViewController.h"
 #import "EditItemViewController.h"
+#import "MyCarsViewController.h"
 #import "TwoLabelCell.h"
 #import "UserModel.h"
 #import "CarModel.h"
 
 static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
-@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, EditItemViewControllerDelegate>
+@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, EditItemViewControllerDelegate, MyCarsViewControllerDelegate>
 @property (strong, nonatomic) NSArray *cars;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UserModel *userModel;
@@ -61,6 +62,12 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     
 }
 
+# pragma mark - My Car Viewcontroller Delegate
+- (void)setChosenCarModel:(CarModel *)aCarModel {
+    self.chosenCar = aCarModel;
+    [self.tableView reloadData];
+}
+
 # pragma mark - UI Table View
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -73,6 +80,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
         
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 0) {
+        /*
         if (indexPath.row == 1) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             EditItemViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"EditItemViewController"];
@@ -86,6 +94,14 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
             TwoLabelCell *cell = (TwoLabelCell *)[tableView cellForRowAtIndexPath:indexPath];
             [vc setNavTitle:@"Change Phone" oldString:cell.rightLabel.text];
             vc.delegate = self;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+         */
+        if (indexPath.row == 3) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            MyCarsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyCarsViewController"];
+            [vc setDelegate:self];
+            [vc setEditable:NO chosenCar:self.chosenCar];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

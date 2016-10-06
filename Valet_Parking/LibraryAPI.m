@@ -87,7 +87,6 @@
     [self saveUserModelToCoreData:returnUserModelFromServer];
     [self saveAccountToKeychain:account password:password];
     
-    
     NSLog(@"%@ logs in", account);
     successBlock(returnUserModelFromServer);
 }
@@ -125,7 +124,6 @@
                                                                         accessGroup:nil];
     [keychain setObject:userAccount forKey:(__bridge id)(kSecAttrAccount)];
     [keychain setObject:userPassword forKey:(__bridge id)(kSecValueData)];
-
 }
 
 - (void)logout {
@@ -276,7 +274,7 @@
 
 - (CIImage *)qrCIImageForString:(NSString *)qrString {
     // Need to convert the string to a UTF-8 encoded NSData object
-    NSData *stringData = [qrString dataUsingEncoding:NSISOLatin1StringEncoding
+    NSData *stringData = [qrString dataUsingEncoding:NSUTF8StringEncoding
                                 allowLossyConversion:NO];
     
     // Create the filter

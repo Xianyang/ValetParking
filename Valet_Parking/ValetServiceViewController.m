@@ -34,9 +34,8 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     NSString *userPassword = [keychain objectForKey:(__bridge id)(kSecValueData)];
     NSString *userAccount = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
     
+    // user already logged in once, use saved user name and password to login
     if (![userAccount isEqualToString:@""] && ![userPassword isEqualToString:@""]) {
-        // TODO user already logged in once
-        // [self popUpWelcomeView];
         [[LibraryAPI sharedInstance] loginWithAccount:userAccount
                                              password:userPassword
                                               succeed:^(UserModel *userModel) {
@@ -92,13 +91,10 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
             // park now
             ParkNowViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ParkNowViewController"];
             [self.navigationController pushViewController:vc animated:YES];
-        } else if (indexPath.row == 1) {
-            // book a service
-            BookServiceViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"BookServiceViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
         }
     } else if (indexPath.section == 1) {
         // service view controller
+        
     }
 }
 
@@ -109,7 +105,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 2;
+        return 1;
     } else {
         return _numOfUserOrder;
     }
@@ -129,7 +125,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 }
 
 + (NSArray *)textForFirstSection {
-    return @[@"Parking Now", @"Book a Service"];
+    return @[@"Parking Now"];
 }
 
 #pragma mark - WelcomeViewControllerDelegate

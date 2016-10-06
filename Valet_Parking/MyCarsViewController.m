@@ -15,9 +15,15 @@
 static NSString * const CarCellIdentifier = @"CarCell";
 
 @interface MyCarsViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+{
+    BOOL _isEditable;
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addCarBtn;
 @property (strong, nonatomic) NSArray *cars;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightBarButton;
+
+@property (strong, nonatomic) CarModel *chosenCarModel;
 @end
 
 @implementation MyCarsViewController
@@ -32,6 +38,17 @@ static NSString * const CarCellIdentifier = @"CarCell";
     if (self.cars.count == 0) {
         [self presentAddCarView];
     }
+    
+    // is the bar button item editable
+    if (!_isEditable) {
+        [self.rightBarButton setEnabled:NO];
+        [self.rightBarButton setTintColor:[UIColor clearColor]];
+    }
+}
+
+- (void)setEditable:(BOOL)editable chosenCar:(CarModel *)aCarModel{
+    _isEditable = editable;
+    self.chosenCarModel = aCarModel;
 }
 
 - (void)presentAddCarView {
@@ -77,14 +94,24 @@ static NSString * const CarCellIdentifier = @"CarCell";
 # pragma mark - UITableView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    AddCarViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AddCarViewController"];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    vc.delegate = self;
-    [vc enterEditModeWithCar:self.cars[indexPath.row]];
-    [self.navigationController presentViewController:nav animated:YES completion:nil];
-    
+    if (!_isEditable && self.chosenCarModel) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        if (![self.chosenCarModel isSameCar:self.cars[indexPath.row]]) {
+            self.chosenCarModel = self.cars[indexPath.row];
+            [self.tableView reloadData];
+            [self.delegate setChosenCarModel:self.chosenCarModel];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } else {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        AddCarViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AddCarViewController"];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        vc.delegate = self;
+        [vc enterEditModeWithCar:self.cars[indexPath.row]];
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -109,6 +136,13 @@ static NSString * const CarCellIdentifier = @"CarCell";
     cell.plateLabel.text = car.carPlate;
     cell.brandLabel.text = car.carBrand;
     cell.colorLabel.text = car.carColor;
+    
+    if (!_isEditable) {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        if ([car isSameCar:self.chosenCarModel]) {
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -118,7 +152,7 @@ static NSString * const CarCellIdentifier = @"CarCell";
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete && _isEditable) {
         [[LibraryAPI sharedInstance] deleteCar:self.cars[indexPath.row]
                                        succeed:^(NSString *message) {
                                            NSLog(@"%@", message);
