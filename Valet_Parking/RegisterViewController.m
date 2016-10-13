@@ -13,6 +13,7 @@
 #import <SMS_SDK/Extend/SMSSDK+DeprecatedMethods.h>
 #import <SMS_SDK/Extend/SMSSDK+ExtexdMethods.h>
 #import <MOBFoundation/MOBFoundation.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UIView *inputView;
@@ -63,6 +64,7 @@
     
     [self.userFirstNameTextField becomeFirstResponder];
 
+    [self.signUpBtn setEnabled:YES];
 }
 
 - (void)getVC {
@@ -93,17 +95,35 @@
 }
 
 - (void)signupBtnPressed {
-    [[LibraryAPI sharedInstance] signUpWithPhone:self.userAccountTextField.text
-                                       firstName:self.userFirstNameTextField.text
-                                        lastName:self.userLastNameTextField.text
-                                        password:self.userPasswordTextField.text
-                                         succeed:^(NSString *userIdentifier) {
-                                             // TODO dismiss this page and log in
-                                             [self.delegate registerSucceed];
-                                         }
-                                            fail:^(NSError *error) {
-                                                
-                                            }];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.signUpBtn setEnabled:NO];
+    
+    [[LibraryAPI sharedInstance] registerWithPhone:self.userAccountTextField.text
+                                         firstName:self.userFirstNameTextField.text
+                                          lastName:self.userLastNameTextField.text
+                                          password:self.userPasswordTextField.text
+                                           success:^(UserModel *userModel) {
+                                               [hud hideAnimated:YES];
+                                               [self.delegate registerSucceed];
+                                           }
+                                              fail:^(NSError *error) {
+                                                  hud.mode = MBProgressHUDModeText;
+                                                  hud.label.text = @"fail";
+                                                  [hud hideAnimated:YES afterDelay:0.5];
+                                                  
+                                                  [self.signUpBtn setEnabled:YES];
+                                              }];
+    
+//    [[LibraryAPI sharedInstance] registerWithPhone:@"test_3"
+//                                         firstName:@"xianyang"
+//                                          lastName:@"luo"
+//                                          password:@"000"
+//                                           success:^(UserModel *userModel) {
+//                                               [self.delegate registerSucceed];
+//                                           }
+//                                              fail:^(NSError *error) {
+//                                                  
+//                                              }];
 }
 
 - (void)textFieldDidChange:(UITextField *)textField {

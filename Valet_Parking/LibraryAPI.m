@@ -50,6 +50,7 @@
     return self;
 }
 
+// for core data
 - (NSManagedObjectContext *)createManagementObjectContect {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
@@ -79,33 +80,50 @@
                                            phone:@"51709669"];
 }
 
-- (void)loginWithAccount:(NSString *)account password:(NSString *)password succeed:(void (^)(UserModel *))successBlock fail:(void (^)(NSError *))failBlock {
-    // TODO communicate with server
-    
-    // temp code: if log in successfully, then do the following
-    UserModel *returnUserModelFromServer = [self getFakeUserModel]; // will change to get from server
-    [self saveUserModelToCoreData:returnUserModelFromServer];
-    [self saveAccountToKeychain:account password:password];
-    
-    NSLog(@"%@ logs in", account);
-    successBlock(returnUserModelFromServer);
+- (void)loginWithPhone:(NSString *)phone
+              password:(NSString *)password
+               success:(void(^)(UserModel *userModel))successBlock
+                  fail:(void(^)(NSError *error))failBlock
+{
+    [self.httpClient loginWithPhone:phone
+                           password:password
+                            success:^(UserModel *userModel) {
+                                // save the user's profile
+                                [self saveUserModelToCoreData:userModel];
+                                
+                                // save the user's account and password
+                                [self saveAccountToKeychain:phone password:password];
+                                NSLog(@"%@ logs in", phone);
+                                successBlock(userModel);
+                            }
+                               fail:^(NSError *error) {
+                                   failBlock(error);
+                               }];
 }
 
-- (void)signUpWithPhone:(NSString *)phone firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
+- (void)registerWithPhone:(NSString *)phone
+                firstName:(NSString *)firstName
+                 lastName:(NSString *)lastName
+                 password:(NSString *)password
+                  success:(void(^)(UserModel *userModel))successBlock
+                     fail:(void(^)(NSError *error))failBlock; {
     // TODO communicate with server
-    
-    // temp code: if sign in succussfully, save user info locally
-    NSString *returnIDFromServer = @"0001";
-    UserModel *userModel = [[UserModel alloc] initWithIdentifier:returnIDFromServer
-                                                       firstName:firstName
-                                                        lastName:lastName
-                                                           phone:phone];
-    
-    [self saveUserModelToCoreData:userModel];
-    [self saveAccountToKeychain:phone password:password];
-
-    NSLog(@"%@ signs up", phone);
-    successBlock(returnIDFromServer);
+    [self.httpClient registerWithPhone:phone
+                             firstName:firstName
+                              lastName:lastName
+                              password:password
+                               success:^(UserModel *userModel) {
+                                   // save the user's profile
+                                   [self saveUserModelToCoreData:userModel];
+                                   
+                                   // save the user's account and password
+                                   [self saveAccountToKeychain:phone password:password];
+                                   NSLog(@"%@ signs up", phone);
+                                   successBlock(userModel);
+                               }
+                                  fail:^(NSError *error) {
+                                      failBlock(error);
+                                  }];
 }
 
 - (void)saveUserModelToCoreData:(UserModel *)userModel {

@@ -36,14 +36,14 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     
     // user already logged in once, use saved user name and password to login
     if (![userAccount isEqualToString:@""] && ![userPassword isEqualToString:@""]) {
-        [[LibraryAPI sharedInstance] loginWithAccount:userAccount
-                                             password:userPassword
-                                              succeed:^(UserModel *userModel) {
-                                                  
-                                              }
-                                                 fail:^(NSError *error) {
-                                                     
-                                                 }];
+        [[LibraryAPI sharedInstance] loginWithPhone:userAccount
+                                           password:userPassword
+                                            success:^(UserModel *userModel) {
+                                                
+                                            }
+                                               fail:^(NSError *error) {
+                                                   
+                                               }];
     } else {
         [self popUpWelcomeView];
     }

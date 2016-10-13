@@ -18,8 +18,17 @@
 - (NSManagedObjectContext *)getManagedObjectContext;
 
 // log in and sign up
-- (void)loginWithAccount:(NSString *)account password:(NSString *)password succeed:(void(^)(UserModel *userModel))successBlock fail:(void(^)(NSError *error))failBlock;
-- (void)signUpWithPhone:(NSString *)phone firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password succeed:(void(^)(NSString *userIdentifier))successBlock fail:(void(^)(NSError *error))failBlock;
+- (void)loginWithPhone:(NSString *)phone
+              password:(NSString *)password
+               success:(void(^)(UserModel *userModel))successBlock
+                  fail:(void(^)(NSError *error))failBlock;
+
+- (void)registerWithPhone:(NSString *)phone
+                firstName:(NSString *)firstName
+                 lastName:(NSString *)lastName
+                 password:(NSString *)password
+                  success:(void(^)(UserModel *userModel))successBlock
+                     fail:(void(^)(NSError *error))failBlock;
 - (void)logout;
 - (UserModel *)getCurrentUserModel;
 

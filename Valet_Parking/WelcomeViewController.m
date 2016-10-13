@@ -58,18 +58,17 @@
     if ([userAccount isEqualToString:@"51709669"] && [userPassword isEqualToString:@"000000"]) {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
-        [[LibraryAPI sharedInstance] loginWithAccount:userAccount
-                                             password:userPassword
-                                              succeed:^(UserModel *userModel) {
-                                                  [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                                  [self.view endEditing:YES];
-                                                  [self.delegate loginSuccessfully];
-                                              }
-                                                 fail:^(NSError *error) {
-                                                     
-                                                 }];
+        [[LibraryAPI sharedInstance] loginWithPhone:userAccount
+                                           password:userPassword
+                                            success:^(UserModel *userModel) {
+                                                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                [self.view endEditing:YES];
+                                                [self.delegate loginSuccessfully];
+                                            }
+                                               fail:^(NSError *error) {
+                                                   
+                                               }];
     }
-    
 }
 
 - (void)signupBtnPressed {
