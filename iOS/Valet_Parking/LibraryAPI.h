@@ -57,7 +57,6 @@
                       success:(void(^)(NSString *msg))successBlock
                          fail:(void(^)(NSError *error))failBlock;
 
-- (CarModel *)getACar:(NSString *)carNO;
 - (NSArray *)getAllCarModels;
 
 // qr

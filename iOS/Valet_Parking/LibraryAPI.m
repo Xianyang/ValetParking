@@ -305,17 +305,26 @@
 
 // delete a car locally
 - (BOOL)deleteCarLocally:(CarModel *)carModel {
-    NSArray *carMOs = [self getAllCarMOs];
-    for (NSManagedObject *carMO in carMOs) {
-        if ([[carMO valueForKey:@"identifier"] isEqualToString:carModel._id]) {
-            [self.managedObjectContext deleteObject:carMO];
-            [self saveContext];
-            
-            return YES;
-        }
-    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Car"
+                                              inManagedObjectContext:self.managedObjectContext];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", carModel._id];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
     
-    return NO;
+    NSError *error = nil;
+    NSArray *carMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error] mutableCopy];
+    
+    if (!error) {
+        NSManagedObject *carMO = [carMOs objectAtIndex:0];
+        [self.managedObjectContext deleteObject:carMO];
+        
+        [self saveContext];
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 // read all car models locally
@@ -327,7 +336,6 @@
 }
 
 - (NSArray *)getAllCarMOs {
-    // NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Car"
                                               inManagedObjectContext:self.managedObjectContext];
