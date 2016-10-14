@@ -13,7 +13,7 @@
 - (id)initWithPlate:(NSString *)plate brand:(NSString *)brand color:(NSString *)color {
     if (self = [super init]) {
         self.identifier = @"default";
-        self.userIdentifier = @"default";
+        self.userPhone = @"default";
         self.plate = plate;
         self.brand = brand;
         self.color = color;

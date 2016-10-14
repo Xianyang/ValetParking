@@ -5,7 +5,7 @@
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="plate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userPhone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>

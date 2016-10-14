@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, APIMessage){
     PASSWORD_CONFIRM_MISMATCH = 11,
     COULD_NOT_CREATE_SESSION = 12,
     COULD_NOT_CONNECT_TO_SERVER = 13,
+    COULD_NOT_CREATE_CAR = 14,
 };
 
 @interface HttpClient : NSObject

@@ -17,7 +17,7 @@
 - (BOOL)isSameCar:(CarModel *)car;
 
 @property (strong, nonatomic) NSString *identifier;
-@property (strong, nonatomic) NSString *userIdentifier;
+@property (strong, nonatomic) NSString *userPhone;
 @property (strong, nonatomic) NSString *brand;
 @property (strong, nonatomic) NSString *plate;
 @property (strong, nonatomic) NSString *color;
