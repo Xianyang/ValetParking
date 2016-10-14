@@ -29,6 +29,12 @@
                  password:(NSString *)password
                   success:(void(^)(UserModel *userModel))successBlock
                      fail:(void(^)(NSError *error))failBlock;
+
+- (void)resetPasswordWithPhone:(NSString *)phone
+                      password:(NSString *)password
+                       success:(void(^)(UserModel *userModel))successBlock
+                          fail:(void(^)(NSError *error))failBlock;
+
 - (void)logout;
 - (UserModel *)getCurrentUserModel;
 

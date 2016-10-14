@@ -83,8 +83,6 @@
 
 - (void)registerSucceed {
     [self.delegate loginSuccessfully];
-
-    // [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)cancelRegister {
@@ -95,6 +93,10 @@
 
 - (void)cancelSetNewPassword {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)resetSucceed {
+    [self.delegate loginSuccessfully];
 }
 
 # pragma mark

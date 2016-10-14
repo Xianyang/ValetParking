@@ -106,7 +106,8 @@
                  lastName:(NSString *)lastName
                  password:(NSString *)password
                   success:(void(^)(UserModel *userModel))successBlock
-                     fail:(void(^)(NSError *error))failBlock; {
+                     fail:(void(^)(NSError *error))failBlock;
+{
     // TODO communicate with server
     [self.httpClient registerWithPhone:phone
                              firstName:firstName
@@ -124,6 +125,27 @@
                                   fail:^(NSError *error) {
                                       failBlock(error);
                                   }];
+}
+
+- (void)resetPasswordWithPhone:(NSString *)phone
+                      password:(NSString *)password
+                       success:(void(^)(UserModel *userModel))successBlock
+                          fail:(void(^)(NSError *error))failBlock
+{
+    [self.httpClient resetPasswordWithPhone:phone
+                                   password:password
+                                    success:^(UserModel *userModel) {
+                                        // save the user's profile
+                                        [self saveUserModelToCoreData:userModel];
+                                        
+                                        // save the user's account and password
+                                        [self saveAccountToKeychain:phone password:password];
+                                        NSLog(@"%@ logs in", phone);
+                                        successBlock(userModel);
+                                    }
+                                       fail:^(NSError *error) {
+                                           failBlock(error);
+                                       }];
 }
 
 - (void)saveUserModelToCoreData:(UserModel *)userModel {

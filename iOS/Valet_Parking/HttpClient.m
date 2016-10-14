@@ -15,7 +15,7 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
 
 @property (strong, nonatomic) NSString *kRegisterURL;
 @property (strong, nonatomic) NSString *kLoginURL;
-@property (strong, nonatomic) NSString *kForgetPasswordURL;
+@property (strong, nonatomic) NSString *kResetPasswordURL;
 
 @end
 
@@ -25,7 +25,7 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
     if (self == [super init]) {
         self.kRegisterURL = [kIPAdress stringByAppendingString:@":3001/api/account/register"];
         self.kLoginURL = [kIPAdress stringByAppendingString:@":3001/api/account/logon"];
-        self.kForgetPasswordURL = [kIPAdress stringByAppendingString:@":3001/api/account/set_new_password"];
+        self.kResetPasswordURL = [kIPAdress stringByAppendingString:@":3001/api/account/set_new_password"];
     }
     
     return self;
@@ -132,6 +132,56 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               failBlock(error);
           }];
+}
+
+- (void)resetPasswordWithPhone:(NSString *)phone
+                      password:(NSString *)password
+                       success:(void(^)(UserModel *userModel))successBlock
+                          fail:(void(^)(NSError *error))failBlock
+{
+    NSURL *url = [NSURL URLWithString:self.kResetPasswordURL];
+    NSDictionary *parameters = @{@"phone": phone,
+                                 @"password": password};
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:5];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      NSError *error;
+                      UserModel *userModel = [[UserModel alloc] initWithDictionary:responseObject[@"extras"][@"userProfileModel"]
+                                                                             error:&error];
+                      if (error) {
+                          failBlock(error);
+                      } else {
+                          successBlock(userModel);
+                      }
+                  } else {
+                      // reset failed
+                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  failBlock(nil);
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
+
 }
 
 @end

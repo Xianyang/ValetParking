@@ -7,6 +7,8 @@
 //
 
 #import "ForgetPasswordViewController.h"
+#import "LibraryAPI.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ForgetPasswordViewController ()
 @property (weak, nonatomic) IBOutlet UIView *inputView;
@@ -38,6 +40,8 @@
                                                                alpha:1.0]
                                       forState:UIControlStateNormal];
     
+    [self.okBtn addTarget:self action:@selector(okBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.userAccountTextField becomeFirstResponder];
 
 }
@@ -45,6 +49,35 @@
 - (void)cancalBtnPressed {
     [self.view endEditing:YES];
     [self.delegate cancelSetNewPassword];
+}
+
+- (void)okBtnPressed {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if ([self.userAccountTextField.text isEqualToString:@""] ||
+        [self.verificationCodeTextField.text isEqualToString:@""] ||
+        [self.userPasswordTextField.text isEqualToString:@""]) {
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"please complete infomation";
+        [hud hideAnimated:YES afterDelay:0.5];
+    } else {
+        [self.okBtn setEnabled:NO];
+        // TODO check verification code firstly
+        
+        [[LibraryAPI sharedInstance] resetPasswordWithPhone:self.userAccountTextField.text
+                                                   password:self.userPasswordTextField.text
+                                                    success:^(UserModel *userModel) {
+                                                        [self.okBtn setEnabled:YES];
+                                                        [hud hideAnimated:YES];
+                                                        [self.delegate resetSucceed];
+                                                    }
+                                                       fail:^(NSError *error) {
+                                                           hud.mode = MBProgressHUDModeText;
+                                                           hud.label.text = @"fail";
+                                                           [hud hideAnimated:YES afterDelay:0.5];
+                                                           
+                                                           [self.okBtn setEnabled:YES];
+                                                       }];
+    }
 }
 
 - (void)textFieldDidChange:(UITextField *)textField {

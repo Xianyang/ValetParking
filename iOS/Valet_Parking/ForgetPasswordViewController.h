@@ -11,6 +11,7 @@
 @protocol ForgetPasswordViewControllerDelegate
 
 - (void)cancelSetNewPassword;
+- (void)resetSucceed;
 
 @end
 
