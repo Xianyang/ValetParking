@@ -246,8 +246,10 @@
 {
     id me = self;
     
+    // Step1 - get cars from server
     [self.httpClient getCarsForUser:userModel
                             success:^(NSArray *cars) {
+                                // Step2 - save cars locally
                                 for (CarModel *carModel in cars) {
                                     [me saveCarToCoreData:carModel];
                                 }
@@ -259,26 +261,55 @@
                                }];
 }
 
-- (void)deleteCar:(CarModel *)carModel succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
-    // Step1 - TODO delete this car from server
+- (void)deleteCarWithCarModel:(CarModel *)carModel
+                      success:(void(^)(NSString *msg))successBlock
+                         fail:(void(^)(NSError *error))failBlock {
+    id me = self;
     
-    // Step2 - delete this car locally
+    // Step1 -  delete this car from server
+    [self.httpClient deleteCarWithCarModel:carModel
+                                   success:^(NSString *msg) {
+                                       // Step2 - delete this car locally
+                                       if ([me deleteCarLocally:carModel]) {
+                                           successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.plate]);
+                                       }
+                                   }
+                                      fail:^(NSError *error) {
+                                          failBlock(error);
+                                      }];
+}
+
+// create a car locally
+- (void)saveCarToCoreData:(CarModel *)carModel{
+    NSManagedObject *newCar = [NSEntityDescription insertNewObjectForEntityForName:@"Car"
+                                                            inManagedObjectContext:self.managedObjectContext];
+    
+    [newCar setValue:carModel._id forKey:@"identifier"];
+    [newCar setValue:carModel.userPhone forKey:@"userPhone"];
+    [newCar setValue:carModel.plate forKey:@"plate"];
+    [newCar setValue:carModel.brand forKey:@"brand"];
+    [newCar setValue:carModel.color forKey:@"color"];
+    
+    [self saveContext];
+}
+
+// delete a car locally
+- (BOOL)deleteCarLocally:(CarModel *)carModel {
     NSArray *carMOs = [self getAllCarMOs];
     for (NSManagedObject *carMO in carMOs) {
-        if ([self isSameCarMO:carMO andModel:carModel]) {
+        if ([[carMO valueForKey:@"identifier"] isEqualToString:carModel._id]) {
             [self.managedObjectContext deleteObject:carMO];
             [self saveContext];
             
-            successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.plate]);
-            return;
+            return YES;
         }
     }
     
-    NSLog(@"delete fail, car not find");
+    return NO;
 }
 
+// read all car models locally
 - (NSArray *)getAllCarModels {
-    
     NSArray *carMOs = [self getAllCarMOs];
     NSArray *carModels = [self transferToCarModel:carMOs];
     
@@ -317,29 +348,6 @@
     }
     
     return [carModels copy];
-}
-
-- (BOOL)isSameCarMO:(NSManagedObject *)carMO andModel:(CarModel *)carModel {
-    if ([[carMO valueForKey:@"plate"] isEqualToString:carModel.plate] &&
-        [[carMO valueForKey:@"brand"] isEqualToString:carModel.brand] &&
-        [[carMO valueForKey:@"color"] isEqualToString:carModel.color]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void)saveCarToCoreData:(CarModel *)carModel{
-    NSManagedObject *newCar = [NSEntityDescription insertNewObjectForEntityForName:@"Car"
-                                                            inManagedObjectContext:self.managedObjectContext];
-    
-    [newCar setValue:carModel._id forKey:@"identifier"];
-    [newCar setValue:carModel.userPhone forKey:@"userPhone"];
-    [newCar setValue:carModel.plate forKey:@"plate"];
-    [newCar setValue:carModel.brand forKey:@"brand"];
-    [newCar setValue:carModel.color forKey:@"color"];
-    
-    [self saveContext];
 }
 
 # pragma mark - QR 

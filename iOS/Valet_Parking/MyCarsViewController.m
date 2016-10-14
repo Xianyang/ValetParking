@@ -11,6 +11,7 @@
 #import "CarCell.h"
 #import "CarModel.h"
 #import "LibraryAPI.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 static NSString * const CarCellIdentifier = @"CarCell";
 
@@ -153,14 +154,19 @@ static NSString * const CarCellIdentifier = @"CarCell";
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete && _isEditable) {
-        [[LibraryAPI sharedInstance] deleteCar:self.cars[indexPath.row]
-                                       succeed:^(NSString *message) {
-                                           NSLog(@"%@", message);
-                                           [self reloadCars];
-                                       }
-                                          fail:^(NSError *error) {
-                                              
-                                          }];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        [[LibraryAPI sharedInstance] deleteCarWithCarModel:self.cars[indexPath.row]
+                                                   success:^(NSString *msg) {
+                                                       [hud hideAnimated:YES];
+                                                       NSLog(@"%@", msg);
+                                                       [self reloadCars];
+                                                   }
+                                                      fail:^(NSError *error) {
+                                                          hud.mode = MBProgressHUDModeText;
+                                                          hud.label.text = @"delete failed";
+                                                          [hud hideAnimated:YES afterDelay:1];
+                                                      }];
     }
 }
 

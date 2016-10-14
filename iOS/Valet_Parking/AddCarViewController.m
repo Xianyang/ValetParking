@@ -68,19 +68,15 @@
                                                       brand:self.brandTextField.text
                                                       color:self.colorTextField.text];
     
-//    CarModel *newCar = [[CarModel alloc] initWithPlate:self.plateTextField.text
-//                                                 brand:self.brandTextField.text
-//                                                 color:self.colorTextField.text];
-    
     void (^deleteCar)(CarModel *) = ^(CarModel *oldCar)
     {
-        [[LibraryAPI sharedInstance] deleteCar:_oldCar
-                                       succeed:^(NSString *message) {
-                                           NSLog(@"%@", message);
-                                       }
-                                          fail:^(NSError *error) {
-                                              
-                                          }];
+        [[LibraryAPI sharedInstance] deleteCarWithCarModel:_oldCar
+                                                   success:^(NSString *msg) {
+                                                       NSLog(@"%@", msg);
+                                                   }
+                                                      fail:^(NSError *error) {
+                                                          
+                                                      }];
     };
     
     __block BOOL addSuccessfully = NO;

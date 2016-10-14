@@ -48,9 +48,9 @@
         succeed:(void(^)(CarModel *carModel))successBlock
            fail:(void(^)(NSError *error))failBlock;
 
-- (void)deleteCar:(CarModel *)carModel
-          succeed:(void(^)(NSString *message))successBlock
-             fail:(void(^)(NSError *error))failBlock;
+- (void)deleteCarWithCarModel:(CarModel *)carModel
+                      success:(void(^)(NSString *msg))successBlock
+                         fail:(void(^)(NSError *error))failBlock;
 
 - (CarModel *)getACar:(NSString *)carNO;
 - (NSArray *)getAllCarModels;

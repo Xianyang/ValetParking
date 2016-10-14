@@ -9,7 +9,8 @@
 #import "HttpClient.h"
 #import <AFNetworking/AFNetworking.h>
 
-static NSString * const kIPAdress = @"http://147.8.234.140";
+// static NSString * const kIPAdress = @"http://147.8.234.140:3001/";
+static NSString * const kIPAdress = @"http://192.168.1.103:3001/";
 
 @interface HttpClient()
 
@@ -18,6 +19,7 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
 @property (strong, nonatomic) NSString *kResetPasswordURL;
 @property (strong, nonatomic) NSString *kAddCarURL;
 @property (strong, nonatomic) NSString *kGetCarURL;
+@property (strong, nonatomic) NSString *kDeleteCarURL;
 
 @end
 
@@ -25,11 +27,12 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
 
 - (id)init {
     if (self == [super init]) {
-        self.kRegisterURL = [kIPAdress stringByAppendingString:@":3001/api/account/register"];
-        self.kLoginURL = [kIPAdress stringByAppendingString:@":3001/api/account/logon"];
-        self.kResetPasswordURL = [kIPAdress stringByAppendingString:@":3001/api/account/set_new_password"];
-        self.kAddCarURL = [kIPAdress stringByAppendingString:@":3001/api/car/add"];
-        self.kGetCarURL = [kIPAdress stringByAppendingString:@":3001/api/car/get_cars_for_user"];
+        self.kRegisterURL = [kIPAdress stringByAppendingString:@"api/account/register"];
+        self.kLoginURL = [kIPAdress stringByAppendingString:@"api/account/logon"];
+        self.kResetPasswordURL = [kIPAdress stringByAppendingString:@"api/account/set_new_password"];
+        self.kAddCarURL = [kIPAdress stringByAppendingString:@"api/car/add"];
+        self.kGetCarURL = [kIPAdress stringByAppendingString:@"api/car/get_cars_for_user"];
+        self.kDeleteCarURL = [kIPAdress stringByAppendingString:@"api/car/delete"];
     }
     
     return self;
@@ -288,7 +291,46 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               failBlock(error);
           }];
+}
 
+- (void)deleteCarWithCarModel:(CarModel *)carModel
+                      success:(void(^)(NSString *msg))successBlock
+                         fail:(void(^)(NSError *error))failBlock
+{
+    NSURL *url = [NSURL URLWithString:self.kDeleteCarURL];
+    
+    NSDictionary *parameters = @{@"_id": carModel._id,
+                                 @"userPhone": carModel.userPhone,
+                                 @"plate": carModel.plate,
+                                 @"brand": carModel.brand,
+                                 @"color": carModel.color};
+    
+    AFHTTPSessionManager *manager = [self newManager];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      successBlock(responseObject[@"extras"][@"msg"]);
+                  } else {
+                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
 }
 
 - (AFHTTPSessionManager *)newManager {

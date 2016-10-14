@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, APIMessage){
     COULD_NOT_CREATE_SESSION = 12,
     COULD_NOT_CONNECT_TO_SERVER = 13,
     COULD_NOT_CREATE_CAR = 14,
+    COULD_NOT_FIND_CAR = 15,
 };
 
 @interface HttpClient : NSObject
@@ -59,5 +60,9 @@ typedef NS_ENUM(NSInteger, APIMessage){
 - (void)addACarWithCarModel:(CarModel *)carModel
                     success:(void(^)(CarModel *carModel))successBlock
                        fail:(void(^)(NSError *error))failBlock;
+
+- (void)deleteCarWithCarModel:(CarModel *)carModel
+                      success:(void(^)(NSString *msg))successBlock
+                         fail:(void(^)(NSError *error))failBlock;
 
 @end

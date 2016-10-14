@@ -3,7 +3,8 @@ var express = require('express'),
     AccountController = require('../controllers/account.js'),
     CarController = require('../controllers/car.js'),
     User = require('../models/user.js'),
-    UserProfile = require('../models/user-profile.js');
+    UserProfile = require('../models/user-profile.js'),
+    CarProfile = require('../models/car-profile.js'),
     Car = require('../models/car.js'),
     ApiResponse = require('../models/api-response.js');
 
@@ -34,6 +35,13 @@ router.route('/car/get_cars_for_user').post(function (req, res) {
 
 router.route('/car/delete').post(function (req, res) {
     console.log('get a delete car post');
+    var carProfie = new CarProfile(req.body);
+
+    res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
+
+    CarController.delete(carProfie, function (err, response) {
+        return res.send(response);
+    });
 });
 
 module.exports = router;
