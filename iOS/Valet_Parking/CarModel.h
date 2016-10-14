@@ -16,9 +16,10 @@
 - (id)initWithPlate:(NSString *)plate brand:(NSString *)brand color:(NSString *)color;
 - (BOOL)isSameCar:(CarModel *)car;
 
-@property (strong, nonatomic) NSString *carNo;
-@property (strong, nonatomic) NSString *carBrand;
-@property (strong, nonatomic) NSString *carPlate;
-@property (strong, nonatomic) NSString *carColor;
+@property (strong, nonatomic) NSString *identifier;
+@property (strong, nonatomic) NSString *userIdentifier;
+@property (strong, nonatomic) NSString *brand;
+@property (strong, nonatomic) NSString *plate;
+@property (strong, nonatomic) NSString *color;
 
 @end

@@ -5,6 +5,7 @@ var express = require('express'),
     expressSession = require('express-session'),
     MongoStore = require('connect-mongo')(expressSession),
     accountRoute = require('./routes/account'),
+    carRoute = require('./routes/car'),
     // bookingRoutes = require('./routes/bookings'),
     assert = require('assert')
     app = express(),
@@ -33,7 +34,7 @@ app.get('/', function (req, res) {
 	res.send('<html><body><h1>Hello World</h1></body></html>');
 });
 
-app.use('/api', accountRoute);
+app.use('/api', [accountRoute, carRoute]);
 
 var server = app.listen(port, function () {
     console.log('Express server listening on port ' + server.address().port);

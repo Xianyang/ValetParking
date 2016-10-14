@@ -60,7 +60,6 @@ AccountController.prototype.logon = function(phone, password, callback) {
         if (err) {
             return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
         }
-
         if (user) {
             me.hashPassword(password, user.passwordSalt, function (err, passwordHash) {
                 // check the password hash

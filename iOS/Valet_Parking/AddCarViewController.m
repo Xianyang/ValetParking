@@ -40,9 +40,9 @@
     
     if (_editMode) {
         self.navigationItem.title = @"Edit";
-        self.plateTextField.text = _oldCar.carPlate;
-        self.brandTextField.text = _oldCar.carBrand;
-        self.colorTextField.text = _oldCar.carColor;
+        self.plateTextField.text = _oldCar.plate;
+        self.brandTextField.text = _oldCar.brand;
+        self.colorTextField.text = _oldCar.color;
     }
 }
 

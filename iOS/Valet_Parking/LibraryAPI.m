@@ -250,9 +250,9 @@
 }
 
 - (BOOL)checkCarMO:(NSManagedObject *)carMO andModel:(CarModel *)carModel {
-    if ([[carMO valueForKey:@"plate"] isEqualToString:carModel.carPlate] &&
-        [[carMO valueForKey:@"brand"] isEqualToString:carModel.carBrand] &&
-        [[carMO valueForKey:@"color"] isEqualToString:carModel.carColor]) {
+    if ([[carMO valueForKey:@"plate"] isEqualToString:carModel.plate] &&
+        [[carMO valueForKey:@"brand"] isEqualToString:carModel.brand] &&
+        [[carMO valueForKey:@"color"] isEqualToString:carModel.color]) {
         return YES;
     } else {
         return NO;
@@ -275,13 +275,13 @@
     // Step2 - create a new car object and save it locally
     NSManagedObject *newCar = [NSEntityDescription insertNewObjectForEntityForName:@"Car"
                                                             inManagedObjectContext:self.managedObjectContext];
-    [newCar setValue:carModel.carPlate forKey:@"plate"];
-    [newCar setValue:carModel.carBrand forKey:@"brand"];
-    [newCar setValue:carModel.carColor forKey:@"color"];
+    [newCar setValue:carModel.plate forKey:@"plate"];
+    [newCar setValue:carModel.brand forKey:@"brand"];
+    [newCar setValue:carModel.color forKey:@"color"];
     
     [self saveContext];
     
-    successBlock([@"add a car successfully, plate is " stringByAppendingString:carModel.carPlate]);
+    successBlock([@"add a car successfully, plate is " stringByAppendingString:carModel.plate]);
 }
 
 - (void)deleteCar:(CarModel *)carModel succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
@@ -294,7 +294,7 @@
             [self.managedObjectContext deleteObject:carMO];
             [self saveContext];
             
-            successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.carPlate]);
+            successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.plate]);
             return;
         }
     }

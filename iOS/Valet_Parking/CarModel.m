@@ -12,19 +12,20 @@
 
 - (id)initWithPlate:(NSString *)plate brand:(NSString *)brand color:(NSString *)color {
     if (self = [super init]) {
-        self.carNo = @"default";
-        self.carPlate = plate;
-        self.carBrand = brand;
-        self.carColor = color;
+        self.identifier = @"default";
+        self.userIdentifier = @"default";
+        self.plate = plate;
+        self.brand = brand;
+        self.color = color;
     }
     
     return self;
 }
 
 - (BOOL)isSameCar:(CarModel *)car {
-    if ([self.carPlate isEqualToString:car.carPlate] &&
-        [self.carBrand isEqualToString:car.carBrand] &&
-        [self.carColor isEqualToString:car.carColor]) {
+    if ([self.plate isEqualToString:car.plate] &&
+        [self.brand isEqualToString:car.brand] &&
+        [self.color isEqualToString:car.color]) {
         return YES;
     } else {
         return NO;

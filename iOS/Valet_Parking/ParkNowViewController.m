@@ -148,7 +148,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
             cell.rightLabel.text = self.userModel.phone;
         } else if (indexPath.row == 3) {
             if (self.chosenCar != nil) {
-                cell.rightLabel.text = self.chosenCar.carPlate;
+                cell.rightLabel.text = self.chosenCar.plate;
             } else {
                 cell.rightLabel.text = @"";
             }

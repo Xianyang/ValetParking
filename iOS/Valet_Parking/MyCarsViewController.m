@@ -66,7 +66,7 @@ static NSString * const CarCellIdentifier = @"CarCell";
     
 //    if (self.cars.count > 0) {
 //        for (CarModel *car in self.cars) {
-//            NSLog(@"%@", car.carPlate);
+//            NSLog(@"%@", car.plate);
 //        }
 //    }
     
@@ -133,9 +133,9 @@ static NSString * const CarCellIdentifier = @"CarCell";
 
 - (void)configureCell:(CarCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     CarModel *car = self.cars[indexPath.row];
-    cell.plateLabel.text = car.carPlate;
-    cell.brandLabel.text = car.carBrand;
-    cell.colorLabel.text = car.carColor;
+    cell.plateLabel.text = car.plate;
+    cell.brandLabel.text = car.brand;
+    cell.colorLabel.text = car.color;
     
     if (!_isEditable) {
         [cell setAccessoryType:UITableViewCellAccessoryNone];

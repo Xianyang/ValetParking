@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *stringToEncode = [[[[self.place stringByAppendingString:@"--"] stringByAppendingString:self.user.phone] stringByAppendingString:@"--"] stringByAppendingString:self.car.carPlate];
+    NSString *stringToEncode = [[[[self.place stringByAppendingString:@"--"] stringByAppendingString:self.user.phone] stringByAppendingString:@"--"] stringByAppendingString:self.car.plate];
 //    UIImage *qrImage = [[LibraryAPI sharedInstance] qrImageForString:stringToEncode
 //                                                      withImageWidth:self.qrImageView.frame.size.width
 //                                                         imageHeight:self.qrImageView.frame.size.height];
