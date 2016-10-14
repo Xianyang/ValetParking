@@ -61,6 +61,11 @@ typedef NS_ENUM(NSInteger, APIMessage){
                     success:(void(^)(CarModel *carModel))successBlock
                        fail:(void(^)(NSError *error))failBlock;
 
+- (void)updateACar:(CarModel *)oldCarModel
+       newCarModel:(CarModel *)newCarModel
+           success:(void(^)(CarModel *carModel))successBlock
+              fail:(void(^)(NSError *error))failBlock;
+
 - (void)deleteCarWithCarModel:(CarModel *)carModel
                       success:(void(^)(NSString *msg))successBlock
                          fail:(void(^)(NSError *error))failBlock;

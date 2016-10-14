@@ -267,7 +267,22 @@
        newCarModel:(CarModel *)newCarModel
            success:(void(^)(CarModel *carModel))successBlock
               fail:(void(^)(NSError *error))failBlock {
+    id me = self;
     
+    // Step 1 - update the car on server
+    [self.httpClient updateACar:oldCarModel
+                    newCarModel:newCarModel
+                        success:^(CarModel *carModel) {
+                            // Step 2 - update the car locally
+                            if ([me updateCarLocally:oldCarModel newCarModel:newCarModel]) {
+                                successBlock(carModel);
+                            } else {
+                                failBlock(nil);
+                            }
+                        }
+                           fail:^(NSError *error) {
+                               failBlock(error);
+                           }];
 }
 
 // delete a car
@@ -303,28 +318,52 @@
     [self saveContext];
 }
 
-// delete a car locally
-- (BOOL)deleteCarLocally:(CarModel *)carModel {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Car"
-                                              inManagedObjectContext:self.managedObjectContext];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", carModel._id];
-    [fetchRequest setEntity:entity];
-    [fetchRequest setPredicate:predicate];
-    
-    NSError *error = nil;
-    NSArray *carMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
-                                                           error:&error] mutableCopy];
-    
-    if (!error) {
-        NSManagedObject *carMO = [carMOs objectAtIndex:0];
-        [self.managedObjectContext deleteObject:carMO];
+- (BOOL)updateCarLocally:(CarModel *)oldCarModel newCarModel:(CarModel *)newCarModel {
+    NSManagedObject *carMO = [self getCarMOWithIdentifier:oldCarModel._id];
+    if (carMO) {
+        [carMO setValue:newCarModel.plate forKey:@"plate"];
+        [carMO setValue:newCarModel.brand forKey:@"brand"];
+        [carMO setValue:newCarModel.color forKey:@"color"];
         
         [self saveContext];
         return YES;
     } else {
         return NO;
     }
+}
+
+// delete a car locally
+- (BOOL)deleteCarLocally:(CarModel *)carModel {
+    NSManagedObject *carMO = [self getCarMOWithIdentifier:carModel._id];
+    if (carMO) {
+        [self.managedObjectContext deleteObject:carMO];
+        [self saveContext];
+        
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (NSManagedObject *)getCarMOWithIdentifier:(NSString *)identifier {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Car"
+                                              inManagedObjectContext:self.managedObjectContext];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *carMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
+                                                                error:&error] mutableCopy];
+    
+    if (!error) {
+        NSManagedObject *carMO = [carMOs objectAtIndex:0];
+        return carMO;
+    } else {
+        return nil;
+    }
+
 }
 
 // read all car models locally
