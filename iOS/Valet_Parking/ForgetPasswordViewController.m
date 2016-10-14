@@ -68,7 +68,7 @@
                                                     success:^(UserModel *userModel) {
                                                         [self.okBtn setEnabled:YES];
                                                         [hud hideAnimated:YES];
-                                                        [self.delegate resetSucceed];
+                                                        [self.delegate resetSucceed:userModel];
                                                     }
                                                        fail:^(NSError *error) {
                                                            hud.mode = MBProgressHUDModeText;

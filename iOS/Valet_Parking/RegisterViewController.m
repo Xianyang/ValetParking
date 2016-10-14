@@ -104,7 +104,7 @@
                                           password:self.userPasswordTextField.text
                                            success:^(UserModel *userModel) {
                                                [hud hideAnimated:YES];
-                                               [self.delegate registerSucceed];
+                                               [self.delegate registerSucceed:userModel];
                                            }
                                               fail:^(NSError *error) {
                                                   hud.mode = MBProgressHUDModeText;

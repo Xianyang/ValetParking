@@ -28,6 +28,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[LibraryAPI sharedInstance] deleteCarsInCoreDate];
     // Step1 check if logged in
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ValetLogin"
                                                                         accessGroup:nil];
@@ -43,6 +44,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                            password:userPassword
                                             success:^(UserModel *userModel) {
                                                 [hud hideAnimated:YES];
+                                                [self loginSuccessfully:userModel];
                                             }
                                                fail:^(NSError *error) {
                                                    [hud hideAnimated:YES];
@@ -134,10 +136,24 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 
 #pragma mark - WelcomeViewControllerDelegate
 
-- (void)loginSuccessfully
+- (void)loginSuccessfully:(UserModel *)userModel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     // TODO some instruction
+    
+    // get user's car
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[LibraryAPI sharedInstance] getCarsForUser:userModel
+                                        success:^(NSArray *cars) {
+                                            NSLog(@"Get %lu cars from server", (unsigned long)[cars count]);
+                                            [hud hideAnimated:YES];
+                                        }
+                                           fail:^(NSError *error) {
+                                               hud.mode = MBProgressHUDModeText;
+                                               hud.label.text = @"fail to fetch cars";
+                                               [hud hideAnimated:YES afterDelay:1];
+                                           }];
 }
 
 - (void)didReceiveMemoryWarning {

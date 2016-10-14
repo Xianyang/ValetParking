@@ -176,9 +176,20 @@
         [self.managedObjectContext deleteObject:userMO];
     }
     
+    [self saveContext];
+    
     // delete car mo
+    [self deleteCarsInCoreDate];
+    
+    // delete key chain
+    [self saveAccountToKeychain:@"" password:@""];
+    
+    NSLog(@"user logs out");
+}
+
+- (void)deleteCarsInCoreDate {
     NSLog(@"delete car mo");
-    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
     NSArray *carMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
                                                                 error:nil] copy];
     for (NSManagedObject *carMO in carMOs) {
@@ -186,11 +197,6 @@
     }
     
     [self saveContext];
-    
-    // delete key chain
-    [self saveAccountToKeychain:@"" password:@""];
-    
-    NSLog(@"user logs out");
 }
 
 - (UserModel *)getCurrentUserModel {
@@ -210,25 +216,69 @@
 
 # pragma mark - Cars
 
-- (NSArray *)transferToCarModel:(NSArray *)carMOs {
-    NSMutableArray *carModels = [[NSMutableArray alloc] init];
-    for (NSManagedObject *carMO in carMOs) {
-        CarModel *carModel = [[CarModel alloc] initWithIdentifier:[carMO valueForKey:@"identifier"]
-                                                        userPhone:[carMO valueForKey:@"userPhone"]
-                                                            plate:[carMO valueForKey:@"plate"]
-                                                            brand:[carMO valueForKey:@"brand"]
-                                                            color:[carMO valueForKey:@"color"]];
-        
-//        CarModel *carModel = [[CarModel alloc] initWithPlate:[carMO valueForKey:@"plate"]
-//                                                       brand:[carMO valueForKey:@"brand"]
-//                                                       color:[carMO valueForKey:@"color"]];
-        [carModels addObject:carModel];
+- (void)addACar:(CarModel *)carModel succeed:(void (^)(CarModel *))successBlock fail:(void (^)(NSError *))failBlock {
+    // Step0 - check redundancy
+    NSArray *carModels = [self getAllCarModels];
+    for (CarModel *savedCarModel in carModels) {
+        if ([carModel isSamePlate:savedCarModel]) {
+            NSError *error = [NSError errorWithDomain:@"reduplicate car" code:201 userInfo:nil];
+            failBlock(error);
+            return;
+        }
     }
     
-    return [carModels copy];
+    id me = self;
+    // Step1 - upload this car to server
+    [self.httpClient addACarWithCarModel:carModel
+                                 success:^(CarModel *carModel) {
+                                     // Step2 - get a new car object with identifier and save it locally
+                                     [me saveCarToCoreData:carModel];
+                                     successBlock(carModel);
+                                 }
+                                    fail:^(NSError *error) {
+                                        failBlock(error);
+                                    }];
+}
+
+- (void)getCarsForUser:(UserModel *)userModel
+               success:(void(^)(NSArray *cars))successBlock
+                  fail:(void(^)(NSError *error))failBlock
+{
+    id me = self;
+    
+    [self.httpClient getCarsForUser:userModel
+                            success:^(NSArray *cars) {
+                                for (CarModel *carModel in cars) {
+                                    [me saveCarToCoreData:carModel];
+                                }
+                                
+                                successBlock(cars);
+                            }
+                               fail:^(NSError *error) {
+                                   failBlock(error);
+                               }];
+}
+
+- (void)deleteCar:(CarModel *)carModel succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
+    // Step1 - TODO delete this car from server
+    
+    // Step2 - delete this car locally
+    NSArray *carMOs = [self getAllCarMOs];
+    for (NSManagedObject *carMO in carMOs) {
+        if ([self isSameCarMO:carMO andModel:carModel]) {
+            [self.managedObjectContext deleteObject:carMO];
+            [self saveContext];
+            
+            successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.plate]);
+            return;
+        }
+    }
+    
+    NSLog(@"delete fail, car not find");
 }
 
 - (NSArray *)getAllCarModels {
+    
     NSArray *carMOs = [self getAllCarMOs];
     NSArray *carModels = [self transferToCarModel:carMOs];
     
@@ -255,7 +305,21 @@
     return cars;
 }
 
-- (BOOL)checkCarMO:(NSManagedObject *)carMO andModel:(CarModel *)carModel {
+- (NSArray *)transferToCarModel:(NSArray *)carMOs {
+    NSMutableArray *carModels = [[NSMutableArray alloc] init];
+    for (NSManagedObject *carMO in carMOs) {
+        CarModel *carModel = [[CarModel alloc] initWithIdentifier:[carMO valueForKey:@"identifier"]
+                                                        userPhone:[carMO valueForKey:@"userPhone"]
+                                                            plate:[carMO valueForKey:@"plate"]
+                                                            brand:[carMO valueForKey:@"brand"]
+                                                            color:[carMO valueForKey:@"color"]];
+        [carModels addObject:carModel];
+    }
+    
+    return [carModels copy];
+}
+
+- (BOOL)isSameCarMO:(NSManagedObject *)carMO andModel:(CarModel *)carModel {
     if ([[carMO valueForKey:@"plate"] isEqualToString:carModel.plate] &&
         [[carMO valueForKey:@"brand"] isEqualToString:carModel.brand] &&
         [[carMO valueForKey:@"color"] isEqualToString:carModel.color]) {
@@ -263,30 +327,6 @@
     } else {
         return NO;
     }
-}
-
-- (void)addACar:(CarModel *)carModel succeed:(void (^)(CarModel *))successBlock fail:(void (^)(NSError *))failBlock {
-    // Step0 - check redundancy
-    NSArray *carModels = [self getAllCarModels];
-    for (CarModel *savedCarModel in carModels) {
-        if ([carModel isSamePlate:savedCarModel]) {
-            NSError *error = [NSError errorWithDomain:@"reduplicate car" code:201 userInfo:nil];
-            failBlock(error);
-            return;
-        }
-    }
-    
-    id me = self;
-    // Step1 - upload this car to server
-    [self.httpClient addACarWithCarModel:carModel
-                                 success:^(CarModel *carModel) {
-                                     // Step2 - get a new car object with identifier and save it locally
-                                     [me saveCarToCoreData:carModel];
-                                     successBlock(carModel);
-                                 }
-                                    fail:^(NSError *error) {
-                                        failBlock(error);
-                                    }];
 }
 
 - (void)saveCarToCoreData:(CarModel *)carModel{
@@ -300,24 +340,6 @@
     [newCar setValue:carModel.color forKey:@"color"];
     
     [self saveContext];
-}
-
-- (void)deleteCar:(CarModel *)carModel succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
-    // Step1 - TODO delete this car from server
-    
-    // Step2 - delete this car locally
-    NSArray *carMOs = [self getAllCarMOs];
-    for (NSManagedObject *carMO in carMOs) {
-        if ([self checkCarMO:carMO andModel:carModel]) {
-            [self.managedObjectContext deleteObject:carMO];
-            [self saveContext];
-            
-            successBlock([@"delete a car successfully, plate is " stringByAppendingString:carModel.plate]);
-            return;
-        }
-    }
-    
-    NSLog(@"delete fail, car not find");
 }
 
 # pragma mark - QR 

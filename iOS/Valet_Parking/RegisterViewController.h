@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserModel.h"
 
 @protocol RegisterViewControllerDelegate
 
 - (void)cancelRegister;
-- (void)registerSucceed;
+- (void)registerSucceed:(UserModel *)userModel;
 
 @end
 

@@ -62,7 +62,7 @@
                                         success:^(UserModel *userModel) {
                                             [hud hideAnimated:YES];
                                             [self.view endEditing:YES];
-                                            [self.delegate loginSuccessfully];
+                                            [self.delegate loginSuccessfully:userModel];
                                         }
                                            fail:^(NSError *error) {
                                                hud.mode = MBProgressHUDModeText;
@@ -80,9 +80,8 @@
 }
 
 # pragma mark - RegisterViewControllerDelegate
-
-- (void)registerSucceed {
-    [self.delegate loginSuccessfully];
+- (void)registerSucceed:(UserModel *)userModel {
+    [self.delegate loginSuccessfully:userModel];
 }
 
 - (void)cancelRegister {
@@ -95,8 +94,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)resetSucceed {
-    [self.delegate loginSuccessfully];
+- (void)resetSucceed:(UserModel *)userModel {
+    [self.delegate loginSuccessfully:userModel];
 }
 
 # pragma mark

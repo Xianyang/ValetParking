@@ -39,8 +39,19 @@
 - (UserModel *)getCurrentUserModel;
 
 // cars
-- (void)addACar:(CarModel *)carModel succeed:(void(^)(CarModel *carModel))successBlock fail:(void(^)(NSError *error))failBlock;
-- (void)deleteCar:(CarModel *)carModel succeed:(void(^)(NSString *message))successBlock fail:(void(^)(NSError *error))failBlock;
+- (void)deleteCarsInCoreDate;
+- (void)getCarsForUser:(UserModel *)userModel
+               success:(void(^)(NSArray *cars))successBlock
+                  fail:(void(^)(NSError *error))failBlock;
+
+- (void)addACar:(CarModel *)carModel
+        succeed:(void(^)(CarModel *carModel))successBlock
+           fail:(void(^)(NSError *error))failBlock;
+
+- (void)deleteCar:(CarModel *)carModel
+          succeed:(void(^)(NSString *message))successBlock
+             fail:(void(^)(NSError *error))failBlock;
+
 - (CarModel *)getACar:(NSString *)carNO;
 - (NSArray *)getAllCarModels;
 

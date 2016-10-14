@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserModel.h"
 
 @protocol WelcomeViewControllerDelegate
 
-- (void)loginSuccessfully;
+- (void)loginSuccessfully:(UserModel *)userModel;
 
 @end
 

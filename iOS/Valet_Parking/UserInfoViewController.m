@@ -14,6 +14,7 @@
 #import "MyCarsViewController.h"
 #import "WelcomeViewController.h"
 #import "LibraryAPI.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
 
@@ -43,9 +44,25 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
                                           completion:nil];
 }
 
-- (void)loginSuccessfully {
+- (void)loginSuccessfully:(UserModel *)userModel
+{
     [self.tabBarController setSelectedIndex:0];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // get user's car
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[LibraryAPI sharedInstance] getCarsForUser:userModel
+                                        success:^(NSArray *cars) {
+                                            NSLog(@"Get %lu cars from server", (unsigned long)[cars count]);
+                                            [hud hideAnimated:YES];
+                                        }
+                                           fail:^(NSError *error) {
+                                               hud.mode = MBProgressHUDModeText;
+                                               hud.label.text = @"fail to fetch cars";
+                                               [hud hideAnimated:YES afterDelay:1];
+                                           }];
+
 }
 
 # pragma mark - UITableViewDelegate
