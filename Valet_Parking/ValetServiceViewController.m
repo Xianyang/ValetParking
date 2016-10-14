@@ -11,6 +11,7 @@
 #import "WelcomeViewController.h"
 #import "ParkNowViewController.h"
 #import "BookServiceViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIdentifier";
 
@@ -36,13 +37,16 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     
     // user already logged in once, use saved user name and password to login
     if (![userAccount isEqualToString:@""] && ![userPassword isEqualToString:@""]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         [[LibraryAPI sharedInstance] loginWithPhone:userAccount
                                            password:userPassword
                                             success:^(UserModel *userModel) {
-                                                
+                                                [hud hideAnimated:YES];
                                             }
                                                fail:^(NSError *error) {
-                                                   
+                                                   [hud hideAnimated:YES];
+                                                   [self popUpWelcomeView];
                                                }];
     } else {
         [self popUpWelcomeView];

@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, APIMessage){
 
 @interface HttpClient : NSObject
 
+- (id)init;
+
 - (void)registerWithPhone:(NSString *)phone
                 firstName:(NSString *)firstName
                  lastName:(NSString *)lastName

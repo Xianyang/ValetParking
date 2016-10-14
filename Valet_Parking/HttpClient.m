@@ -9,10 +9,27 @@
 #import "HttpClient.h"
 #import <AFNetworking/AFNetworking.h>
 
-static NSString * const kRegisterURL = @"http://192.168.1.102:3001/api/account/register";
-static NSString * const kLoginURL = @"http://192.168.1.102:3001/api/account/logon";
+static NSString * const kIPAdress = @"http://147.8.234.140";
+
+@interface HttpClient()
+
+@property (strong, nonatomic) NSString *kRegisterURL;
+@property (strong, nonatomic) NSString *kLoginURL;
+@property (strong, nonatomic) NSString *kForgetPasswordURL;
+
+@end
 
 @implementation HttpClient
+
+- (id)init {
+    if (self == [super init]) {
+        self.kRegisterURL = [kIPAdress stringByAppendingString:@":3001/api/account/register"];
+        self.kLoginURL = [kIPAdress stringByAppendingString:@":3001/api/account/logon"];
+        self.kForgetPasswordURL = [kIPAdress stringByAppendingString:@":3001/api/account/set_new_password"];
+    }
+    
+    return self;
+}
 
 - (void)registerWithPhone:(NSString *)phone
                 firstName:(NSString *)firstName
@@ -21,7 +38,7 @@ static NSString * const kLoginURL = @"http://192.168.1.102:3001/api/account/logo
                   success:(void(^)(UserModel *userModel))successBlock
                      fail:(void(^)(NSError *error))failBlock;
 {
-    NSURL *url = [NSURL URLWithString:kRegisterURL];
+    NSURL *url = [NSURL URLWithString:self.kRegisterURL];
     
     NSDictionary *parameters = @{@"phone": phone,
                                  @"firstName": firstName,
@@ -73,12 +90,13 @@ static NSString * const kLoginURL = @"http://192.168.1.102:3001/api/account/logo
                success:(void(^)(UserModel *userModel))successBlock
                   fail:(void(^)(NSError *error))failBlock
 {
-    NSURL *url = [NSURL URLWithString:kLoginURL];
+    NSURL *url = [NSURL URLWithString:self.kLoginURL];
     NSDictionary *parameters = @{@"phone": phone,
                                  @"password": password};
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:5];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
@@ -108,7 +126,7 @@ static NSString * const kLoginURL = @"http://192.168.1.102:3001/api/account/logo
                       failBlock(error);
                   }
               } else {
-                  
+                  failBlock(nil);
               }
           }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

@@ -55,20 +55,20 @@
     NSString *userAccount = self.userAccountTextField.text;
     NSString *userPassword = self.userPasswordTextField.text;
     
-    if ([userAccount isEqualToString:@"51709669"] && [userPassword isEqualToString:@"000000"]) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-        [[LibraryAPI sharedInstance] loginWithPhone:userAccount
-                                           password:userPassword
-                                            success:^(UserModel *userModel) {
-                                                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                                [self.view endEditing:YES];
-                                                [self.delegate loginSuccessfully];
-                                            }
-                                               fail:^(NSError *error) {
-                                                   
-                                               }];
-    }
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[LibraryAPI sharedInstance] loginWithPhone:userAccount
+                                       password:userPassword
+                                        success:^(UserModel *userModel) {
+                                            [hud hideAnimated:YES];
+                                            [self.view endEditing:YES];
+                                            [self.delegate loginSuccessfully];
+                                        }
+                                           fail:^(NSError *error) {
+                                               hud.mode = MBProgressHUDModeText;
+                                               hud.label.text = @"login failed";
+                                               [hud hideAnimated:YES afterDelay:0.5];
+                                           }];
 }
 
 - (void)signupBtnPressed {

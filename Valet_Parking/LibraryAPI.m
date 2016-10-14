@@ -146,11 +146,21 @@
 
 - (void)logout {
     // delete user mo
+    NSLog(@"delete user mo");
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
     NSArray *userMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
                                                                  error:nil] copy];
     for (NSManagedObject *userMO in userMOs) {
         [self.managedObjectContext deleteObject:userMO];
+    }
+    
+    // delete car mo
+    NSLog(@"delete car mo");
+    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
+    NSArray *carMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
+                                                                error:nil] copy];
+    for (NSManagedObject *carMO in carMOs) {
+        [self.managedObjectContext deleteObject:carMO];
     }
     
     [self saveContext];
@@ -199,7 +209,6 @@
 
 - (NSArray *)getAllCarMOs {
     // NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Car"
                                               inManagedObjectContext:self.managedObjectContext];
@@ -269,14 +278,6 @@
     }
     
     NSLog(@"delete fail, car not find");
-}
-
-// cars
-- (void)saveACar:(CarModel *)carModel {
-    // TODO connect to server and save the car to user info
-    
-    // save the car info locally
-    
 }
 
 # pragma mark - QR 
