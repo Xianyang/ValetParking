@@ -179,7 +179,7 @@
     [self saveContext];
     
     // delete car mo
-    [self deleteCarsInCoreDate];
+    [self deleteAllCarsInCoreData];
     
     // delete key chain
     [self saveAccountToKeychain:@"" password:@""];
@@ -187,7 +187,7 @@
     NSLog(@"user logs out");
 }
 
-- (void)deleteCarsInCoreDate {
+- (void)deleteAllCarsInCoreData {
     NSLog(@"delete car mo");
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
     NSArray *carMOs = [[self.managedObjectContext executeFetchRequest:fetchRequest
@@ -215,7 +215,7 @@
 
 
 # pragma mark - Cars
-
+// create a car
 - (void)addACar:(CarModel *)carModel succeed:(void (^)(CarModel *))successBlock fail:(void (^)(NSError *))failBlock {
     // Step0 - check redundancy
     NSArray *carModels = [self getAllCarModels];
@@ -240,6 +240,7 @@
                                     }];
 }
 
+// read all cars
 - (void)getCarsForUser:(UserModel *)userModel
                success:(void(^)(NSArray *cars))successBlock
                   fail:(void(^)(NSError *error))failBlock
@@ -261,6 +262,15 @@
                                }];
 }
 
+// update a car
+- (void)updateACar:(CarModel *)oldCarModel
+       newCarModel:(CarModel *)newCarModel
+           success:(void(^)(CarModel *carModel))successBlock
+              fail:(void(^)(NSError *error))failBlock {
+    
+}
+
+// delete a car
 - (void)deleteCarWithCarModel:(CarModel *)carModel
                       success:(void(^)(NSString *msg))successBlock
                          fail:(void(^)(NSError *error))failBlock {

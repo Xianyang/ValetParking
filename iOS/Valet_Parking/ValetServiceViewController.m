@@ -28,7 +28,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[LibraryAPI sharedInstance] deleteCarsInCoreDate];
+    [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
     // Step1 check if logged in
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ValetLogin"
                                                                         accessGroup:nil];

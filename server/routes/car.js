@@ -33,6 +33,17 @@ router.route('/car/get_cars_for_user').post(function (req, res) {
     });
 });
 
+router.route('/car/update').post(function (req, res) {
+    console.log('get a update car post');
+    var carProfile = new CarProfile(req.body);
+
+    res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
+
+    CarController.update(carProfile, function (err, response) {
+        return res.send(response);
+    });
+});
+
 router.route('/car/delete').post(function (req, res) {
     console.log('get a delete car post');
     var carProfie = new CarProfile(req.body);

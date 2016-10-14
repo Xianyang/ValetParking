@@ -72,6 +72,31 @@ CarController.prototype.getCarForUser = function (userProfile, callback) {
     });
 }
 
+CarController.prototype.update = function (carProfile, callback) {
+    var me = this;
+
+    // check if the user exist
+    me.User.findOne({ phone: carProfile.userPhone }, function (err, user) {
+        if (err) {
+            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+        }
+        if (user && user.phone == carProfile.userPhone) {
+            console.log('found the user, name is ' + user.firstName + user.lastName);
+
+            me.Car.findOneAndUpdate({_id: carProfile._id}, carProfile, function(err, oldCarProfile) {
+                if (err) {
+                    return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+                }
+
+                return callback(err, new me.ApiResponse({success: true, extras: {carProfileModel: carProfile}}));
+            })
+        } else {
+            console.log('can not find this user');
+            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.ACCOUNT_NOT_FOUND } }));
+        }
+    });
+}
+
 CarController.prototype.delete = function (carProfile, callback) {
     var me = this;
 
