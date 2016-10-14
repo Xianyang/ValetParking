@@ -13,8 +13,10 @@
 
 @interface CarModel : JSONModel
 
-- (id)initWithPlate:(NSString *)plate brand:(NSString *)brand color:(NSString *)color;
+- (id)initWithIdentifier:(NSString *)identifier userPhone:(NSString *)userPhone plate:(NSString *)plate brand:(NSString *)brand color:(NSString *)color;
+// - (id)initWithPlate:(NSString *)plate brand:(NSString *)brand color:(NSString *)color;
 - (BOOL)isSameCar:(CarModel *)car;
+- (BOOL)isSamePlate:(CarModel *)car;
 
 @property (strong, nonatomic) NSString *identifier;
 @property (strong, nonatomic) NSString *userPhone;

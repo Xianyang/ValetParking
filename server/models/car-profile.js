@@ -3,7 +3,7 @@ var CarProfile = function(cnf) {
     this.userPhone = cnf.userPhone,
     this.brand = cnf.brand,
     this.plate = cnf.plate,
-    this.carColor = cnf.carColor
+    this.color = cnf.color
 };
 
 module.exports = CarProfile;

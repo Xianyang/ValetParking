@@ -213,9 +213,15 @@
 - (NSArray *)transferToCarModel:(NSArray *)carMOs {
     NSMutableArray *carModels = [[NSMutableArray alloc] init];
     for (NSManagedObject *carMO in carMOs) {
-        CarModel *carModel = [[CarModel alloc] initWithPlate:[carMO valueForKey:@"plate"]
-                                                       brand:[carMO valueForKey:@"brand"]
-                                                       color:[carMO valueForKey:@"color"]];
+        CarModel *carModel = [[CarModel alloc] initWithIdentifier:[carMO valueForKey:@"identifier"]
+                                                        userPhone:[carMO valueForKey:@"userPhone"]
+                                                            plate:[carMO valueForKey:@"plate"]
+                                                            brand:[carMO valueForKey:@"brand"]
+                                                            color:[carMO valueForKey:@"color"]];
+        
+//        CarModel *carModel = [[CarModel alloc] initWithPlate:[carMO valueForKey:@"plate"]
+//                                                       brand:[carMO valueForKey:@"brand"]
+//                                                       color:[carMO valueForKey:@"color"]];
         [carModels addObject:carModel];
     }
     
@@ -259,29 +265,41 @@
     }
 }
 
-- (void)addACar:(CarModel *)carModel succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {
+- (void)addACar:(CarModel *)carModel succeed:(void (^)(CarModel *))successBlock fail:(void (^)(NSError *))failBlock {
     // Step0 - check redundancy
     NSArray *carModels = [self getAllCarModels];
     for (CarModel *savedCarModel in carModels) {
-        if ([carModel isSameCar:savedCarModel]) {
+        if ([carModel isSamePlate:savedCarModel]) {
             NSError *error = [NSError errorWithDomain:@"reduplicate car" code:201 userInfo:nil];
             failBlock(error);
             return;
         }
     }
     
-    // Step1 - TODO upload this car to server
-    
-    // Step2 - create a new car object and save it locally
+    id me = self;
+    // Step1 - upload this car to server
+    [self.httpClient addACarWithCarModel:carModel
+                                 success:^(CarModel *carModel) {
+                                     // Step2 - get a new car object with identifier and save it locally
+                                     [me saveCarToCoreData:carModel];
+                                     successBlock(carModel);
+                                 }
+                                    fail:^(NSError *error) {
+                                        failBlock(error);
+                                    }];
+}
+
+- (void)saveCarToCoreData:(CarModel *)carModel{
     NSManagedObject *newCar = [NSEntityDescription insertNewObjectForEntityForName:@"Car"
                                                             inManagedObjectContext:self.managedObjectContext];
+    
+    [newCar setValue:carModel.identifier forKey:@"identifier"];
+    [newCar setValue:carModel.userPhone forKey:@"userPhone"];
     [newCar setValue:carModel.plate forKey:@"plate"];
     [newCar setValue:carModel.brand forKey:@"brand"];
     [newCar setValue:carModel.color forKey:@"color"];
     
     [self saveContext];
-    
-    successBlock([@"add a car successfully, plate is " stringByAppendingString:carModel.plate]);
 }
 
 - (void)deleteCar:(CarModel *)carModel succeed:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock {

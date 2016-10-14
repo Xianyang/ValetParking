@@ -11,6 +11,7 @@
 #import "LibraryAPI.h"
 
 @interface AddCarViewController ()
+@property (strong, nonatomic) NSString *userPhone;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelAddCarBtn;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *finishAddCarBtn;
 @property (weak, nonatomic) IBOutlet UITextField *plateTextField;
@@ -38,6 +39,8 @@
     
     [self.plateTextField becomeFirstResponder];
     
+    self.userPhone = [[[LibraryAPI sharedInstance] getCurrentUserModel] phone];
+    
     if (_editMode) {
         self.navigationItem.title = @"Edit";
         self.plateTextField.text = _oldCar.plate;
@@ -58,9 +61,15 @@
 }
 
 - (void)finishAddCar {
-    CarModel *newCar = [[CarModel alloc] initWithPlate:self.plateTextField.text
-                                                 brand:self.brandTextField.text
-                                                 color:self.colorTextField.text];
+    CarModel *newCar = [[CarModel alloc] initWithIdentifier:@""
+                                                  userPhone:self.userPhone
+                                                      plate:self.plateTextField.text
+                                                      brand:self.brandTextField.text
+                                                      color:self.colorTextField.text];
+    
+//    CarModel *newCar = [[CarModel alloc] initWithPlate:self.plateTextField.text
+//                                                 brand:self.brandTextField.text
+//                                                 color:self.colorTextField.text];
     
     void (^deleteCar)(CarModel *) = ^(CarModel *oldCar)
     {
@@ -75,9 +84,8 @@
     
     __block BOOL addSuccessfully = NO;
     [[LibraryAPI sharedInstance] addACar:newCar
-                                 succeed:^(NSString *message) {
+                                 succeed:^(CarModel *carModel) {
                                      addSuccessfully = YES;
-                                     NSLog(@"%@", message);
                                      [self.view endEditing:YES];
                                      
                                      if (_editMode) {

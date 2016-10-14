@@ -16,6 +16,7 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
 @property (strong, nonatomic) NSString *kRegisterURL;
 @property (strong, nonatomic) NSString *kLoginURL;
 @property (strong, nonatomic) NSString *kResetPasswordURL;
+@property (strong, nonatomic) NSString *kAddCarURL;
 
 @end
 
@@ -26,10 +27,13 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
         self.kRegisterURL = [kIPAdress stringByAppendingString:@":3001/api/account/register"];
         self.kLoginURL = [kIPAdress stringByAppendingString:@":3001/api/account/logon"];
         self.kResetPasswordURL = [kIPAdress stringByAppendingString:@":3001/api/account/set_new_password"];
+        self.kAddCarURL = [kIPAdress stringByAppendingString:@":3001/api/car/add"];
     }
     
     return self;
 }
+
+#pragma mark - Account
 
 - (void)registerWithPhone:(NSString *)phone
                 firstName:(NSString *)firstName
@@ -181,6 +185,65 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               failBlock(error);
           }];
+}
+
+#pragma mark - Car
+
+- (void)addACarWithCarModel:(CarModel *)carModel
+                    success:(void(^)(CarModel *carModel))successBlock
+                       fail:(void(^)(NSError *error))failBlock
+{
+    NSURL *url = [NSURL URLWithString:self.kAddCarURL];
+    
+    NSDictionary *parameters = @{@"userPhone": carModel.userPhone,
+                                 @"plate": carModel.plate,
+                                 @"brand": carModel.brand,
+                                 @"color": carModel.color};
+    
+    AFHTTPSessionManager *manager = [self newManager];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      NSError *error;
+                      CarModel *carModel = [[CarModel alloc] initWithDictionary:responseObject[@"extras"][@"carProfileModel"]
+                                                                             error:&error];
+                      if (error) {
+                          failBlock(error);
+                      } else {
+                          successBlock(carModel);
+                      }
+                  } else {
+                      // register failed
+                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
+
+}
+
+- (AFHTTPSessionManager *)newManager {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    return manager;
 }
 
 @end

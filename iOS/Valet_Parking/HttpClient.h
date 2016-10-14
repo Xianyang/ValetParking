@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UserModel.h"
+#import "CarModel.h"
 
 static NSString * const NetworkErrorDomain = @"com.luoxianyang";
 
@@ -32,6 +33,7 @@ typedef NS_ENUM(NSInteger, APIMessage){
 
 - (id)init;
 
+// account
 - (void)registerWithPhone:(NSString *)phone
                 firstName:(NSString *)firstName
                  lastName:(NSString *)lastName
@@ -48,5 +50,10 @@ typedef NS_ENUM(NSInteger, APIMessage){
                       password:(NSString *)password
                        success:(void(^)(UserModel *userModel))successBlock
                           fail:(void(^)(NSError *error))failBlock;
+
+// car
+- (void)addACarWithCarModel:(CarModel *)carModel
+                    success:(void(^)(CarModel *carModel))successBlock
+                       fail:(void(^)(NSError *error))failBlock;
 
 @end

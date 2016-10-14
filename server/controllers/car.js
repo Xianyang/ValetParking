@@ -28,7 +28,7 @@ CarController.prototype.add = function (newCar, callback) {
                         userPhone: car.userPhone,
                         brand: car.brand,
                         plate: car.plate,
-                        color: car.carColor
+                        color: car.color
                     });
                     console.log('add a car successfully with plate ' + car.plate);
                     return callback(err, new me.ApiResponse({
