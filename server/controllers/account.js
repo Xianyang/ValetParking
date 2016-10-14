@@ -33,6 +33,7 @@ AccountController.prototype.register = function (newUser, callback) {
                 }
                 if (numberAffected === 1) {
                     var userProfileModel = new me.UserProfile({
+                        identifier: user.id,
                         phone: user.phone,
                         firstName: user.firstName,
                         lastName: user.lastName
@@ -66,13 +67,14 @@ AccountController.prototype.logon = function(phone, password, callback) {
                 if (passwordHash == user.passwordHash) {
                     // create a new user profile model and send it back to front end
                     var userProfileModel = new me.UserProfile({
+                        identifier: user.id,
                         phone: user.phone,
                         firstName: user.firstName,
                         lastName: user.lastName
                     });
                     // set the session
                     // me.session.userProfileModel = userProfileModel;
-                    console.log('log on successfully');
+                    console.log(user.phone + ' log on successfully');
                     return callback(err, new me.ApiResponse({
                         success: true, extras: {
                             userProfileModel:userProfileModel
@@ -80,7 +82,7 @@ AccountController.prototype.logon = function(phone, password, callback) {
                     }));
                 } else {
                     // invalid password
-                    console.log('wrong password');
+                    console.log('invalid password');
                     return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.INVALID_PWD } }));
                 }
             });
@@ -112,6 +114,7 @@ AccountController.prototype.resetPassword = function(phone, password, callback) 
                     } else {
                         console.log('reset password successfully');
                         var userProfileModel = new me.UserProfile({
+                            identifier: user.id,
                             phone: user.phone,
                             firstName: user.firstName,
                             lastName: user.lastName

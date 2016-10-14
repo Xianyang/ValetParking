@@ -181,7 +181,6 @@ static NSString * const kIPAdress = @"http://147.8.234.140";
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               failBlock(error);
           }];
-
 }
 
 @end
