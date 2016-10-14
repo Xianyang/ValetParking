@@ -7,17 +7,18 @@
 //
 
 #import "CarModel.h"
+#import <JSONModel/JSONKeyMapper.h>
 
 @implementation CarModel
 
-- (id)initWithIdentifier:(NSString *)identifier
+- (id)initWithIdentifier:(NSString *)_id
                userPhone:(NSString *)userPhone
                    plate:(NSString *)plate
                    brand:(NSString *)brand
                    color:(NSString *)color
 {
     if (self = [super init]) {
-        self.identifier = identifier;
+        self._id = _id;
         self.userPhone = userPhone;
         self.plate = plate;
         self.brand = brand;

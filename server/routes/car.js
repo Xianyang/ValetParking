@@ -32,4 +32,8 @@ router.route('/car/get_cars_for_user').post(function (req, res) {
     });
 });
 
+router.route('/car/delete').post(function (req, res) {
+    console.log('get a delete car post');
+});
+
 module.exports = router;

@@ -9,6 +9,7 @@
 #import "AddCarViewController.h"
 #import "CarModel.h"
 #import "LibraryAPI.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface AddCarViewController ()
 @property (strong, nonatomic) NSString *userPhone;
@@ -83,6 +84,8 @@
     };
     
     __block BOOL addSuccessfully = NO;
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[LibraryAPI sharedInstance] addACar:newCar
                                  succeed:^(CarModel *carModel) {
                                      addSuccessfully = YES;
@@ -92,6 +95,7 @@
                                          deleteCar(_oldCar);
                                      }
                                      
+                                     [hud hideAnimated:YES];
                                      [self.delegate finishAddCar];
                                  }
                                     fail:^(NSError *error) {
@@ -99,17 +103,13 @@
                                         // TODO if same car, alert user
                                         if (error.code == 201 && _editMode == NO) {
                                             // user add a car that already exist
-                                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reduplicate Car"
-                                                                                                           message:@"You have already added this car"
-                                                                                                    preferredStyle:UIAlertControllerStyleAlert];
-                                            
-                                            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                  style:UIAlertActionStyleDefault
-                                                                                                handler:^(UIAlertAction * _Nonnull action) {
-                                                                                                    
-                                                                                                }];
-                                            [alert addAction:defaultAction];
-                                            [self presentViewController:alert animated:YES completion:nil];
+                                            hud.mode = MBProgressHUDModeText;
+                                            hud.label.text = @"You have already added this car";
+                                            [hud hideAnimated:YES afterDelay:1];
+                                        } else {
+                                            hud.mode = MBProgressHUDModeText;
+                                            hud.label.text = @"fail";
+                                            [hud hideAnimated:YES afterDelay:1];
                                         }
                                     }];
     

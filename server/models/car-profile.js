@@ -1,5 +1,5 @@
 var CarProfile = function(cnf) {
-    this.identifier = cnf.identifier,
+    this._id = cnf._id,
     this.userPhone = cnf.userPhone,
     this.brand = cnf.brand,
     this.plate = cnf.plate,

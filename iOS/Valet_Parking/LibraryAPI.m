@@ -333,7 +333,7 @@
     NSManagedObject *newCar = [NSEntityDescription insertNewObjectForEntityForName:@"Car"
                                                             inManagedObjectContext:self.managedObjectContext];
     
-    [newCar setValue:carModel.identifier forKey:@"identifier"];
+    [newCar setValue:carModel._id forKey:@"identifier"];
     [newCar setValue:carModel.userPhone forKey:@"userPhone"];
     [newCar setValue:carModel.plate forKey:@"plate"];
     [newCar setValue:carModel.brand forKey:@"brand"];
