@@ -43,20 +43,16 @@
                                   action:@selector(textFieldDidChange:)
                         forControlEvents:UIControlEventEditingChanged];
     
-    [self.loginBtn setEnabled:NO];
-    [self.loginBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [self.loginBtn setDisableStatus];
     [self.userAccountTextField becomeFirstResponder];
 }
 
 - (void)loginBtnPressed {
-    // TODO add log in network process
-    
-    // temp code(need to be deleted)
     NSString *userAccount = self.userAccountTextField.text;
     NSString *userPassword = self.userPasswordTextField.text;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
+    [self.loginBtn setDisableStatus];
     [[LibraryAPI sharedInstance] loginWithPhone:userAccount
                                        password:userPassword
                                         success:^(UserModel *userModel) {
@@ -65,9 +61,10 @@
                                             [self.delegate loginSuccessfully:userModel];
                                         }
                                            fail:^(NSError *error) {
+                                               [self.loginBtn setEnableStatus];
                                                hud.mode = MBProgressHUDModeText;
-                                               hud.label.text = @"login failed";
-                                               [hud hideAnimated:YES afterDelay:0.5];
+                                               hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
+                                               [hud hideAnimated:YES afterDelay:1];
                                            }];
 }
 
@@ -98,16 +95,14 @@
     [self.delegate loginSuccessfully:userModel];
 }
 
-# pragma mark
+# pragma mark - 
 
 - (void)textFieldDidChange:(UITextField *)textField {
     if ([self.userAccountTextField.text isEqualToString:@""] ||
         [self.userPasswordTextField.text isEqualToString:@""]) {
-        [self.loginBtn setEnabled:NO];
-        [self.loginBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [self.loginBtn setDisableStatus];
     } else {
-        [self.loginBtn setEnabled:YES];
-        [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.loginBtn setEnableStatus];
     }
 }
 

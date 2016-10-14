@@ -68,21 +68,12 @@
                                                       brand:self.brandTextField.text
                                                       color:self.colorTextField.text];
     
-//    void (^deleteCar)(CarModel *) = ^(CarModel *oldCar)
-//    {
-//        [[LibraryAPI sharedInstance] deleteCarWithCarModel:_oldCar
-//                                                   success:^(NSString *msg) {
-//                                                       NSLog(@"%@", msg);
-//                                                   }
-//                                                      fail:^(NSError *error) {
-//                                                          
-//                                                      }];
-//    };
-    
+    [self.finishAddCarBtn setEnabled:NO];
     if (_editMode) {
         // user wants to edit this car
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         newCar._id = _oldCar._id;
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[LibraryAPI sharedInstance] updateACar:_oldCar
                                     newCarModel:newCar
                                         success:^(CarModel *carModel) {
@@ -91,8 +82,9 @@
                                             [self.delegate finishAddCar];
                                         }
                                            fail:^(NSError *error) {
+                                               [self.finishAddCarBtn setEnabled:YES];
                                                hud.mode = MBProgressHUDModeText;
-                                               hud.label.text = @"fail";
+                                               hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
                                                [hud hideAnimated:YES afterDelay:1];
                                            }];
         
@@ -106,18 +98,10 @@
                                          [self.delegate finishAddCar];
                                      }
                                         fail:^(NSError *error) {
-                                            NSLog(@"%@", error);
-                                            // TODO if same car, alert user
-                                            if (error.code == 201) {
-                                                // user add a car that already exist
-                                                hud.mode = MBProgressHUDModeText;
-                                                hud.label.text = @"You have already added this car";
-                                                [hud hideAnimated:YES afterDelay:1];
-                                            } else {
-                                                hud.mode = MBProgressHUDModeText;
-                                                hud.label.text = @"fail";
-                                                [hud hideAnimated:YES afterDelay:1];
-                                            }
+                                            [self.finishAddCarBtn setEnabled:YES];
+                                            hud.mode = MBProgressHUDModeText;
+                                            hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
+                                            [hud hideAnimated:YES afterDelay:1];
                                         }];
     }
 }

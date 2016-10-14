@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8635F48B1DB129B4007830D0 /* APIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8635F48A1DB129B4007830D0 /* APIMessage.m */; };
+		8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 8635F48D1DB13344007830D0 /* UIButton+Status.m */; };
 		9446570E1D4B35DC004AB5D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */; };
 		9446570F1D4B35DC004AB5D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */; };
 		944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944657121D4B3A24004AB5D2 /* EditItemViewController.m */; };
@@ -74,6 +76,10 @@
 		4059980DC2665C228F860C4E /* libPods-Valet_ParkingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E75954F6DD895B0A3B3A53F /* Pods-Valet_ParkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_ParkingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_ParkingTests/Pods-Valet_ParkingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking/Pods-Valet_Parking.release.xcconfig"; sourceTree = "<group>"; };
+		8635F4891DB129B4007830D0 /* APIMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIMessage.h; sourceTree = "<group>"; };
+		8635F48A1DB129B4007830D0 /* APIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIMessage.m; sourceTree = "<group>"; };
+		8635F48C1DB13344007830D0 /* UIButton+Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Status.h"; sourceTree = "<group>"; };
+		8635F48D1DB13344007830D0 /* UIButton+Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Status.m"; sourceTree = "<group>"; };
 		864275CF1DA22EC40017E888 /* Valet_Parking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Valet_Parking.entitlements; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424E8841D47494800051EFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -336,6 +342,10 @@
 				944E650D1D4711F30024B977 /* LibraryAPI.m */,
 				944E650E1D4711F30024B977 /* HttpClient.h */,
 				944E650F1D4711F30024B977 /* HttpClient.m */,
+				8635F4891DB129B4007830D0 /* APIMessage.h */,
+				8635F48A1DB129B4007830D0 /* APIMessage.m */,
+				8635F48C1DB13344007830D0 /* UIButton+Status.h */,
+				8635F48D1DB13344007830D0 /* UIButton+Status.m */,
 				944E65101D4711F30024B977 /* KeychainItemWrapper.h */,
 				944E65111D4711F30024B977 /* KeychainItemWrapper.m */,
 			);
@@ -797,6 +807,7 @@
 				944E65141D4711F30024B977 /* RegisterViewController.m in Sources */,
 				944E65181D4711F30024B977 /* BookServiceViewController.m in Sources */,
 				944E651C1D4711F30024B977 /* MyOrdersViewController.m in Sources */,
+				8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */,
 				944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */,
 				944E651F1D4711F30024B977 /* UserInfoCell.m in Sources */,
 				944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */,
@@ -808,6 +819,7 @@
 				944E65131D4711F30024B977 /* WelcomeViewController.m in Sources */,
 				944E65211D4711F30024B977 /* ValetModel.m in Sources */,
 				944E65241D4711F30024B977 /* HttpClient.m in Sources */,
+				8635F48B1DB129B4007830D0 /* APIMessage.m in Sources */,
 				944E651E1D4711F30024B977 /* AddCarViewController.m in Sources */,
 				944E64961D4711840024B977 /* AppDelegate.m in Sources */,
 				9448F48F1D49EFDE008AD1E2 /* GetCarViewController.m in Sources */,

@@ -221,7 +221,7 @@
     NSArray *carModels = [self getAllCarModels];
     for (CarModel *savedCarModel in carModels) {
         if ([carModel isSamePlate:savedCarModel]) {
-            NSError *error = [NSError errorWithDomain:@"reduplicate car" code:201 userInfo:nil];
+            NSError *error = [NSError errorWithDomain:@"reduplicate car" code:CAR_ALREADY_EXISTS userInfo:nil];
             failBlock(error);
             return;
         }
@@ -267,6 +267,16 @@
        newCarModel:(CarModel *)newCarModel
            success:(void(^)(CarModel *carModel))successBlock
               fail:(void(^)(NSError *error))failBlock {
+    // Step0 - check redundancy
+    NSArray *carModels = [self getAllCarModels];
+    for (CarModel *savedCarModel in carModels) {
+        if ([newCarModel isSamePlate:savedCarModel]) {
+            NSError *error = [NSError errorWithDomain:@"reduplicate car" code:CAR_ALREADY_EXISTS userInfo:nil];
+            failBlock(error);
+            return;
+        }
+    }
+    
     id me = self;
     
     // Step 1 - update the car on server

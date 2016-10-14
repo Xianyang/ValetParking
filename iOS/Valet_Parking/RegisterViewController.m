@@ -40,8 +40,7 @@
                        action:@selector(cancalBtnPressed)
              forControlEvents:UIControlEventTouchUpInside];
     
-    [self.signUpBtn setEnabled:NO];
-    [self.signUpBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    [self.signUpBtn setDisableStatus];
     
     // sign up button
     [self.signUpBtn.layer setCornerRadius:3.0];
@@ -63,8 +62,6 @@
                           forControlEvents:UIControlEventTouchUpInside];
     
     [self.userFirstNameTextField becomeFirstResponder];
-
-    [self.signUpBtn setEnabled:YES];
 }
 
 - (void)getVC {
@@ -96,7 +93,9 @@
 
 - (void)signupBtnPressed {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self.signUpBtn setEnabled:NO];
+    [self.signUpBtn setDisableStatus];
+    
+    // TODO check verification code firstly
     
     [[LibraryAPI sharedInstance] registerWithPhone:self.userAccountTextField.text
                                          firstName:self.userFirstNameTextField.text
@@ -108,22 +107,11 @@
                                            }
                                               fail:^(NSError *error) {
                                                   hud.mode = MBProgressHUDModeText;
-                                                  hud.label.text = @"fail";
-                                                  [hud hideAnimated:YES afterDelay:0.5];
+                                                  hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
+                                                  [hud hideAnimated:YES afterDelay:1];
                                                   
-                                                  [self.signUpBtn setEnabled:YES];
+                                                  [self.signUpBtn setEnableStatus];
                                               }];
-    
-//    [[LibraryAPI sharedInstance] registerWithPhone:@"test_3"
-//                                         firstName:@"xianyang"
-//                                          lastName:@"luo"
-//                                          password:@"000"
-//                                           success:^(UserModel *userModel) {
-//                                               [self.delegate registerSucceed];
-//                                           }
-//                                              fail:^(NSError *error) {
-//                                                  
-//                                              }];
 }
 
 - (void)textFieldDidChange:(UITextField *)textField {
@@ -144,11 +132,9 @@
         [self.userAccountTextField.text isEqualToString:@""] ||
         [self.verificationCodeTextField.text isEqualToString:@""] ||
         [self.userPasswordTextField.text isEqualToString:@""]) {
-        [self.signUpBtn setEnabled:NO];
-        [self.signUpBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [self.signUpBtn setDisableStatus];
     } else {
-        [self.signUpBtn setEnabled:YES];
-        [self.signUpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.signUpBtn setEnableStatus];
     }
 }
 

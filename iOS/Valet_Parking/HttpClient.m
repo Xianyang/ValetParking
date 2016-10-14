@@ -81,7 +81,7 @@ static NSString * const kIPAdress = @"http://192.168.1.103:3001/";
                       }
                   } else {
                       // register failed
-                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
                       error = [NSError errorWithDomain:NetworkErrorDomain
                                                   code:failMessage
                                               userInfo:nil];
@@ -130,7 +130,7 @@ static NSString * const kIPAdress = @"http://192.168.1.103:3001/";
                       }
                   } else {
                       // login failed
-                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
                       error = [NSError errorWithDomain:NetworkErrorDomain
                                                   code:failMessage
                                               userInfo:nil];
@@ -179,7 +179,7 @@ static NSString * const kIPAdress = @"http://192.168.1.103:3001/";
                       }
                   } else {
                       // reset failed
-                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
                       error = [NSError errorWithDomain:NetworkErrorDomain
                                                   code:failMessage
                                               userInfo:nil];
@@ -232,7 +232,7 @@ static NSString * const kIPAdress = @"http://192.168.1.103:3001/";
                       }
                   } else {
                       // register failed
-                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
                       error = [NSError errorWithDomain:NetworkErrorDomain
                                                   code:failMessage
                                               userInfo:nil];
@@ -280,7 +280,7 @@ static NSString * const kIPAdress = @"http://192.168.1.103:3001/";
                       }
                   } else {
                       // register failed
-                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
                       error = [NSError errorWithDomain:NetworkErrorDomain
                                                   code:failMessage
                                               userInfo:nil];
@@ -328,7 +328,7 @@ static NSString * const kIPAdress = @"http://192.168.1.103:3001/";
                           successBlock(carModel);
                       }
                   } else {
-                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
                       error = [NSError errorWithDomain:NetworkErrorDomain
                                                   code:failMessage
                                               userInfo:nil];
@@ -368,7 +368,7 @@ static NSString * const kIPAdress = @"http://192.168.1.103:3001/";
                   if (isSuccess) {
                       successBlock(responseObject[@"extras"][@"msg"]);
                   } else {
-                      APIMessage failMessage = (APIMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
                       error = [NSError errorWithDomain:NetworkErrorDomain
                                                   code:failMessage
                                               userInfo:nil];
