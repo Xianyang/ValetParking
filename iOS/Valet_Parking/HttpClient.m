@@ -28,9 +28,9 @@ static NSString * const kIPAdress = @"http://192.168.1.107:3001/";
 
 - (id)init {
     if (self == [super init]) {
-        self.kRegisterURL = [kIPAdress stringByAppendingString:@"api/account/register"];
-        self.kLoginURL = [kIPAdress stringByAppendingString:@"api/account/logon"];
-        self.kResetPasswordURL = [kIPAdress stringByAppendingString:@"api/account/set_new_password"];
+        self.kRegisterURL = [kIPAdress stringByAppendingString:@"api/account/user/register"];
+        self.kLoginURL = [kIPAdress stringByAppendingString:@"api/account/user/logon"];
+        self.kResetPasswordURL = [kIPAdress stringByAppendingString:@"api/account/user/set_new_password"];
         self.kAddCarURL = [kIPAdress stringByAppendingString:@"api/car/add"];
         self.kGetCarURL = [kIPAdress stringByAppendingString:@"api/car/get_cars_for_user"];
         self.kUpdateCarURL = [kIPAdress stringByAppendingString:@"api/car/update"];

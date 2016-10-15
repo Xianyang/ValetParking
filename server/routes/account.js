@@ -10,7 +10,7 @@ var express = require('express'),
 
 var accountController = new AccountController(User);
 
-router.route('/account/register').post(function (req, res) {
+router.route('/account/user/register').post(function (req, res) {
     console.log('get a register post')
     // var accountController = new AccountController(User);
     var userRegistration = new UserRegistration(req.body);
@@ -35,7 +35,7 @@ router.route('/account/register').post(function (req, res) {
     }
 });
 
-router.route('/account/logon').post(function (req, res) {
+router.route('/account/user/logon').post(function (req, res) {
     console.log('get a logon post');
     var userLogon = new UserLogon(req.body);
 
@@ -46,7 +46,7 @@ router.route('/account/logon').post(function (req, res) {
     });
 });
 
-router.route('/account/set_new_password').post(function (req, res) {
+router.route('/account/user/set_new_password').post(function (req, res) {
     console.log('get a set new password post');
     var userResetPassword = new UserResetPassword(req.body);
 
