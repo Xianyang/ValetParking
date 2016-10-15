@@ -15,9 +15,7 @@
 
 + (LibraryAPI *)sharedInstance;
 
-- (NSManagedObjectContext *)getManagedObjectContext;
-
-// log in and sign up
+// Account
 - (void)loginWithPhone:(NSString *)phone
               password:(NSString *)password
                success:(void(^)(UserModel *userModel))successBlock
@@ -39,7 +37,6 @@
 - (UserModel *)getCurrentUserModel;
 
 // cars
-- (void)deleteAllCarsInCoreData;
 - (void)getCarsForUser:(UserModel *)userModel
                success:(void(^)(NSArray *cars))successBlock
                   fail:(void(^)(NSError *error))failBlock;
@@ -57,7 +54,8 @@
                       success:(void(^)(NSString *msg))successBlock
                          fail:(void(^)(NSError *error))failBlock;
 
-- (NSArray *)getAllCarModels;
+- (void)deleteAllCarsInCoreData;
+- (NSArray *)getAllCarModelsInCoreData;
 
 // qr
 - (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height;

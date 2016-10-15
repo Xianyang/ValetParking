@@ -63,7 +63,7 @@ static NSString * const CarCellIdentifier = @"CarCell";
 }
 
 - (void)reloadCars {
-    self.cars = [[LibraryAPI sharedInstance] getAllCarModels];
+    self.cars = [[LibraryAPI sharedInstance] getAllCarModelsInCoreData];
     
 //    if (self.cars.count > 0) {
 //        for (CarModel *car in self.cars) {

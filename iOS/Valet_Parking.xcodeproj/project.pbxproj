@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8635F48B1DB129B4007830D0 /* APIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8635F48A1DB129B4007830D0 /* APIMessage.m */; };
 		8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 8635F48D1DB13344007830D0 /* UIButton+Status.m */; };
+		864DF94D1DB224DB004EDDEA /* DataClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DF94C1DB224DB004EDDEA /* DataClient.m */; };
 		9446570E1D4B35DC004AB5D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */; };
 		9446570F1D4B35DC004AB5D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */; };
 		944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944657121D4B3A24004AB5D2 /* EditItemViewController.m */; };
@@ -81,6 +82,8 @@
 		8635F48C1DB13344007830D0 /* UIButton+Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Status.h"; sourceTree = "<group>"; };
 		8635F48D1DB13344007830D0 /* UIButton+Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Status.m"; sourceTree = "<group>"; };
 		864275CF1DA22EC40017E888 /* Valet_Parking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Valet_Parking.entitlements; sourceTree = "<group>"; };
+		864DF94B1DB224DB004EDDEA /* DataClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataClient.h; sourceTree = "<group>"; };
+		864DF94C1DB224DB004EDDEA /* DataClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataClient.m; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424E8841D47494800051EFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 				944E650D1D4711F30024B977 /* LibraryAPI.m */,
 				944E650E1D4711F30024B977 /* HttpClient.h */,
 				944E650F1D4711F30024B977 /* HttpClient.m */,
+				864DF94B1DB224DB004EDDEA /* DataClient.h */,
+				864DF94C1DB224DB004EDDEA /* DataClient.m */,
 				8635F4891DB129B4007830D0 /* APIMessage.h */,
 				8635F48A1DB129B4007830D0 /* APIMessage.m */,
 				8635F48C1DB13344007830D0 /* UIButton+Status.h */,
@@ -829,6 +834,7 @@
 				94FE2BDD1D48ABC20096B408 /* TwoLabelCell.m in Sources */,
 				944E651B1D4711F30024B977 /* MyProfileViewController.m in Sources */,
 				9448F4921D49F27E008AD1E2 /* ParkTicketViewController.m in Sources */,
+				864DF94D1DB224DB004EDDEA /* DataClient.m in Sources */,
 				944E64931D4711840024B977 /* main.m in Sources */,
 				94FE2BDA1D4858840096B408 /* CarCell.m in Sources */,
 				944E651D1D4711F30024B977 /* MyCarsViewController.m in Sources */,

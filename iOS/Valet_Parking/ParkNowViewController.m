@@ -34,7 +34,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     
     // Step1 - Let user chooses its info
     self.userModel = [[LibraryAPI sharedInstance] getCurrentUserModel];
-    self.userCars = [[LibraryAPI sharedInstance] getAllCarModels];
+    self.userCars = [[LibraryAPI sharedInstance] getAllCarModelsInCoreData];
     
     // Step2 - Check if the user has a car. If not, present add car view
     [self checkCars];
@@ -168,7 +168,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 }
 
 - (void)finishAddCar {
-    self.userCars = [[LibraryAPI sharedInstance] getAllCarModels];
+    self.userCars = [[LibraryAPI sharedInstance] getAllCarModelsInCoreData];
     if (self.userCars.count) {
         self.chosenCar = [self.userCars lastObject];
     }
