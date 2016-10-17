@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UserModel.h"
+#import "ValetModel.h"
 #import "CarModel.h"
 #import "APIMessage.h"
 
@@ -18,39 +18,17 @@ static NSString * const NetworkErrorDomain = @"com.luoxianyang";
 - (id)init;
 
 // account
-- (void)registerWithPhone:(NSString *)phone
-                firstName:(NSString *)firstName
-                 lastName:(NSString *)lastName
-                 password:(NSString *)password
-                  success:(void(^)(UserModel *userModel))successBlock
-                     fail:(void(^)(NSError *error))failBlock;
 
 - (void)loginWithPhone:(NSString *)phone
               password:(NSString *)password
-               success:(void(^)(UserModel *userModel))successBlock
+               success:(void(^)(ValetModel *valetModel))successBlock
                   fail:(void(^)(NSError *error))failBlock;
 
 - (void)resetPasswordWithPhone:(NSString *)phone
                       password:(NSString *)password
-                       success:(void(^)(UserModel *userModel))successBlock
+                       success:(void(^)(ValetModel *valetModel))successBlock
                           fail:(void(^)(NSError *error))failBlock;
 
-// car
-- (void)getCarsForUser:(UserModel *)userModel
-               success:(void(^)(NSArray *cars))successBlock
-                  fail:(void(^)(NSError *error))failBlock;
-
-- (void)addACarWithCarModel:(CarModel *)carModel
-                    success:(void(^)(CarModel *carModel))successBlock
-                       fail:(void(^)(NSError *error))failBlock;
-
-- (void)updateACar:(CarModel *)oldCarModel
-       newCarModel:(CarModel *)newCarModel
-           success:(void(^)(CarModel *carModel))successBlock
-              fail:(void(^)(NSError *error))failBlock;
-
-- (void)deleteCarWithCarModel:(CarModel *)carModel
-                      success:(void(^)(NSString *msg))successBlock
-                         fail:(void(^)(NSError *error))failBlock;
+// order
 
 @end

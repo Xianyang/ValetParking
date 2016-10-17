@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserModel.h"
+#import "ValetModel.h"
 
 @protocol ForgetPasswordViewControllerDelegate
 
 - (void)cancelSetNewPassword;
-- (void)resetSucceed:(UserModel *)userModel;
+- (void)resetSucceed:(ValetModel *)valetModel;
 
 @end
 

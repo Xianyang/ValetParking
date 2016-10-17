@@ -33,16 +33,19 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
     
     // Step1 check if logged in
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
+        [hud hideAnimated:YES];
         [self loginSuccessfully:userModel];
     }
                                                      fail:^(NSError *error) {
+                                                         [hud hideAnimated:YES];
                                                          [self popUpWelcomeView];
                                                      }];
     
-    // Step2 TODO get user orders
+    // Step2 Temp code
     [self setParas];
-    [self getUserOrders];
+    
     
     [self.tableView reloadData];
 }
@@ -59,11 +62,6 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     _numOfUserOrder = 0;
 }
 
-# pragma mark - Orders
-- (void)getUserOrders {
-    // TODO use user's info to get its orders. If there is a order, then refresh the tabel view
-}
-
 - (void)popUpWelcomeView {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WelcomeViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
@@ -71,6 +69,13 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     [self.navigationController presentViewController:viewController
                                             animated:YES
                                           completion:nil];
+}
+
+# pragma mark - Orders
+- (void)getUserOrders {
+    // TODO use user's info to get its orders. If there is a order, then refresh the tabel view
+    
+    [self.tableView reloadData];
 }
 
 # pragma mark - UITableView
@@ -140,6 +145,9 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                                hud.label.text = @"fail to fetch cars";
                                                [hud hideAnimated:YES afterDelay:1];
                                            }];
+    
+    // get user's order
+    [self getUserOrders];
 }
 
 - (void)didReceiveMemoryWarning {

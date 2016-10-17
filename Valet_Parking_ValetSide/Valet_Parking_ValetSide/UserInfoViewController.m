@@ -7,16 +7,56 @@
 //
 
 #import "UserInfoViewController.h"
+#import "ValetModel.h"
+#import "LibraryAPI.h"
 
-@interface UserInfoViewController ()
-
+@interface UserInfoViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) ValetModel *valetModel;
 @end
 
 @implementation UserInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setNavigationBar];
+    
+    self.valetModel = [[LibraryAPI sharedInstance] getCurrentValetModel];
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - UITableView
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UserInfo"];
+    
+    cell.textLabel.text = [self.valetModel.firstName stringByAppendingString:self.valetModel.lastName];
+    
+    return cell;
+}
+
+#pragma mark - View
+
+- (void)setNavigationBar {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    NSDictionary * dict=[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [self.navigationController.navigationBar setTitleTextAttributes:dict];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning {

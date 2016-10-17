@@ -59,10 +59,10 @@
     
     [[LibraryAPI sharedInstance] resetPasswordWithPhone:self.userAccountTextField.text
                                                password:self.userPasswordTextField.text
-                                                success:^(UserModel *userModel) {
+                                                success:^(ValetModel *valetModel) {
                                                     [self.okBtn setEnabled:YES];
                                                     [hud hideAnimated:YES];
-                                                    [self.delegate resetSucceed:userModel];
+                                                    [self.delegate resetSucceed:valetModel];
                                                 }
                                                    fail:^(NSError *error) {
                                                        hud.mode = MBProgressHUDModeText;

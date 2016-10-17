@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UserModel.h"
+#import "ValetModel.h"
 #import "CarModel.h"
 
 @interface DataClient : NSObject
@@ -17,19 +17,11 @@
 // Account
 - (NSString *)getAccountInKeychain;
 - (NSString *)getPasswordInKeychain;
-- (BOOL)saveUserModelToCoreData:(UserModel *)userModel;
-- (void)saveAccountToKeychain:(NSString *)userAccount password:(NSString *)userPassword;
-- (UserModel *)getCurrentUserModel;
-- (BOOL)deleteUserMO;
+- (BOOL)saveValetModelToCoreData:(ValetModel *)valetModel;
+- (void)saveAccountToKeychain:(NSString *)valetAccount password:(NSString *)valetPassword;
+- (ValetModel *)getCurrentValetModel;
+- (BOOL)deleteValetMO;
 
-// Car
-- (BOOL)checkRedundantCar:(CarModel *)carModel;
-
-- (BOOL)saveCarToCoreData:(CarModel *)carModel;
-- (BOOL)updateCarLocally:(CarModel *)oldCarModel newCarModel:(CarModel *)newCarModel;
-- (BOOL)deleteCarLocally:(CarModel *)carModel;
-
-- (NSArray *)getAllCarModelsInCoreData;
-- (BOOL)deleteAllCarsInCoreData;
+// Order
 
 @end

@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *userAccountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userPasswordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *signupBtn;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPwBtn;
 
 @end
@@ -35,9 +34,7 @@
     [self.loginBtn addTarget:self
                       action:@selector(loginBtnPressed)
             forControlEvents:UIControlEventTouchUpInside];
-    [self.signupBtn addTarget:self
-                       action:@selector(signupBtnPressed)
-             forControlEvents:UIControlEventTouchUpInside];
+
     [self.userAccountTextField addTarget:self
                                   action:@selector(textFieldDidChange:)
                         forControlEvents:UIControlEventEditingChanged];
@@ -57,10 +54,10 @@
     [self.loginBtn setDisableStatus];
     [[LibraryAPI sharedInstance] loginWithPhone:userAccount
                                        password:userPassword
-                                        success:^(UserModel *userModel) {
+                                        success:^(ValetModel *valetModel) {
                                             [hud hideAnimated:YES];
                                             [self.view endEditing:YES];
-                                            [self.delegate loginSuccessfully:userModel];
+                                            [self.delegate loginSuccessfully:valetModel];
                                         }
                                            fail:^(NSError *error) {
                                                [self.loginBtn setEnableStatus];
@@ -70,23 +67,14 @@
                                            }];
 }
 
-# pragma mark - RegisterViewControllerDelegate
-- (void)registerSucceed:(UserModel *)userModel {
-    [self.delegate loginSuccessfully:userModel];
-}
-
-- (void)cancelRegister {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 # pragma mark - ForgetPasswordViewControllerDelegate
 
 - (void)cancelSetNewPassword {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)resetSucceed:(UserModel *)userModel {
-    [self.delegate loginSuccessfully:userModel];
+- (void)resetSucceed:(ValetModel *)valetModel {
+    [self.delegate loginSuccessfully:valetModel];
 }
 
 # pragma mark -
