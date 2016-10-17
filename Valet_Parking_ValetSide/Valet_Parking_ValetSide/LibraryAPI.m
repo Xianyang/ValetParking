@@ -12,7 +12,6 @@
 #import "HttpClient.h"
 #import "DataClient.h"
 #import "UserModel.h"
-#import "KeychainItemWrapper.h"
 
 @interface LibraryAPI()
 @property (strong, nonatomic) HttpClient *httpClient;
@@ -49,6 +48,26 @@
 }
 
 # pragma mark - Log in and Sign up
+
+- (void)tryLoginWithLocalAccount:(void (^)(UserModel *userModel))successBlock
+                            fail:(void (^)(NSError *error))failBlock{
+        
+    NSString *userAccount = [self.dataClient getAccountInKeychain];
+    NSString *userPassword = [self.dataClient getPasswordInKeychain];
+    
+    if ([userAccount isEqualToString:@""] || [userPassword isEqualToString:@""]) {
+        failBlock(nil);
+    }
+    
+    [self loginWithPhone:userAccount
+                password:userPassword
+                 success:^(UserModel *userModel) {
+                     successBlock(userModel);
+                 }
+                    fail:^(NSError *error) {
+                        failBlock(error);
+                    }];
+}
 
 - (void)loginWithPhone:(NSString *)phone
               password:(NSString *)password
@@ -135,7 +154,7 @@
     [self.dataClient deleteAllCarsInCoreData];
     
     // delete key chain
-    [self.dataClient saveAccountToKeychain:@"" password:@""];
+    [self.dataClient saveAccountToKeychain:@"nil" password:@"nil"];
     
     NSLog(@"user logs out");
 }

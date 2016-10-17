@@ -154,7 +154,7 @@
     [self.dataClient deleteAllCarsInCoreData];
     
     // delete key chain
-    [self.dataClient saveAccountToKeychain:@"" password:@""];
+    [self.dataClient saveAccountToKeychain:@"nil" password:@"nil"];
     
     NSLog(@"user logs out");
 }

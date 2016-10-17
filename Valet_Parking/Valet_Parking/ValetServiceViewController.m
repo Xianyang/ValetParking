@@ -27,6 +27,8 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setNavigationBar];
+    
     // Step0 delete all cars in local database
     [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
     
@@ -38,11 +40,11 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                                          [self popUpWelcomeView];
                                                      }];
     
-    [self setNavigationBar];
+    // Step2 TODO get user orders
     [self setParas];
+    [self getUserOrders];
     
     [self.tableView reloadData];
-    [self getUserOrders];
 }
 
 - (void)setNavigationBar {

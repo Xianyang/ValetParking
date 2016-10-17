@@ -7,8 +7,10 @@
 //
 
 #import "DataClient.h"
-#include <CoreData/CoreData.h>
+#import <CoreData/CoreData.h>
 #import "KeychainItemWrapper.h"
+
+static NSString * const AccountNameInKeychain = @"Valet_Parking_Valet_Login";
 
 @interface DataClient()
 
@@ -64,8 +66,21 @@
     return [self saveContext];
 }
 
+- (NSString *)getAccountInKeychain {
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:AccountNameInKeychain
+                                                                        accessGroup:nil];
+    return [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
+}
+
+- (NSString *)getPasswordInKeychain {
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:AccountNameInKeychain
+                                                                        accessGroup:nil];
+    return [keychain objectForKey:(__bridge id)(kSecValueData)];
+
+}
+
 - (void)saveAccountToKeychain:(NSString *)userAccount password:(NSString *)userPassword {
-    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ValetLogin"
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:AccountNameInKeychain
                                                                         accessGroup:nil];
     [keychain setObject:userAccount forKey:(__bridge id)(kSecAttrAccount)];
     [keychain setObject:userPassword forKey:(__bridge id)(kSecValueData)];

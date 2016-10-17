@@ -9,7 +9,7 @@
 #import "DataClient.h"
 #import "KeychainItemWrapper.h"
 
-static NSString * const AccountNameInKeychain = @"ValetLogin";
+static NSString * const AccountNameInKeychain = @"Valet_Parking_User_Login";
 
 @interface DataClient()
 

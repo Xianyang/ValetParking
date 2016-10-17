@@ -24,12 +24,12 @@
 		864DF9F71DB47511004EDDEA /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DF9F21DB47511004EDDEA /* UserModel.m */; };
 		864DF9F81DB47511004EDDEA /* ValetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DF9F41DB47511004EDDEA /* ValetModel.m */; };
 		864DF9F91DB47511004EDDEA /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DF9F61DB47511004EDDEA /* CarModel.m */; };
-		864DFA071DB47520004EDDEA /* LibraryAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DF9FC1DB47520004EDDEA /* LibraryAPI.m */; };
-		864DFA081DB47520004EDDEA /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DF9FE1DB47520004EDDEA /* HttpClient.m */; };
-		864DFA091DB47520004EDDEA /* DataClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA001DB47520004EDDEA /* DataClient.m */; };
-		864DFA0A1DB47520004EDDEA /* APIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA021DB47520004EDDEA /* APIMessage.m */; };
-		864DFA0B1DB47520004EDDEA /* UIButton+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA041DB47520004EDDEA /* UIButton+Status.m */; };
-		864DFA0C1DB47520004EDDEA /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA061DB47520004EDDEA /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		864DFA1B1DB48FDE004EDDEA /* LibraryAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA101DB48FDE004EDDEA /* LibraryAPI.m */; };
+		864DFA1C1DB48FDE004EDDEA /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA121DB48FDE004EDDEA /* HttpClient.m */; };
+		864DFA1D1DB48FDE004EDDEA /* DataClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA141DB48FDE004EDDEA /* DataClient.m */; };
+		864DFA1E1DB48FDE004EDDEA /* APIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA161DB48FDE004EDDEA /* APIMessage.m */; };
+		864DFA1F1DB48FDE004EDDEA /* UIButton+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA181DB48FDE004EDDEA /* UIButton+Status.m */; };
+		864DFA201DB48FDE004EDDEA /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA1A1DB48FDE004EDDEA /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DC65DBF6EE7A6AB00AC949ED /* libPods-Valet_Parking_ValetSideUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BDD180E9413B01023C588 /* libPods-Valet_Parking_ValetSideUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -83,19 +83,19 @@
 		864DF9F41DB47511004EDDEA /* ValetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValetModel.m; sourceTree = "<group>"; };
 		864DF9F51DB47511004EDDEA /* CarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarModel.h; sourceTree = "<group>"; };
 		864DF9F61DB47511004EDDEA /* CarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarModel.m; sourceTree = "<group>"; };
-		864DF9FB1DB47520004EDDEA /* LibraryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryAPI.h; sourceTree = "<group>"; };
-		864DF9FC1DB47520004EDDEA /* LibraryAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryAPI.m; sourceTree = "<group>"; };
-		864DF9FD1DB47520004EDDEA /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
-		864DF9FE1DB47520004EDDEA /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
-		864DF9FF1DB47520004EDDEA /* DataClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataClient.h; sourceTree = "<group>"; };
-		864DFA001DB47520004EDDEA /* DataClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataClient.m; sourceTree = "<group>"; };
-		864DFA011DB47520004EDDEA /* APIMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIMessage.h; sourceTree = "<group>"; };
-		864DFA021DB47520004EDDEA /* APIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIMessage.m; sourceTree = "<group>"; };
-		864DFA031DB47520004EDDEA /* UIButton+Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Status.h"; sourceTree = "<group>"; };
-		864DFA041DB47520004EDDEA /* UIButton+Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Status.m"; sourceTree = "<group>"; };
-		864DFA051DB47520004EDDEA /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
-		864DFA061DB47520004EDDEA /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		864DFA0E1DB4758D004EDDEA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		864DFA0F1DB48FDE004EDDEA /* LibraryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryAPI.h; sourceTree = "<group>"; };
+		864DFA101DB48FDE004EDDEA /* LibraryAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryAPI.m; sourceTree = "<group>"; };
+		864DFA111DB48FDE004EDDEA /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
+		864DFA121DB48FDE004EDDEA /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
+		864DFA131DB48FDE004EDDEA /* DataClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataClient.h; sourceTree = "<group>"; };
+		864DFA141DB48FDE004EDDEA /* DataClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataClient.m; sourceTree = "<group>"; };
+		864DFA151DB48FDE004EDDEA /* APIMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIMessage.h; sourceTree = "<group>"; };
+		864DFA161DB48FDE004EDDEA /* APIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIMessage.m; sourceTree = "<group>"; };
+		864DFA171DB48FDE004EDDEA /* UIButton+Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Status.h"; sourceTree = "<group>"; };
+		864DFA181DB48FDE004EDDEA /* UIButton+Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Status.m"; sourceTree = "<group>"; };
+		864DFA191DB48FDE004EDDEA /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		864DFA1A1DB48FDE004EDDEA /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		880BDD180E9413B01023C588 /* libPods-Valet_Parking_ValetSideUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_Parking_ValetSideUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA810CD10E12303E8A7C2931 /* Pods-Valet_Parking_ValetSideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking_ValetSideUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking_ValetSideUITests/Pods-Valet_Parking_ValetSideUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCB9FC6F5D6A36050F7F6EEA /* Pods-Valet_Parking_ValetSideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking_ValetSideTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking_ValetSideTests/Pods-Valet_Parking_ValetSideTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,18 +246,18 @@
 		864DFA0D1DB47526004EDDEA /* API */ = {
 			isa = PBXGroup;
 			children = (
-				864DF9FB1DB47520004EDDEA /* LibraryAPI.h */,
-				864DF9FC1DB47520004EDDEA /* LibraryAPI.m */,
-				864DF9FD1DB47520004EDDEA /* HttpClient.h */,
-				864DF9FE1DB47520004EDDEA /* HttpClient.m */,
-				864DF9FF1DB47520004EDDEA /* DataClient.h */,
-				864DFA001DB47520004EDDEA /* DataClient.m */,
-				864DFA011DB47520004EDDEA /* APIMessage.h */,
-				864DFA021DB47520004EDDEA /* APIMessage.m */,
-				864DFA031DB47520004EDDEA /* UIButton+Status.h */,
-				864DFA041DB47520004EDDEA /* UIButton+Status.m */,
-				864DFA051DB47520004EDDEA /* KeychainItemWrapper.h */,
-				864DFA061DB47520004EDDEA /* KeychainItemWrapper.m */,
+				864DFA0F1DB48FDE004EDDEA /* LibraryAPI.h */,
+				864DFA101DB48FDE004EDDEA /* LibraryAPI.m */,
+				864DFA111DB48FDE004EDDEA /* HttpClient.h */,
+				864DFA121DB48FDE004EDDEA /* HttpClient.m */,
+				864DFA131DB48FDE004EDDEA /* DataClient.h */,
+				864DFA141DB48FDE004EDDEA /* DataClient.m */,
+				864DFA151DB48FDE004EDDEA /* APIMessage.h */,
+				864DFA161DB48FDE004EDDEA /* APIMessage.m */,
+				864DFA171DB48FDE004EDDEA /* UIButton+Status.h */,
+				864DFA181DB48FDE004EDDEA /* UIButton+Status.m */,
+				864DFA191DB48FDE004EDDEA /* KeychainItemWrapper.h */,
+				864DFA1A1DB48FDE004EDDEA /* KeychainItemWrapper.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -553,20 +553,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				864DF9E41DB4737C004EDDEA /* WelcomeViewController.m in Sources */,
-				864DFA071DB47520004EDDEA /* LibraryAPI.m in Sources */,
-				864DFA091DB47520004EDDEA /* DataClient.m in Sources */,
+				864DFA1B1DB48FDE004EDDEA /* LibraryAPI.m in Sources */,
+				864DFA1D1DB48FDE004EDDEA /* DataClient.m in Sources */,
 				864DF9F81DB47511004EDDEA /* ValetModel.m in Sources */,
-				864DFA0B1DB47520004EDDEA /* UIButton+Status.m in Sources */,
+				864DFA1F1DB48FDE004EDDEA /* UIButton+Status.m in Sources */,
 				864DF9F91DB47511004EDDEA /* CarModel.m in Sources */,
 				864DF9EC1DB474B3004EDDEA /* OrderViewController.m in Sources */,
 				864DF9E71DB473E9004EDDEA /* ForgetPasswordViewController.m in Sources */,
-				864DFA081DB47520004EDDEA /* HttpClient.m in Sources */,
+				864DFA1C1DB48FDE004EDDEA /* HttpClient.m in Sources */,
 				864DF9AB1DB28A81004EDDEA /* AppDelegate.m in Sources */,
 				864DF9A81DB28A81004EDDEA /* main.m in Sources */,
 				864DF9EF1DB474C7004EDDEA /* UserInfoViewController.m in Sources */,
-				864DFA0C1DB47520004EDDEA /* KeychainItemWrapper.m in Sources */,
+				864DFA201DB48FDE004EDDEA /* KeychainItemWrapper.m in Sources */,
 				864DF9F71DB47511004EDDEA /* UserModel.m in Sources */,
-				864DFA0A1DB47520004EDDEA /* APIMessage.m in Sources */,
+				864DFA1E1DB48FDE004EDDEA /* APIMessage.m in Sources */,
 				864DF9B41DB28A81004EDDEA /* Valet_Parking_ValetSide.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

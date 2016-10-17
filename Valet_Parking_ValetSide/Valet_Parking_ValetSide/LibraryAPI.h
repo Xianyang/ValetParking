@@ -16,6 +16,9 @@
 + (LibraryAPI *)sharedInstance;
 
 // Account
+- (void)tryLoginWithLocalAccount:(void (^)(UserModel *userModel))successBlock
+                            fail:(void (^)(NSError *error))failBlock;
+
 - (void)loginWithPhone:(NSString *)phone
               password:(NSString *)password
                success:(void(^)(UserModel *userModel))successBlock
