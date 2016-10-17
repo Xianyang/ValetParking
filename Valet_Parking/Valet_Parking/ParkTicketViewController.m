@@ -7,6 +7,7 @@
 //
 
 #import "ParkTicketViewController.h"
+#import "OrderModel.h"
 
 @interface ParkTicketViewController ()
 
@@ -22,8 +23,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *stringToEncode = [[[[self.place stringByAppendingString:@"--"] stringByAppendingString:self.user.phone] stringByAppendingString:@"--"] stringByAppendingString:self.car.plate];
-    UIImage *qrImage = [[LibraryAPI sharedInstance] qrImageForString:stringToEncode
+//    NSError *err;
+//    NSDictionary *dic = @{@"a":@"b"};
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&err];
+//    NSString *myString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    
+//    NSError *err2;
+//    NSData *data = [myString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSDictionary *res;
+//    res = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:data options:0 error:&err2];
+    
+    OrderModel *order = [[OrderModel alloc] initWithParkingPlace:self.place
+                                                  userIdentifier:self.user.identifier
+                                                   userFirstName:self.user.firstName
+                                                    userLastName:self.user.lastName
+                                                       userPhone:self.user.phone
+                                                   carIdentifier:self.car._id
+                                                        carPlate:self.car.plate
+                                                        carBrand:self.car.brand
+                                                        carColor:self.car.color];
+
+    NSDictionary *parkingTicketDic = [order createTicketDic];
+    NSError *error;
+    NSData *parkingTicketData = [NSJSONSerialization dataWithJSONObject:parkingTicketDic
+                                                                options:0
+                                                                  error:&error];
+    
+    NSString *parkingTicketString = [[NSString alloc] initWithData:parkingTicketData encoding:NSUTF8StringEncoding];
+    UIImage *qrImage = [[LibraryAPI sharedInstance] qrImageForString:parkingTicketString
                                                       withImageWidth:150.0f
                                                          imageHeight:150.0f];
     

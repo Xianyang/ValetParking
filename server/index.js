@@ -7,6 +7,7 @@ var express = require('express'),
     accountRoute = require('./routes/account'),
     carRoute = require('./routes/car'),
     valetRoute = require('./routes/valet'),
+    orderRoute = require('./routes/order'),
     // bookingRoutes = require('./routes/bookings'),
     assert = require('assert')
     app = express(),
@@ -35,7 +36,7 @@ app.get('/', function (req, res) {
 	res.send('<html><body><h1>Hello World</h1></body></html>');
 });
 
-app.use('/api', [accountRoute, carRoute, valetRoute]);
+app.use('/api', [accountRoute, carRoute, valetRoute, orderRoute]);
 
 var server = app.listen(port, function () {
     console.log('Express server listening on port ' + server.address().port);

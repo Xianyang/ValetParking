@@ -14,5 +14,6 @@ ApiMessages.COULD_NOT_CREATE_SESSION = 12;
 ApiMessages.COULD_NOT_CONNECT_TO_SERVER = 13;
 ApiMessages.COULD_NOT_CREATE_CAR = 14;
 ApiMessages.COULD_NOT_FIND_CAR = 15;
+ApiMessages.ORDER_ALREADY_EXISTS = 16;
 
 module.exports = ApiMessages;

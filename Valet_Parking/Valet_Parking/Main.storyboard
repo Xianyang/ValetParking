@@ -1130,6 +1130,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="backView" destination="Efc-rr-ZaD" id="fvN-Lh-2gR"/>
                         <outlet property="brandTextField" destination="PXP-GH-KHI" id="QG8-i1-Mfs"/>
                         <outlet property="cancelAddCarBtn" destination="xRx-ag-OUg" id="Lkf-PL-OSU"/>
                         <outlet property="colorTextField" destination="eBI-MF-UAL" id="TGj-69-z3g"/>

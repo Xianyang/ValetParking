@@ -12,6 +12,7 @@
 
 @interface AddCarViewController ()
 @property (strong, nonatomic) NSString *userPhone;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelAddCarBtn;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *finishAddCarBtn;
 @property (weak, nonatomic) IBOutlet UITextField *plateTextField;
@@ -30,7 +31,6 @@
     NSDictionary * dict=[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     [self.navigationController.navigationBar setTitleTextAttributes:dict];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-
     
     [self.cancelAddCarBtn setTarget:self];
     [self.finishAddCarBtn setTarget:self];
@@ -43,9 +43,18 @@
     
     if (_editMode) {
         self.navigationItem.title = @"Edit";
-        self.plateTextField.text = _oldCar.plate;
+        // self.plateTextField.text = _oldCar.plate;
+        [self.plateTextField setHidden:YES];
+        UILabel *label = [[UILabel alloc] initWithFrame:self.plateTextField.frame];
+        label.text = _oldCar.plate;
+        label.font = [UIFont fontWithName:@"System" size:13];
+        label.textColor = [UIColor lightGrayColor];
+        [self.backView addSubview:label];
+        
         self.brandTextField.text = _oldCar.brand;
         self.colorTextField.text = _oldCar.color;
+        
+        [self.brandTextField becomeFirstResponder];
     }
 }
 
