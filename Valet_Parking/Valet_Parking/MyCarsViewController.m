@@ -11,7 +11,7 @@
 #import "CarCell.h"
 #import "CarModel.h"
 #import "LibraryAPI.h"
-#import <MBProgressHUD/MBProgressHUD.h>
+
 
 static NSString * const CarCellIdentifier = @"CarCell";
 

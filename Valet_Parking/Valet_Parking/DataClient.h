@@ -15,6 +15,8 @@
 - (id)init;
 
 // Account
+- (NSString *)getAccountInKeychain;
+- (NSString *)getPasswordInKeychain;
 - (BOOL)saveUserModelToCoreData:(UserModel *)userModel;
 - (void)saveAccountToKeychain:(NSString *)userAccount password:(NSString *)userPassword;
 - (UserModel *)getCurrentUserModel;

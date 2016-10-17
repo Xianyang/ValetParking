@@ -13,7 +13,7 @@
 #import <SMS_SDK/Extend/SMSSDK+DeprecatedMethods.h>
 #import <SMS_SDK/Extend/SMSSDK+ExtexdMethods.h>
 #import <MOBFoundation/MOBFoundation.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UIView *inputView;

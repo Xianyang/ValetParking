@@ -7,10 +7,9 @@
 //
 
 #import "WelcomeViewController.h"
-#import "KeychainItemWrapper.h"
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
-#import <MBProgressHUD/MBProgressHUD.h>
+
 
 @interface WelcomeViewController () <RegisterViewControllerDelegate, ForgetPasswordViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *inputView;

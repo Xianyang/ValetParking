@@ -7,11 +7,10 @@
 //
 
 #import "ValetServiceViewController.h"
-#import "KeychainItemWrapper.h"
 #import "WelcomeViewController.h"
 #import "ParkNowViewController.h"
 #import "BookServiceViewController.h"
-#import <MBProgressHUD/MBProgressHUD.h>
+
 
 static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIdentifier";
 
@@ -28,31 +27,16 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Step0 delete all cars in local database
     [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
+    
     // Step1 check if logged in
-    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"ValetLogin"
-                                                                        accessGroup:nil];
-    
-    NSString *userPassword = [keychain objectForKey:(__bridge id)(kSecValueData)];
-    NSString *userAccount = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
-    
-    // user already logged in once, use saved user name and password to login
-    if (![userAccount isEqualToString:@""] && ![userPassword isEqualToString:@""]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-        [[LibraryAPI sharedInstance] loginWithPhone:userAccount
-                                           password:userPassword
-                                            success:^(UserModel *userModel) {
-                                                [hud hideAnimated:YES];
-                                                [self loginSuccessfully:userModel];
-                                            }
-                                               fail:^(NSError *error) {
-                                                   [hud hideAnimated:YES];
-                                                   [self popUpWelcomeView];
-                                               }];
-    } else {
-        [self popUpWelcomeView];
+    [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
+        [self loginSuccessfully:userModel];
     }
+                                                     fail:^(NSError *error) {
+                                                         [self popUpWelcomeView];
+                                                     }];
     
     [self setNavigationBar];
     [self setParas];
