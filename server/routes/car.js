@@ -12,7 +12,7 @@ var accountController = new AccountController(User);
 var CarController = new CarController()
 
 router.route('/car/add').post(function (req, res) {
-    console.log('get a add car post');
+    console.log('get a create car post');
     var car = new Car(req.body);
 
     res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.

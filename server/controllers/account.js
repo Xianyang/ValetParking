@@ -39,6 +39,7 @@ AccountController.prototype.register = function (newUser, callback) {
                         lastName: user.lastName
                     });
 
+                    console.log('create user successfully with phone ' + user.phone);
                     return callback(err, new me.ApiResponse({
                         success: true, extras: {
                             userProfileModel: userProfileModel
@@ -73,7 +74,7 @@ AccountController.prototype.logon = function(phone, password, callback) {
                     });
                     // set the session
                     // me.session.userProfileModel = userProfileModel;
-                    console.log(user.phone + ' log on successfully');
+                    console.log(user.phone + ' user log on successfully');
                     return callback(err, new me.ApiResponse({
                         success: true, extras: {
                             userProfileModel:userProfileModel
@@ -111,7 +112,7 @@ AccountController.prototype.resetPassword = function(phone, password, callback) 
                     if (numberAffected < 1) {
                         return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.COULD_NOT_RESET_PASSWORD } }));
                     } else {
-                        console.log('reset password successfully');
+                        console.log(user.phone + ' user reset password successfully');
                         var userProfileModel = new me.UserProfile({
                             identifier: user.id,
                             phone: user.phone,

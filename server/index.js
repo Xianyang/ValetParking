@@ -6,6 +6,7 @@ var express = require('express'),
     MongoStore = require('connect-mongo')(expressSession),
     accountRoute = require('./routes/account'),
     carRoute = require('./routes/car'),
+    valetRoute = require('./routes/valet'),
     // bookingRoutes = require('./routes/bookings'),
     assert = require('assert')
     app = express(),
@@ -34,7 +35,7 @@ app.get('/', function (req, res) {
 	res.send('<html><body><h1>Hello World</h1></body></html>');
 });
 
-app.use('/api', [accountRoute, carRoute]);
+app.use('/api', [accountRoute, carRoute, valetRoute]);
 
 var server = app.listen(port, function () {
     console.log('Express server listening on port ' + server.address().port);

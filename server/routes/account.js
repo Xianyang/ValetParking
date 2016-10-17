@@ -11,7 +11,7 @@ var express = require('express'),
 var accountController = new AccountController(User);
 
 router.route('/account/user/register').post(function (req, res) {
-    console.log('get a register post')
+    console.log('get a user register post')
     // var accountController = new AccountController(User);
     var userRegistration = new UserRegistration(req.body);
 
@@ -36,7 +36,7 @@ router.route('/account/user/register').post(function (req, res) {
 });
 
 router.route('/account/user/logon').post(function (req, res) {
-    console.log('get a logon post');
+    console.log('get a user logon post');
     var userLogon = new UserLogon(req.body);
 
     res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
@@ -47,7 +47,7 @@ router.route('/account/user/logon').post(function (req, res) {
 });
 
 router.route('/account/user/set_new_password').post(function (req, res) {
-    console.log('get a set new password post');
+    console.log('get a user reset password post');
     var userResetPassword = new UserResetPassword(req.body);
 
     res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
