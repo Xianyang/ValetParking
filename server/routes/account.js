@@ -1,11 +1,11 @@
 var express = require('express'),
     router = express.Router(),
     AccountController = require('../controllers/account.js'),
-    UserRegistration = require('../models/user-registration.js'),
-    UserLogon = require('../models/user-logon.js'),
-    UserResetPassword = require('../models/user-reset-pwd.js'),
-    User = require('../models/user.js'),
-    UserSession = require('../models/user-session.js'),
+    UserRegistration = require('../models/user/user-registration.js'),
+    UserLogon = require('../models/user/user-logon.js'),
+    UserResetPassword = require('../models/user/user-reset-pwd.js'),
+    User = require('../models/user/user.js'),
+    UserSession = require('../models/user/user-session.js'),
     ApiResponse = require('../models/api-response.js');
 
 var accountController = new AccountController(User);

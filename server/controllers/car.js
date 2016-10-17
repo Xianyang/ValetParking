@@ -1,9 +1,9 @@
 var CarController = function () {
     this.ApiResponse = require('../models/api-response.js'),
     this.ApiMessages = require('../models/api-messages.js'),
-    this.CarProfile = require('../models/car-profile.js'),
-    this.User = require('../models/user.js'),
-    this.Car = require('../models/car.js');
+    this.CarProfile = require('../models/car/car-profile.js'),
+    this.User = require('../models/user/user.js'),
+    this.Car = require('../models/car/car.js');
 };
 
 // register method

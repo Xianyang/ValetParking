@@ -4,9 +4,9 @@
         uuid = require('node-uuid'),
         ApiResponse = require('../models/api-response.js'),
         ApiMessages = require('../models/api-messages.js'),
-        UserProfile = require('../models/user-profile.js');
+        UserProfile = require('../models/user/user-profile.js');
 
-    // TODO: Implement login, logout and changePassword methods. 
+    // TODO: Implement login, logout and changePassword methods.
 
     var readAllUsers = function (callback) {
 
@@ -14,7 +14,7 @@
 
             if (err) {
                 return callback(err, new ApiResponse({ success: false, extras: { msg: ApiMessages.DB_ERROR } }));
-            } 
+            }
 
             var userProfileModels = [];
 
@@ -33,7 +33,7 @@
     };
 
     var readUser = function (id, callback) {
-        
+
         userModel.findById(id, function (err, user) {
 
             if (err) {
@@ -75,7 +75,7 @@
                 callback(err, user, numberAffected);
             });
 
-        });        
+        });
     };
 
     var updateUser = function (userIn, callback) {
@@ -141,8 +141,8 @@
         });
     }
 
-    var hashPassword = function (password, salt, callback) {        
-        // we use pbkdf2 to hash and iterate 10k times by default 
+    var hashPassword = function (password, salt, callback) {
+        // we use pbkdf2 to hash and iterate 10k times by default
         var iterations = 1000,
             keyLen = 64; // 64 bit.
         crypto.pbkdf2(password, salt, iterations, keyLen, callback);

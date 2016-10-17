@@ -3,8 +3,8 @@
     this.uuid = require('node-uuid');
     this.ApiResponse = require('../models/api-response.js');
     this.ApiMessages = require('../models/api-messages.js');
-    this.UserProfile = require('../models/user-profile.js');
-    this.User = require('../models/user.js');
+    this.UserProfile = require('../models/user/user-profile.js');
+    this.User = require('../models/user/user.js');
 };
 
 AccountController.prototype.hashPassword = function (password, salt, callback) {

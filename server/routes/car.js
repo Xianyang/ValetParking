@@ -2,10 +2,10 @@ var express = require('express'),
     router = express.Router(),
     AccountController = require('../controllers/account.js'),
     CarController = require('../controllers/car.js'),
-    User = require('../models/user.js'),
-    UserProfile = require('../models/user-profile.js'),
-    CarProfile = require('../models/car-profile.js'),
-    Car = require('../models/car.js'),
+    User = require('../models/user/user.js'),
+    UserProfile = require('../models/user/user-profile.js'),
+    CarProfile = require('../models/car/car-profile.js'),
+    Car = require('../models/car/car.js'),
     ApiResponse = require('../models/api-response.js');
 
 var accountController = new AccountController(User);
