@@ -130,4 +130,22 @@
     return [self.dataClient getCurrentValetModel];
 }
 
+#pragma mark - Order
+
+- (void)addOrderWithParkingPlace:(NSString *)parkingPlace
+                       userPhone:(NSString *)userPhone
+                        carPlate:(NSString *)carPlate
+                         success:(void (^)(OrderModel *orderModel))successBlock
+                            fail:(void (^)(NSError *error))failBlock {
+    [self.httpClient addOrderWithParkingPlace:parkingPlace
+                                    userPhone:userPhone
+                                     carPlate:carPlate
+                                      success:^(OrderModel *orderModel) {
+                                          successBlock(orderModel);
+                                      }
+                                         fail:^(NSError *error) {
+                                             failBlock(error);
+                                         }];
+}
+
 @end

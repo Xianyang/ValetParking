@@ -9,7 +9,7 @@
 #import "HttpClient.h"
 #import <AFNetworking/AFNetworking.h>
 
-static NSString * const kIPAdress = @"http://147.8.232.96:3001/";
+static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
 // static NSString * const kIPAdress = @"http://192.168.1.107:3001/";
 
 @interface HttpClient()
@@ -17,10 +17,7 @@ static NSString * const kIPAdress = @"http://147.8.232.96:3001/";
 @property (strong, nonatomic) NSString *kRegisterURL;
 @property (strong, nonatomic) NSString *kLoginURL;
 @property (strong, nonatomic) NSString *kResetPasswordURL;
-@property (strong, nonatomic) NSString *kAddCarURL;
-@property (strong, nonatomic) NSString *kGetCarURL;
-@property (strong, nonatomic) NSString *kDeleteCarURL;
-@property (strong, nonatomic) NSString *kUpdateCarURL;
+@property (strong, nonatomic) NSString *kCreateOrder;
 
 @end
 
@@ -30,6 +27,8 @@ static NSString * const kIPAdress = @"http://147.8.232.96:3001/";
     if (self == [super init]) {
         self.kLoginURL = [kIPAdress stringByAppendingString:@"api/account/valet/logon"];
         self.kResetPasswordURL = [kIPAdress stringByAppendingString:@"api/account/valet/set_new_password"];
+        
+        self.kCreateOrder = [kIPAdress stringByAppendingString:@"api/order/add"];
     }
     
     return self;
@@ -136,6 +135,56 @@ static NSString * const kIPAdress = @"http://147.8.232.96:3001/";
 }
 
 #pragma mark - Order
+
+- (void)addOrderWithParkingPlace:(NSString *)parkingPlace
+                       userPhone:(NSString *)userPhone
+                        carPlate:(NSString *)carPlate
+                         success:(void (^)(OrderModel *orderModel))successBlock
+                            fail:(void (^)(NSError *error))failBlock {
+    NSURL *url = [NSURL URLWithString:self.kCreateOrder];
+    NSDictionary *parameters = @{@"parkingPlace": parkingPlace,
+                                 @"userPhone": userPhone,
+                                 @"carPlate":carPlate};
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:5];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      NSError *error;
+                      OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:responseObject[@"extras"][@"orderProfileModel"]
+                                                                                error:&error];
+                      if (error) {
+                          failBlock(error);
+                      } else {
+                          successBlock(orderModel);
+                      }
+                  } else {
+                      // reset failed
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  failBlock(nil);
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
+}
 
 #pragma mark - Manager
 

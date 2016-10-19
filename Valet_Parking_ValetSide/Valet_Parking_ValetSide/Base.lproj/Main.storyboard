@@ -20,11 +20,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Orders" id="ObM-zQ-NaN"/>
+                    <navigationItem key="navigationItem" title="Orders" id="ObM-zQ-NaN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LMh-1Y-g9p">
+                            <connections>
+                                <action selector="addOrder:" destination="BYZ-38-t0r" id="oor-A7-00K"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2018.4000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--Add Order-->
+        <scene sceneID="mSl-Oj-eji">
+            <objects>
+                <viewController id="i0p-op-u7U" customClass="AddOrderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R97-Nl-h3t"/>
+                        <viewControllerLayoutGuide type="bottom" id="0yf-ON-KTz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HsW-RM-j2b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-Jm-cpU">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="i0p-op-u7U" id="cmr-pc-gKT"/>
+                                    <outlet property="delegate" destination="i0p-op-u7U" id="Os1-5f-Uo4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OKG-Jm-cpU" secondAttribute="trailing" id="QXO-qI-SoB"/>
+                            <constraint firstItem="OKG-Jm-cpU" firstAttribute="leading" secondItem="HsW-RM-j2b" secondAttribute="leading" id="VGb-oH-kUb"/>
+                            <constraint firstItem="0yf-ON-KTz" firstAttribute="top" secondItem="OKG-Jm-cpU" secondAttribute="bottom" id="bSu-2j-lx8"/>
+                            <constraint firstItem="OKG-Jm-cpU" firstAttribute="top" secondItem="HsW-RM-j2b" secondAttribute="top" id="bz3-UD-hzF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Order" id="v5a-KC-yg0"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="OKG-Jm-cpU" id="mSY-Oq-djw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TGb-6e-gK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2816.8000000000002" y="138.98050974512745"/>
         </scene>
         <!--Me-->
         <scene sceneID="yEC-rb-5Nd">
@@ -69,6 +113,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Oan-ZF-Tmm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="IIj-c6-0FN">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "CarModel.h"
 #import "ValetModel.h"
+#import "OrderModel.h"
 
 @interface LibraryAPI : NSObject
 
@@ -31,5 +32,12 @@
 
 - (void)logout;
 - (ValetModel *)getCurrentValetModel;
+
+// order
+- (void)addOrderWithParkingPlace:(NSString *)parkingPlace
+                       userPhone:(NSString *)userPhone
+                        carPlate:(NSString *)carPlate
+                         success:(void (^)(OrderModel *orderModel))successBlock
+                            fail:(void (^)(NSError *error))failBlock;
 
 @end

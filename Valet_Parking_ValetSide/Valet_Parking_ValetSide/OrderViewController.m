@@ -9,9 +9,12 @@
 #import "OrderViewController.h"
 #import "WelcomeViewController.h"
 #import "LibraryAPI.h"
+#import "APIMessage.h"
+#import <QRCodeReaderViewController/QRCodeReader.h>
+#import <QRCodeReaderViewController/QRCodeReaderViewController.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
-@interface OrderViewController () <WelcomeViewControllerDelegate>
+@interface OrderViewController () <WelcomeViewControllerDelegate, QRCodeReaderDelegate>
 
 @end
 
@@ -32,7 +35,78 @@
                                                          [hud hideAnimated:YES];
                                                          [self popUpWelcomeView];
                                                      }];
+    
+    // Step 1 get all the orders
 }
+
+- (IBAction)addOrder:(id)sender {
+    // Step 1 - try scan the qr code
+    if ([QRCodeReader supportsMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]]) {
+        static QRCodeReaderViewController *vc = nil;
+        static dispatch_once_t onceToken;
+        
+        dispatch_once(&onceToken, ^{
+            QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+            vc                   = [QRCodeReaderViewController readerWithCancelButtonTitle:@"Cancel" codeReader:reader startScanningAtLoad:YES showSwitchCameraButton:YES showTorchButton:YES];
+            vc.modalPresentationStyle = UIModalPresentationFormSheet;
+        });
+        vc.delegate = self;
+        
+        [vc setCompletionWithBlock:^(NSString *resultAsString) {
+            NSLog(@"Completion with result: %@", resultAsString);
+        }];
+        
+        [self presentViewController:vc animated:YES completion:NULL];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Reader not supported by the current device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+    }
+}
+
+#pragma mark - QRCodeReader Delegate Methods
+
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
+{
+    [reader stopScanning];
+    
+
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSError *err;
+        NSData *data = [result dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dic = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view
+                                                  animated:YES];
+        if (err) {
+            hud.mode = MBProgressHUDModeText;
+            hud.label.text = @"Fail to create order";
+            [hud hideAnimated:YES afterDelay:1];
+        } else {
+            [[LibraryAPI sharedInstance] addOrderWithParkingPlace:dic[@"parkingPlace"]
+                                                        userPhone:dic[@"userPhone"]
+                                                         carPlate:dic[@"carPlate"]
+                                                          success:^(OrderModel *orderModel) {
+                                                              hud.mode = MBProgressHUDModeText;
+                                                              hud.label.text = @"Done";
+                                                              [hud hideAnimated:YES afterDelay:2];
+                                                              NSLog(@"%@", orderModel.carColor);
+                                                          }
+                                                             fail:^(NSError *error) {
+                                                                 hud.mode = MBProgressHUDModeText;
+                                                                 hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
+                                                                 [hud hideAnimated:YES afterDelay:2];
+                                                             }];
+        }
+    }];
+}
+
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 #pragma mark - WelcomeViewControllerDelegate
 

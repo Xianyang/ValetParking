@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ValetModel.h"
 #import "CarModel.h"
+#import "OrderModel.h"
 #import "APIMessage.h"
 
 static NSString * const NetworkErrorDomain = @"com.luoxianyang";
@@ -30,5 +31,10 @@ static NSString * const NetworkErrorDomain = @"com.luoxianyang";
                           fail:(void(^)(NSError *error))failBlock;
 
 // order
+- (void)addOrderWithParkingPlace:(NSString *)parkingPlace
+                       userPhone:(NSString *)userPhone
+                        carPlate:(NSString *)carPlate
+                         success:(void (^)(OrderModel *orderModel))successBlock
+                            fail:(void (^)(NSError *error))failBlock;
 
 @end

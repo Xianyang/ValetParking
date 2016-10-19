@@ -57,6 +57,9 @@
         case CAR_ALREADY_EXISTS:
             messageToShow = @"you already have this car";
             break;
+        case ORDER_ALREADY_EXISTS:
+            messageToShow = @"this car has an unfinished order";
+            break;
         default:
             break;
     }

@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, ServerErrorMessage){
     COULD_NOT_CONNECT_TO_SERVER = 13,
     COULD_NOT_CREATE_CAR = 14,
     COULD_NOT_FIND_CAR = 15,
+    ORDER_ALREADY_EXISTS = 16,
 };
 
 typedef NS_ENUM(NSInteger, LocalErrorMessage){

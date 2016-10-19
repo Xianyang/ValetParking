@@ -30,6 +30,8 @@
 		864DFA1E1DB48FDE004EDDEA /* APIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA161DB48FDE004EDDEA /* APIMessage.m */; };
 		864DFA1F1DB48FDE004EDDEA /* UIButton+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA181DB48FDE004EDDEA /* UIButton+Status.m */; };
 		864DFA201DB48FDE004EDDEA /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA1A1DB48FDE004EDDEA /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8679DED11DB733A200BEE59E /* AddOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED01DB733A200BEE59E /* AddOrderViewController.m */; };
+		8679DED41DB735EB00BEE59E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED31DB735EB00BEE59E /* OrderModel.m */; };
 		DC65DBF6EE7A6AB00AC949ED /* libPods-Valet_Parking_ValetSideUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BDD180E9413B01023C588 /* libPods-Valet_Parking_ValetSideUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,10 @@
 		864DFA181DB48FDE004EDDEA /* UIButton+Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Status.m"; sourceTree = "<group>"; };
 		864DFA191DB48FDE004EDDEA /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		864DFA1A1DB48FDE004EDDEA /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		8679DECF1DB733A200BEE59E /* AddOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddOrderViewController.h; sourceTree = "<group>"; };
+		8679DED01DB733A200BEE59E /* AddOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOrderViewController.m; sourceTree = "<group>"; };
+		8679DED21DB735EB00BEE59E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
+		8679DED31DB735EB00BEE59E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		880BDD180E9413B01023C588 /* libPods-Valet_Parking_ValetSideUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_Parking_ValetSideUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA810CD10E12303E8A7C2931 /* Pods-Valet_Parking_ValetSideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking_ValetSideUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking_ValetSideUITests/Pods-Valet_Parking_ValetSideUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCB9FC6F5D6A36050F7F6EEA /* Pods-Valet_Parking_ValetSideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking_ValetSideTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking_ValetSideTests/Pods-Valet_Parking_ValetSideTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 			children = (
 				864DF9EA1DB474B3004EDDEA /* OrderViewController.h */,
 				864DF9EB1DB474B3004EDDEA /* OrderViewController.m */,
+				8679DECF1DB733A200BEE59E /* AddOrderViewController.h */,
+				8679DED01DB733A200BEE59E /* AddOrderViewController.m */,
 				864DF9ED1DB474C7004EDDEA /* UserInfoViewController.h */,
 				864DF9EE1DB474C7004EDDEA /* UserInfoViewController.m */,
 			);
@@ -239,6 +247,8 @@
 				864DF9F41DB47511004EDDEA /* ValetModel.m */,
 				864DF9F51DB47511004EDDEA /* CarModel.h */,
 				864DF9F61DB47511004EDDEA /* CarModel.m */,
+				8679DED21DB735EB00BEE59E /* OrderModel.h */,
+				8679DED31DB735EB00BEE59E /* OrderModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -563,8 +573,10 @@
 				864DFA1C1DB48FDE004EDDEA /* HttpClient.m in Sources */,
 				864DF9AB1DB28A81004EDDEA /* AppDelegate.m in Sources */,
 				864DF9A81DB28A81004EDDEA /* main.m in Sources */,
+				8679DED11DB733A200BEE59E /* AddOrderViewController.m in Sources */,
 				864DF9EF1DB474C7004EDDEA /* UserInfoViewController.m in Sources */,
 				864DFA201DB48FDE004EDDEA /* KeychainItemWrapper.m in Sources */,
+				8679DED41DB735EB00BEE59E /* OrderModel.m in Sources */,
 				864DF9F71DB47511004EDDEA /* UserModel.m in Sources */,
 				864DFA1E1DB48FDE004EDDEA /* APIMessage.m in Sources */,
 				864DF9B41DB28A81004EDDEA /* Valet_Parking_ValetSide.xcdatamodeld in Sources */,

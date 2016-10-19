@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '62219FEB56FF45645008E5A6295E4AAB'
+               BlueprintIdentifier = 'CD8B07D3EC90285E758726A9CACE28FD'
                BlueprintName = 'Pods-Valet_Parking_ValetSide'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-Valet_Parking_ValetSide.a'>
