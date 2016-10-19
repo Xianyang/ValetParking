@@ -3,6 +3,7 @@ var OrderController = function () {
     this.ApiMessages = require('../models/api-messages.js'),
     this.CarProfile = require('../models/car/car-profile.js'),
     this.User = require('../models/user/user.js'),
+    this.Valet = require('../models/valet/valet.js'),
     this.Car = require('../models/car/car.js'),
     this.Order = require('../models/order/order.js'),
     this.OrderProfile = require('../models/order/order-profile.js');
@@ -104,6 +105,32 @@ OrderController.prototype.getOrderForUser = function (userProfile, callback) {
         }
     });
 }
+
+OrderController.prototype.getAllOrders = function (valetProfile, callback) {
+    var me = this;
+
+    // check if the user exist
+    me.Valet.findOne({ phone: valetProfile.phone }, function (err, valet) {
+        if (err) {
+            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+        }
+        if (valet) {
+            console.log('found the valet, name is ' + valet.firstName + valet.lastName);
+            me.Order.find({endAt: undefined}, function (err, orders) {
+                if (err) {
+                    return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+                }
+
+                console.log('There are ' + orders.length + ' opening orders');
+                return callback(err, new me.ApiResponse({success: true, extras:{orders: orders}}));
+            });
+        } else {
+            console.log('can not find this user');
+            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.ACCOUNT_NOT_FOUND } }));
+        }
+    });
+}
+
 
 function processArray(items, process) {
     var todo = items.concat();
