@@ -275,6 +275,19 @@
     [self.dataClient deleteAllCarsInCoreData];
 }
 
+# pragma mark - Order
+- (void)getCurrentOrdersForUser:(UserModel *)userModel
+                        success:(void (^)(NSArray *orders))successBlock
+                           fail:(void (^)(NSError *error))failBlock{
+    [self.httpClient getCurrentOrdersForUser:userModel
+                                     success:^(NSArray *orders) {
+                                         successBlock(orders);
+                                     }
+                                        fail:^(NSError *error) {
+                                            failBlock(error);
+                                        }];
+}
+
 # pragma mark - QR 
 - (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height
 {

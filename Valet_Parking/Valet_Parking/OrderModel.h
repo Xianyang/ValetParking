@@ -22,7 +22,7 @@
 
 - (NSDictionary *)createTicketDic;
 
-@property (strong, nonatomic) NSString *identifier;
+@property (strong, nonatomic) NSString *_id;
 @property (strong, nonatomic) NSString *createAt;
 @property (strong, nonatomic) NSString <Optional> *userRequestAt;
 @property (strong, nonatomic) NSString <Optional> *endAt;

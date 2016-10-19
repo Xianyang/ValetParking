@@ -7,12 +7,19 @@
 //
 
 #import "CurrentOrderViewController.h"
+#import "CarStatusViewController.h"
+#import "OrderModel.h"
+#import "TwoLabelCell.h"
+
+static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
 @interface CurrentOrderViewController () <UITableViewDelegate, UITableViewDataSource>
 {
-    NSUInteger _numberOfOrder;
+//    NSUInteger _numberOfOrder;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray *orders;
 
 @end
 
@@ -21,14 +28,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _numberOfOrder = 0;
+    self.orders = [[NSMutableArray alloc] init];
     
-    // TODO get orders from server
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[LibraryAPI sharedInstance] getCurrentOrdersForUser:[[LibraryAPI sharedInstance] getCurrentUserModel]
+                                                 success:^(NSArray *orders) {
+                                                     if (orders.count) {
+                                                         [hud hideAnimated:YES];
+                                                         for (OrderModel *order in orders) {
+                                                             if (!order.endAt) {
+                                                                 [self.orders addObject:order];
+                                                             }
+                                                         }
+                                                         
+                                                         if (self.orders.count) {
+                                                            [self reloadWithOrders];
+                                                         } else {
+                                                             [self noCurrentOrder];
+                                                         }
+                                                         
+                                                     }
+                                                 }
+                                                    fail:^(NSError *error) {
+                                                        hud.mode = MBProgressHUDModeText;
+                                                        hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
+                                                        [hud hideAnimated:YES afterDelay:1];
+
+                                                    }];
+}
+
+- (void)noCurrentOrder {
+    
+}
+
+- (void)reloadWithOrders {
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _numberOfOrder;
+    return self.orders.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -38,20 +77,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    // TODO return the car
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CarStatusViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"CarStatusViewController"];
+    [vc setAnOrder:self.orders[indexPath.row]];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
+    TwoLabelCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TwoLabelCellIdentifier];
     
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                                       reuseIdentifier:@"orderCell"];
-    }
-    
-    cell.textLabel.text = @"order";
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+- (void)configureCell:(TwoLabelCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    OrderModel *order = self.orders[indexPath.row];
+    cell.leftLabel.text = order.carPlate;
+    
+    if (order.userRequestAt) {
+        cell.rightLabel.text = @"returning with Valet";
+    } else {
+        cell.rightLabel.text = @"in parking lot";
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -17,11 +17,13 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
 @property (strong, nonatomic) NSString *kRegisterURL;
 @property (strong, nonatomic) NSString *kLoginURL;
 @property (strong, nonatomic) NSString *kResetPasswordURL;
+
 @property (strong, nonatomic) NSString *kAddCarURL;
 @property (strong, nonatomic) NSString *kGetCarURL;
 @property (strong, nonatomic) NSString *kDeleteCarURL;
 @property (strong, nonatomic) NSString *kUpdateCarURL;
 
+@property (strong, nonatomic) NSString *kGetOrderURL;
 @end
 
 @implementation HttpClient
@@ -35,6 +37,7 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
         self.kGetCarURL = [kIPAdress stringByAppendingString:@"api/car/get_cars_for_user"];
         self.kUpdateCarURL = [kIPAdress stringByAppendingString:@"api/car/update"];
         self.kDeleteCarURL = [kIPAdress stringByAppendingString:@"api/car/delete"];
+        self.kGetOrderURL = [kIPAdress stringByAppendingString:@"api/order/get_orders_for_user"];
     }
     
     return self;
@@ -381,6 +384,58 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               failBlock(error);
           }];
+}
+
+# pragma mark - Orders
+
+- (void)getCurrentOrdersForUser:(UserModel *)userModel
+                        success:(void (^)(NSArray *orders))successBlock
+                           fail:(void (^)(NSError *error))failBlock {
+    NSURL *url = [NSURL URLWithString:self.kGetOrderURL];
+    
+    NSDictionary *parameters = @{@"identifier": userModel.identifier,
+                                 @"phone": userModel.phone,
+                                 @"firstName": userModel.firstName,
+                                 @"lastName": userModel.lastName};
+    
+    AFHTTPSessionManager *manager = [self newManager];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      NSError *error;
+                      NSMutableArray *orders = [NSMutableArray new];
+                      for (NSDictionary *dic in responseObject[@"extras"][@"orders"]) {
+                          OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:dic error:&error];
+                          [orders addObject:orderModel];
+                      }
+                      
+                      if (error) {
+                          failBlock(error);
+                      } else {
+                          successBlock(orders);
+                      }
+                  } else {
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
+
 }
 
 - (AFHTTPSessionManager *)newManager {

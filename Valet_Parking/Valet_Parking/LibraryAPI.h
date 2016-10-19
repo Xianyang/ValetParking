@@ -60,6 +60,11 @@
 - (void)deleteAllCarsInCoreData;
 - (NSArray *)getAllCarModelsInCoreData;
 
+// Orders
+- (void)getCurrentOrdersForUser:(UserModel *)userModel
+                        success:(void (^)(NSArray *orders))successBlock
+                           fail:(void (^)(NSError *error))failBlock;
+
 // qr
 - (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height;
 

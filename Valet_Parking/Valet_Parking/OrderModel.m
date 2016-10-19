@@ -20,7 +20,7 @@
                   carBrand:(NSString *)carBrand
                   carColor:(NSString *)carColor {
     if (self == [super init]) {
-        self.identifier = @"";
+        self._id = @"";
         self.createAt = @"";
         self.userRequestAt = @"";
         self.endAt = @"";

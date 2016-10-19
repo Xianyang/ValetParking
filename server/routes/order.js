@@ -1,5 +1,6 @@
 var express = require('express'),
     router = express.Router(),
+    UserProfile = require('../models/user/user-profile.js'),
     OrderController = require('../controllers/order.js'),
     Order = require('../models/order/order.js'),
     OrderCreation = require('../models/order/order-creation.js');
@@ -15,6 +16,17 @@ router.route('/order/add').post(function (req, res) {
     res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
 
     orderController.add(order, function (err, response) {
+        return res.send(response);
+    });
+});
+
+router.route('/order/get_orders_for_user').post(function (req, res) {
+    console.log('----------get a fetch orders post----------');
+    var userProfile = new UserProfile(req.body);
+
+    res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
+
+    orderController.getOrderForUser(userProfile, function (err, response) {
         return res.send(response);
     });
 });

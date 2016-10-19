@@ -80,6 +80,31 @@ OrderController.prototype.add = function (newOrder, callback) {
     });
 };
 
+OrderController.prototype.getOrderForUser = function (userProfile, callback) {
+    var me = this;
+
+    // check if the user exist
+    me.User.findOne({ phone: userProfile.phone }, function (err, user) {
+        if (err) {
+            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+        }
+        if (user) {
+            console.log('found the user, name is ' + user.firstName + user.lastName);
+            me.Order.find({userPhone: user.phone}, function (err, orders) {
+                if (err) {
+                    return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+                }
+
+                console.log('This user has ' + orders.length + ' orders');
+                return callback(err, new me.ApiResponse({success: true, extras:{orders: orders}}));
+            });
+        } else {
+            console.log('can not find this user');
+            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.ACCOUNT_NOT_FOUND } }));
+        }
+    });
+}
+
 function processArray(items, process) {
     var todo = items.concat();
 
