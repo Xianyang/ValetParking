@@ -34,7 +34,18 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section && !self.order.userRequestAt) {
-        // TODO send a recall request
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [[LibraryAPI sharedInstance] recallACar:self.order
+                                        success:^(OrderModel *orderModel) {
+                                            [hud hideAnimated:YES];
+                                            [self.navigationController popViewControllerAnimated:YES];
+                                            [self.delegate recallSuccessfully];
+                                        }
+                                           fail:^(NSError *error) {
+                                               hud.mode = MBProgressHUDModeText;
+                                               hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
+                                               [hud hideAnimated:YES afterDelay:1];
+                                           }];
         
     }
 }

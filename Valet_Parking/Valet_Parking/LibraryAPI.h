@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "CarModel.h"
 #import "UserModel.h"
+#import "OrderModel.h"
 
 @interface LibraryAPI : NSObject
 
@@ -64,6 +65,10 @@
 - (void)getCurrentOrdersForUser:(UserModel *)userModel
                         success:(void (^)(NSArray *orders))successBlock
                            fail:(void (^)(NSError *error))failBlock;
+
+- (void)recallACar:(OrderModel *)orderModel
+           success:(void (^)(OrderModel *orderModel))successBlock
+              fail:(void (^)(NSError *error))failBlock;
 
 // qr
 - (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height;

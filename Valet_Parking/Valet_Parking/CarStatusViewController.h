@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "OrderModel.h"
 
+@protocol CarStatusViewControllerDelegate
+
+- (void)recallSuccessfully;
+
+@end
+
 @interface CarStatusViewController : UIViewController
+
+@property (assign, nonatomic) id <CarStatusViewControllerDelegate> delegate;
 
 - (void)setAnOrder:(OrderModel *)order;
 

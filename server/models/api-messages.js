@@ -2,7 +2,7 @@
 ApiMessages.ACCOUNT_NOT_FOUND = 1;
 ApiMessages.INVALID_PWD = 2;
 ApiMessages.DB_ERROR = 3;
-ApiMessages.NOT_FOUND = 4;
+ApiMessages.VALET_NOT_FOUND = 4;
 ApiMessages.ACCOUNT_ALREADY_EXISTS = 5;
 ApiMessages.COULD_NOT_CREATE_USER = 6;
 ApiMessages.PASSWORD_RESET_EXPIRED = 7;
@@ -15,5 +15,8 @@ ApiMessages.COULD_NOT_CONNECT_TO_SERVER = 13;
 ApiMessages.COULD_NOT_CREATE_CAR = 14;
 ApiMessages.COULD_NOT_FIND_CAR = 15;
 ApiMessages.ORDER_ALREADY_EXISTS = 16;
+ApiMessages.ORDER_ALREADY_RECALLED = 17;
+ApiMessages.COULD_NOT_UPDATE_ORDER = 18;
+ApiMessages.COULD_NOT_FIND_ORDER = 19;
 
 module.exports = ApiMessages;

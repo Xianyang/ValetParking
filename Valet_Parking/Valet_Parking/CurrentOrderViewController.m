@@ -13,7 +13,7 @@
 
 static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
-@interface CurrentOrderViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CurrentOrderViewController () <UITableViewDelegate, UITableViewDataSource, CarStatusViewControllerDelegate>
 {
 //    NSUInteger _numberOfOrder;
 }
@@ -30,6 +30,11 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     
     self.orders = [[NSMutableArray alloc] init];
     
+    [self loadOrders];
+}
+
+- (void)loadOrders {
+    [self.orders removeAllObjects];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[LibraryAPI sharedInstance] getCurrentOrdersForUser:[[LibraryAPI sharedInstance] getCurrentUserModel]
                                                  success:^(NSArray *orders) {
@@ -42,7 +47,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
                                                          }
                                                          
                                                          if (self.orders.count) {
-                                                            [self reloadWithOrders];
+                                                             [self.tableView reloadData];
                                                          } else {
                                                              [self noCurrentOrder:hud];
                                                          }
@@ -54,7 +59,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
                                                         hud.mode = MBProgressHUDModeText;
                                                         hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
                                                         [hud hideAnimated:YES afterDelay:1];
-
+                                                        
                                                     }];
 }
 
@@ -64,8 +69,8 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     [hud hideAnimated:YES afterDelay:1.5];
 }
 
-- (void)reloadWithOrders {
-    [self.tableView reloadData];
+- (void)recallSuccessfully {
+    [self loadOrders];
 }
 
 #pragma mark - UITableView
@@ -82,6 +87,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CarStatusViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"CarStatusViewController"];
+    vc.delegate = self;
     [vc setAnOrder:self.orders[indexPath.row]];
     
     [self.navigationController pushViewController:vc animated:YES];

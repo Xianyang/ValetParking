@@ -288,6 +288,18 @@
                                         }];
 }
 
+- (void)recallACar:(OrderModel *)orderModel
+           success:(void (^)(OrderModel *orderModel))successBlock
+              fail:(void (^)(NSError *error))failBlock{
+    [self.httpClient recallACar:orderModel
+                        success:^(OrderModel *orderModel) {
+                            successBlock(orderModel);
+                        }
+                           fail:^(NSError *error) {
+                               failBlock(error);
+                           }];
+}
+
 # pragma mark - QR 
 - (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height
 {

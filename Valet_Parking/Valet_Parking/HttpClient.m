@@ -9,8 +9,8 @@
 #import "HttpClient.h"
 #import <AFNetworking/AFNetworking.h>
 
-static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
-// static NSString * const kIPAdress = @"http://192.168.1.107:3001/";
+//static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
+static NSString * const kIPAdress = @"http://192.168.1.106:3001/";
 
 @interface HttpClient()
 
@@ -24,6 +24,7 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
 @property (strong, nonatomic) NSString *kUpdateCarURL;
 
 @property (strong, nonatomic) NSString *kGetOrderURL;
+@property (strong, nonatomic) NSString *kRecallCarURL;
 @end
 
 @implementation HttpClient
@@ -38,6 +39,7 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
         self.kUpdateCarURL = [kIPAdress stringByAppendingString:@"api/car/update"];
         self.kDeleteCarURL = [kIPAdress stringByAppendingString:@"api/car/delete"];
         self.kGetOrderURL = [kIPAdress stringByAppendingString:@"api/order/get_orders_for_user"];
+        self.kRecallCarURL = [kIPAdress stringByAppendingString:@"api/order/recall_by_user"];
     }
     
     return self;
@@ -429,13 +431,60 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
                       failBlock(error);
                   }
               } else {
-                  
+                  failBlock(nil);
               }
           }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               failBlock(error);
           }];
 
+}
+
+- (void)recallACar:(OrderModel *)orderModel
+           success:(void (^)(OrderModel *orderModel))successBlock
+              fail:(void (^)(NSError *error))failBlock {
+    NSURL *url = [NSURL URLWithString:self.kRecallCarURL];
+    
+    NSDictionary *parameters = @{@"_id": orderModel._id,
+                                 @"userPhone": orderModel.userPhone,
+                                 @"parkingPlace": orderModel.parkingPlace,
+                                 @"carIdentifier": orderModel.carIdentifier,
+                                 @"carPlate":orderModel.carPlate};
+    
+    AFHTTPSessionManager *manager = [self newManager];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      NSError *error;
+                      OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:responseObject[@"extras"][@"orderProfileModel"]
+                                                                                                                error:&error];
+                      
+                      if (error) {
+                          failBlock(error);
+                      } else {
+                          successBlock(orderModel);
+                      }
+                  } else {
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  failBlock(nil);
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
 }
 
 - (AFHTTPSessionManager *)newManager {

@@ -12,7 +12,7 @@ typedef NS_ENUM(NSInteger, ServerErrorMessage){
     ACCOUNT_NOT_FOUND = 1,
     INVALID_PWD = 2,
     DB_ERROR = 3,
-    NOT_FOUND = 4,
+    VALET_NOT_FOUND = 4,
     ACCOUNT_ALREADY_EXISTS = 5,
     COULD_NOT_CREATE_USER = 6,
     PASSWORD_RESET_EXPIRED = 7,
@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger, ServerErrorMessage){
     COULD_NOT_CREATE_CAR = 14,
     COULD_NOT_FIND_CAR = 15,
     ORDER_ALREADY_EXISTS = 16,
+    ORDER_ALREADY_RECALLED = 17,
+    COULD_NOT_UPDATE_ORDER = 18,
 };
 
 typedef NS_ENUM(NSInteger, LocalErrorMessage){

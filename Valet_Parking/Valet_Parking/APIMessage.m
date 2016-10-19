@@ -57,6 +57,12 @@
         case CAR_ALREADY_EXISTS:
             messageToShow = @"you already have this car";
             break;
+        case ORDER_ALREADY_EXISTS:
+            messageToShow = @"you already recall this car";
+            break;
+        case COULD_NOT_UPDATE_ORDER:
+            messageToShow = @"fail to update order";
+            break;
         default:
             break;
     }

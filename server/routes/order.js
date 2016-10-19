@@ -4,8 +4,9 @@ var express = require('express'),
     ValetProfile = require('../models/valet/valet-profile.js')
     OrderController = require('../controllers/order.js'),
     Order = require('../models/order/order.js'),
-    OrderCreation = require('../models/order/order-creation.js');
-
+    OrderCreation = require('../models/order/order-creation.js'),
+    OrderRecall = require('../models/order/order-recall.js'),
+    OrderEnd = require('../models/order/order-end.js');
 
 var orderController = new OrderController();
 
@@ -40,6 +41,28 @@ router.route('/order/get_orders_for_user').post(function (req, res) {
     res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
 
     orderController.getOrderForUser(userProfile, function (err, response) {
+        return res.send(response);
+    });
+});
+
+router.route('/order/recall_by_user').post(function (req, res) {
+    console.log('----------get a recall car post by user----------');
+    var orderRecall = new OrderRecall(req.body);
+    console.log(orderRecall);
+    res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
+
+    orderController.recallOrderByUser(orderRecall, function (err, response) {
+        return res.send(response);
+    });
+});
+
+router.route('/order/end_by_valet').post(function (req, res) {
+    console.log('----------get a recall car post by user----------');
+    var orderEnd = new OrderEnd(req.body);
+    console.log(orderEnd);
+    res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
+
+    orderController.endOrderByValet(orderEnd, function (err, response) {
         return res.send(response);
     });
 });
