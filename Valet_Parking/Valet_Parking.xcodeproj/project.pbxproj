@@ -11,10 +11,10 @@
 		8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 8635F48D1DB13344007830D0 /* UIButton+Status.m */; };
 		864DF94D1DB224DB004EDDEA /* DataClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DF94C1DB224DB004EDDEA /* DataClient.m */; };
 		864DFA231DB4AB80004EDDEA /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA221DB4AB80004EDDEA /* OrderModel.m */; };
+		8679DED71DB73D7500BEE59E /* CurrentOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED61DB73D7500BEE59E /* CurrentOrderViewController.m */; };
 		9446570E1D4B35DC004AB5D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */; };
 		9446570F1D4B35DC004AB5D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */; };
 		944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944657121D4B3A24004AB5D2 /* EditItemViewController.m */; };
-		9448F48F1D49EFDE008AD1E2 /* GetCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9448F48E1D49EFDE008AD1E2 /* GetCarViewController.m */; };
 		9448F4921D49F27E008AD1E2 /* ParkTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9448F4911D49F27E008AD1E2 /* ParkTicketViewController.m */; };
 		944E64931D4711840024B977 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64921D4711840024B977 /* main.m */; };
 		944E64961D4711840024B977 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64951D4711840024B977 /* AppDelegate.m */; };
@@ -27,7 +27,6 @@
 		944E65151D4711F30024B977 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F11D4711F20024B977 /* ForgetPasswordViewController.m */; };
 		944E65161D4711F30024B977 /* ValetServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F31D4711F20024B977 /* ValetServiceViewController.m */; };
 		944E65171D4711F30024B977 /* ParkNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F51D4711F20024B977 /* ParkNowViewController.m */; };
-		944E65181D4711F30024B977 /* BookServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F71D4711F20024B977 /* BookServiceViewController.m */; };
 		944E65191D4711F30024B977 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64F91D4711F20024B977 /* UserInfoViewController.m */; };
 		944E651A1D4711F30024B977 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64FB1D4711F20024B977 /* SettingViewController.m */; };
 		944E651B1D4711F30024B977 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64FD1D4711F20024B977 /* MyProfileViewController.m */; };
@@ -87,14 +86,14 @@
 		864DF94C1DB224DB004EDDEA /* DataClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataClient.m; sourceTree = "<group>"; };
 		864DFA211DB4AB80004EDDEA /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		864DFA221DB4AB80004EDDEA /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		8679DED51DB73D7500BEE59E /* CurrentOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentOrderViewController.h; sourceTree = "<group>"; };
+		8679DED61DB73D7500BEE59E /* CurrentOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentOrderViewController.m; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424E8841D47494800051EFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		944657111D4B3A24004AB5D2 /* EditItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditItemViewController.h; sourceTree = "<group>"; };
 		944657121D4B3A24004AB5D2 /* EditItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditItemViewController.m; sourceTree = "<group>"; };
-		9448F48D1D49EFDE008AD1E2 /* GetCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCarViewController.h; sourceTree = "<group>"; };
-		9448F48E1D49EFDE008AD1E2 /* GetCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCarViewController.m; sourceTree = "<group>"; };
 		9448F4901D49F27E008AD1E2 /* ParkTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkTicketViewController.h; sourceTree = "<group>"; };
 		9448F4911D49F27E008AD1E2 /* ParkTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkTicketViewController.m; sourceTree = "<group>"; };
 		944E648E1D4711840024B977 /* Valet_Parking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valet_Parking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,8 +119,6 @@
 		944E64F31D4711F20024B977 /* ValetServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValetServiceViewController.m; sourceTree = "<group>"; };
 		944E64F41D4711F20024B977 /* ParkNowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkNowViewController.h; sourceTree = "<group>"; };
 		944E64F51D4711F20024B977 /* ParkNowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkNowViewController.m; sourceTree = "<group>"; };
-		944E64F61D4711F20024B977 /* BookServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookServiceViewController.h; sourceTree = "<group>"; };
-		944E64F71D4711F20024B977 /* BookServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookServiceViewController.m; sourceTree = "<group>"; };
 		944E64F81D4711F20024B977 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		944E64F91D4711F20024B977 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		944E64FA1D4711F20024B977 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -382,12 +379,10 @@
 				944E64F31D4711F20024B977 /* ValetServiceViewController.m */,
 				944E64F41D4711F20024B977 /* ParkNowViewController.h */,
 				944E64F51D4711F20024B977 /* ParkNowViewController.m */,
-				944E64F61D4711F20024B977 /* BookServiceViewController.h */,
-				944E64F71D4711F20024B977 /* BookServiceViewController.m */,
-				9448F48D1D49EFDE008AD1E2 /* GetCarViewController.h */,
-				9448F48E1D49EFDE008AD1E2 /* GetCarViewController.m */,
 				9448F4901D49F27E008AD1E2 /* ParkTicketViewController.h */,
 				9448F4911D49F27E008AD1E2 /* ParkTicketViewController.m */,
+				8679DED51DB73D7500BEE59E /* CurrentOrderViewController.h */,
+				8679DED61DB73D7500BEE59E /* CurrentOrderViewController.m */,
 			);
 			name = Tab1;
 			sourceTree = "<group>";
@@ -815,7 +810,6 @@
 			files = (
 				944E65221D4711F30024B977 /* CarModel.m in Sources */,
 				944E65141D4711F30024B977 /* RegisterViewController.m in Sources */,
-				944E65181D4711F30024B977 /* BookServiceViewController.m in Sources */,
 				944E651C1D4711F30024B977 /* MyOrdersViewController.m in Sources */,
 				8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */,
 				944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */,
@@ -833,9 +827,9 @@
 				8635F48B1DB129B4007830D0 /* APIMessage.m in Sources */,
 				944E651E1D4711F30024B977 /* AddCarViewController.m in Sources */,
 				944E64961D4711840024B977 /* AppDelegate.m in Sources */,
-				9448F48F1D49EFDE008AD1E2 /* GetCarViewController.m in Sources */,
 				944E65231D4711F30024B977 /* LibraryAPI.m in Sources */,
 				944E65161D4711F30024B977 /* ValetServiceViewController.m in Sources */,
+				8679DED71DB73D7500BEE59E /* CurrentOrderViewController.m in Sources */,
 				944E651A1D4711F30024B977 /* SettingViewController.m in Sources */,
 				94FE2BDD1D48ABC20096B408 /* TwoLabelCell.m in Sources */,
 				944E651B1D4711F30024B977 /* MyProfileViewController.m in Sources */,

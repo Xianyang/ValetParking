@@ -9,7 +9,7 @@
 #import "ValetServiceViewController.h"
 #import "WelcomeViewController.h"
 #import "ParkNowViewController.h"
-#import "BookServiceViewController.h"
+#import "CurrentOrderViewController.h"
 
 
 static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIdentifier";
@@ -43,10 +43,6 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                                          [self popUpWelcomeView];
                                                      }];
     
-    // Step2 Temp code
-    [self setParas];
-    
-    
     [self.tableView reloadData];
 }
 
@@ -58,10 +54,6 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
-- (void)setParas {
-    _numOfUserOrder = 0;
-}
-
 - (void)popUpWelcomeView {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WelcomeViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
@@ -71,41 +63,30 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                           completion:nil];
 }
 
-# pragma mark - Orders
-- (void)getUserOrders {
-    // TODO use user's info to get its orders. If there is a order, then refresh the tabel view
-    
-    [self.tableView reloadData];
-}
-
 # pragma mark - UITableView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
     if (indexPath.section == 0) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        if (indexPath.row == 0) {
-            // park now
-            ParkNowViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ParkNowViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        // park now
+        ParkNowViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ParkNowViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 1) {
-        // service view controller
-        
+        // current orders view controller
+        CurrentOrderViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CurrentOrderViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // if there is orders, then show the second section
-    return _numOfUserOrder?2:1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    } else {
-        return _numOfUserOrder;
-    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,13 +97,13 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                                        reuseIdentifier:@"CellForService"];
     }
     
-    cell.textLabel.text = [ValetServiceViewController textForFirstSection][indexPath.row];
+    cell.textLabel.text = [ValetServiceViewController textForTableView][indexPath.section];
     
     return cell;
 }
 
-+ (NSArray *)textForFirstSection {
-    return @[@"Parking Now"];
++ (NSArray *)textForTableView {
+    return @[@"Parking Now", @"Current Orders"];
 }
 
 #pragma mark - WelcomeViewControllerDelegate
@@ -145,9 +126,6 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                                hud.label.text = @"fail to fetch cars";
                                                [hud hideAnimated:YES afterDelay:1];
                                            }];
-    
-    // get user's order
-    [self getUserOrders];
 }
 
 - (void)didReceiveMemoryWarning {
