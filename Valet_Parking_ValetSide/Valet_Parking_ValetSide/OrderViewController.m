@@ -10,12 +10,19 @@
 #import "WelcomeViewController.h"
 #import "LibraryAPI.h"
 #import "APIMessage.h"
+#import "OrderModel.h"
 #import <QRCodeReaderViewController/QRCodeReader.h>
 #import <QRCodeReaderViewController/QRCodeReaderViewController.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
-@interface OrderViewController () <WelcomeViewControllerDelegate, QRCodeReaderDelegate>
+static NSString * const OrderCellIdentifier = @"OrderCell";
 
+@interface OrderViewController () <WelcomeViewControllerDelegate, QRCodeReaderDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) MBProgressHUD *hud;
+@property (strong, nonatomic) NSMutableArray *newlyCreatedOrders;
+@property (strong, nonatomic) NSMutableArray *requestingOrders;
 @end
 
 @implementation OrderViewController
@@ -26,17 +33,14 @@
     [self setNavigationBar];
     
     // Step1 check if logged in
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(ValetModel *valetModel) {
-        [hud hideAnimated:YES];
         [self loginSuccessfully:valetModel];
     }
                                                      fail:^(NSError *error) {
-                                                         [hud hideAnimated:YES];
+                                                         [self.hud hideAnimated:YES];
                                                          [self popUpWelcomeView];
                                                      }];
-    
-    // Step 1 get all the orders
 }
 
 - (IBAction)addOrder:(id)sender {
@@ -107,6 +111,48 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+#pragma mark - UITableView
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return section?@"New Orders":@"Requesting Orders";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 47.0f;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return section?self.newlyCreatedOrders.count:self.requestingOrders.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // TODO action to order
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:OrderCellIdentifier];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:OrderCellIdentifier];
+    }
+    
+    OrderModel *order;
+    if (indexPath.section == 0) {
+        order = self.requestingOrders[indexPath.row];
+    } else {
+        order = self.newlyCreatedOrders[indexPath.row];
+    }
+    
+    cell.textLabel.text = [[order.carPlate stringByAppendingString:@"-"] stringByAppendingString:order.carBrand];
+    return cell;
+}
+
 
 #pragma mark - WelcomeViewControllerDelegate
 
@@ -114,8 +160,29 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    // TODO get all orders
+    // get all the orders
+    [[LibraryAPI sharedInstance] getAllOpeningOrders:[[LibraryAPI sharedInstance] getCurrentValetModel]
+                                             success:^(NSArray *orders) {
+                                                 [self.hud hideAnimated:YES];
+                                                 [self assignOrders:orders];
+                                             }
+                                                fail:^(NSError *error) {
+                                                    self.hud.mode = MBProgressHUDModeText;
+                                                    self.hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
+                                                    [self.hud hideAnimated:YES afterDelay:2];
+                                                }];
+}
+
+- (void)assignOrders:(NSArray *)orders {
+    for (OrderModel *order in orders) {
+        if (order.userRequestAt) {
+            [self.requestingOrders addObject:order];
+        } else {
+            [self.newlyCreatedOrders addObject:order];
+        }
+    }
     
+    [self.tableView reloadData];
 }
 
 #pragma mark - View
@@ -135,6 +202,22 @@
     NSDictionary * dict=[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     [self.navigationController.navigationBar setTitleTextAttributes:dict];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
+
+- (NSMutableArray *)newlyCreatedOrders {
+    if (!_newlyCreatedOrders) {
+        _newlyCreatedOrders = [[NSMutableArray alloc] init];
+    }
+    
+    return _newlyCreatedOrders;
+}
+
+- (NSMutableArray *)requestingOrders {
+    if (!_requestingOrders) {
+        _requestingOrders = [[NSMutableArray alloc]  init];
+    }
+    
+    return _requestingOrders;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -17,6 +17,8 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
 @property (strong, nonatomic) NSString *kRegisterURL;
 @property (strong, nonatomic) NSString *kLoginURL;
 @property (strong, nonatomic) NSString *kResetPasswordURL;
+
+@property (strong, nonatomic) NSString *kGetAllOpeningOrders;
 @property (strong, nonatomic) NSString *kCreateOrder;
 
 @end
@@ -28,6 +30,7 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
         self.kLoginURL = [kIPAdress stringByAppendingString:@"api/account/valet/logon"];
         self.kResetPasswordURL = [kIPAdress stringByAppendingString:@"api/account/valet/set_new_password"];
         
+        self.kGetAllOpeningOrders = [kIPAdress stringByAppendingString:@"api/order/get_all_opening_orders"];
         self.kCreateOrder = [kIPAdress stringByAppendingString:@"api/order/add"];
     }
     
@@ -45,11 +48,7 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
     NSDictionary *parameters = @{@"phone": phone,
                                  @"password": password};
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager.requestSerializer setTimeoutInterval:5];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    AFHTTPSessionManager *manager = [self newManager];
     
     [manager POST:[url absoluteString]
        parameters:parameters
@@ -94,11 +93,7 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
     NSDictionary *parameters = @{@"phone": phone,
                                  @"password": password};
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager.requestSerializer setTimeoutInterval:5];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    AFHTTPSessionManager *manager = [self newManager];
     
     [manager POST:[url absoluteString]
        parameters:parameters
@@ -136,6 +131,56 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
 
 #pragma mark - Order
 
+- (void)getAllOpeningOrders:(ValetModel *)valetModel
+                    success:(void (^)(NSArray *orders))successBlock
+                       fail:(void (^)(NSError *error))failBlock {
+    NSURL *url = [NSURL URLWithString:self.kGetAllOpeningOrders];
+    NSDictionary *parameters = @{@"identifier": valetModel.identifier,
+                                 @"phone": valetModel.phone,
+                                 @"firstName": valetModel.firstName,
+                                 @"lastName": valetModel.lastName};
+    
+    AFHTTPSessionManager *manager = [self newManager];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      NSError *error;
+                      NSMutableArray *orders = [NSMutableArray new];
+                      for (NSDictionary *dic in responseObject[@"extras"][@"orders"]) {
+                          OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:dic error:&error];
+                          [orders addObject:orderModel];
+                      }
+                      
+                      if (error) {
+                          failBlock(error);
+                      } else {
+                          successBlock(orders);
+                      }
+                  } else {
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
+
+
+}
+
 - (void)addOrderWithParkingPlace:(NSString *)parkingPlace
                        userPhone:(NSString *)userPhone
                         carPlate:(NSString *)carPlate
@@ -146,11 +191,7 @@ static NSString * const kIPAdress = @"http://147.8.237.106:3001/";
                                  @"userPhone": userPhone,
                                  @"carPlate":carPlate};
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager.requestSerializer setTimeoutInterval:5];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    AFHTTPSessionManager *manager = [self newManager];
     
     [manager POST:[url absoluteString]
        parameters:parameters

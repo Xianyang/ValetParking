@@ -18,7 +18,22 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="RyB-zP-GRR">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="VAy-1V-RQ6"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="sUc-zl-Ws6"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="RyB-zP-GRR" secondAttribute="bottom" id="IwC-dz-MAx"/>
+                            <constraint firstItem="RyB-zP-GRR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RmD-G5-90k"/>
+                            <constraint firstAttribute="trailing" secondItem="RyB-zP-GRR" secondAttribute="trailing" id="TsW-Qz-Qd5"/>
+                            <constraint firstItem="RyB-zP-GRR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zer-jJ-Bxg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Orders" id="ObM-zQ-NaN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="LMh-1Y-g9p">
@@ -27,6 +42,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="RyB-zP-GRR" id="nHO-so-fYy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

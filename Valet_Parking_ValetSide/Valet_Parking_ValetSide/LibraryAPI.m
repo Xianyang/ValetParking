@@ -132,6 +132,18 @@
 
 #pragma mark - Order
 
+- (void)getAllOpeningOrders:(ValetModel *)valetModel
+                    success:(void (^)(NSArray *orders))successBlock
+                       fail:(void (^)(NSError *error))failBlock{
+    [self.httpClient getAllOpeningOrders:valetModel
+                                 success:^(NSArray *orders) {
+                                     successBlock(orders);
+                                 }
+                                    fail:^(NSError *error) {
+                                        failBlock(error);
+                                    }];
+}
+
 - (void)addOrderWithParkingPlace:(NSString *)parkingPlace
                        userPhone:(NSString *)userPhone
                         carPlate:(NSString *)carPlate

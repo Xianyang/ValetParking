@@ -34,6 +34,10 @@
 - (ValetModel *)getCurrentValetModel;
 
 // order
+- (void)getAllOpeningOrders:(ValetModel *)valetModel
+                    success:(void (^)(NSArray *orders))successBlock
+                       fail:(void (^)(NSError *error))failBlock;
+
 - (void)addOrderWithParkingPlace:(NSString *)parkingPlace
                        userPhone:(NSString *)userPhone
                         carPlate:(NSString *)carPlate

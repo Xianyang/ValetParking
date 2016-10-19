@@ -37,4 +37,8 @@ static NSString * const NetworkErrorDomain = @"com.luoxianyang";
                          success:(void (^)(OrderModel *orderModel))successBlock
                             fail:(void (^)(NSError *error))failBlock;
 
+- (void)getAllOpeningOrders:(ValetModel *)valetModel
+                    success:(void (^)(NSArray *orders))successBlock
+                       fail:(void (^)(NSError *error))failBlock;
+
 @end

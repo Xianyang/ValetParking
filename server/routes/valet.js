@@ -11,7 +11,7 @@ var express = require('express'),
 var valetController = new ValetController(Valet);
 
 router.route('/account/valet/register').post(function (req, res) {
-    console.log('get a valet register post')
+    console.log('----------get a valet register post----------')
 
     var valetRegistration = new ValetRegistration(req.body);
 
@@ -36,7 +36,7 @@ router.route('/account/valet/register').post(function (req, res) {
 });
 
 router.route('/account/valet/logon').post(function (req, res) {
-    console.log('get a valet logon post');
+    console.log('----------get a valet logon post----------');
     var valetLogon = new ValetLogon(req.body);
 
     res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
@@ -47,7 +47,7 @@ router.route('/account/valet/logon').post(function (req, res) {
 });
 
 router.route('/account/valet/set_new_password').post(function (req, res) {
-    console.log('get a valet set new password post');
+    console.log('----------get a valet set new password post----------');
     var valetResetPassword = new ValetResetPassword(req.body);
 
     res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
