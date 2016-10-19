@@ -35,6 +35,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     
     if (indexPath.section && !self.order.userRequestAt) {
         // TODO send a recall request
+        
     }
 }
 
