@@ -95,7 +95,7 @@ OrderController.prototype.getOrderForUser = function (userProfile, callback) {
                     return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
                 }
 
-                console.log('This user has ' + orders.length + ' orders');
+                console.log('This user has totally' + orders.length + ' orders');
                 return callback(err, new me.ApiResponse({success: true, extras:{orders: orders}}));
             });
         } else {

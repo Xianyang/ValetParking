@@ -44,4 +44,9 @@
                          success:(void (^)(OrderModel *orderModel))successBlock
                             fail:(void (^)(NSError *error))failBlock;
 
+- (void)endAnOrder:(OrderModel *)orderModel
+           byValet:(ValetModel *)valetModel
+           success:(void (^)(OrderModel *order))successBlock
+              fail:(void (^)(NSError *error))failBlock;
+
 @end

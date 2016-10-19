@@ -20,6 +20,7 @@ static NSString * const kIPAdress = @"http://192.168.1.106:3001/";
 
 @property (strong, nonatomic) NSString *kGetAllOpeningOrders;
 @property (strong, nonatomic) NSString *kCreateOrder;
+@property (strong, nonatomic) NSString *kEndAnOrder;
 
 @end
 
@@ -32,12 +33,13 @@ static NSString * const kIPAdress = @"http://192.168.1.106:3001/";
         
         self.kGetAllOpeningOrders = [kIPAdress stringByAppendingString:@"api/order/get_all_opening_orders"];
         self.kCreateOrder = [kIPAdress stringByAppendingString:@"api/order/add"];
+        self.kEndAnOrder = [kIPAdress stringByAppendingString:@"api/order/end_by_valet"];
     }
     
     return self;
 }
 
-#pragma mark - Account
+#pragma mark - Accouns
 
 - (void)loginWithPhone:(NSString *)phone
               password:(NSString *)password
@@ -225,6 +227,55 @@ static NSString * const kIPAdress = @"http://192.168.1.106:3001/";
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               failBlock(error);
           }];
+}
+
+- (void)endAnOrder:(OrderModel *)orderModel
+           byValet:(ValetModel *)valetModel
+           success:(void (^)(OrderModel *order))successBlock
+              fail:(void (^)(NSError *error))failBlock {
+    NSURL *url = [NSURL URLWithString:self.kEndAnOrder];
+    
+    NSDictionary *parameters = @{@"_id": orderModel._id,
+                                 @"valetPhone": valetModel.phone,
+                                 @"parkingPlace": orderModel.parkingPlace,
+                                 @"carIdentifier": orderModel.carIdentifier,
+                                 @"carPlate":orderModel.carPlate};
+    
+    AFHTTPSessionManager *manager = [self newManager];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      NSError *error;
+                      OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:responseObject[@"extras"][@"orderProfileModel"]
+                                                                                error:&error];
+                      
+                      if (error) {
+                          failBlock(error);
+                      } else {
+                          successBlock(orderModel);
+                      }
+                  } else {
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  failBlock(nil);
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
+
 }
 
 #pragma mark - Manager

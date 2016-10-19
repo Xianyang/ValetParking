@@ -32,6 +32,8 @@
 		864DFA201DB48FDE004EDDEA /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA1A1DB48FDE004EDDEA /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8679DED11DB733A200BEE59E /* AddOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED01DB733A200BEE59E /* AddOrderViewController.m */; };
 		8679DED41DB735EB00BEE59E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED31DB735EB00BEE59E /* OrderModel.m */; };
+		86A690601DB7CCFD009CB1E0 /* CarStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A6905F1DB7CCFD009CB1E0 /* CarStatusViewController.m */; };
+		86A690631DB7CD1C009CB1E0 /* TwoLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A690621DB7CD1C009CB1E0 /* TwoLabelCell.m */; };
 		DC65DBF6EE7A6AB00AC949ED /* libPods-Valet_Parking_ValetSideUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BDD180E9413B01023C588 /* libPods-Valet_Parking_ValetSideUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +104,10 @@
 		8679DED01DB733A200BEE59E /* AddOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOrderViewController.m; sourceTree = "<group>"; };
 		8679DED21DB735EB00BEE59E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		8679DED31DB735EB00BEE59E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		86A6905E1DB7CCFD009CB1E0 /* CarStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarStatusViewController.h; sourceTree = "<group>"; };
+		86A6905F1DB7CCFD009CB1E0 /* CarStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarStatusViewController.m; sourceTree = "<group>"; };
+		86A690611DB7CD1C009CB1E0 /* TwoLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelCell.h; sourceTree = "<group>"; };
+		86A690621DB7CD1C009CB1E0 /* TwoLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelCell.m; sourceTree = "<group>"; };
 		880BDD180E9413B01023C588 /* libPods-Valet_Parking_ValetSideUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_Parking_ValetSideUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA810CD10E12303E8A7C2931 /* Pods-Valet_Parking_ValetSideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking_ValetSideUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking_ValetSideUITests/Pods-Valet_Parking_ValetSideUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCB9FC6F5D6A36050F7F6EEA /* Pods-Valet_Parking_ValetSideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking_ValetSideTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking_ValetSideTests/Pods-Valet_Parking_ValetSideTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 		864DF9E81DB4748A004EDDEA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				86A690611DB7CD1C009CB1E0 /* TwoLabelCell.h */,
+				86A690621DB7CD1C009CB1E0 /* TwoLabelCell.m */,
 				864DF9E91DB47499004EDDEA /* Welcome */,
 				864DF9F01DB474CF004EDDEA /* Tab */,
 			);
@@ -232,6 +240,8 @@
 				864DF9EB1DB474B3004EDDEA /* OrderViewController.m */,
 				8679DECF1DB733A200BEE59E /* AddOrderViewController.h */,
 				8679DED01DB733A200BEE59E /* AddOrderViewController.m */,
+				86A6905E1DB7CCFD009CB1E0 /* CarStatusViewController.h */,
+				86A6905F1DB7CCFD009CB1E0 /* CarStatusViewController.m */,
 				864DF9ED1DB474C7004EDDEA /* UserInfoViewController.h */,
 				864DF9EE1DB474C7004EDDEA /* UserInfoViewController.m */,
 			);
@@ -565,12 +575,14 @@
 				864DF9E41DB4737C004EDDEA /* WelcomeViewController.m in Sources */,
 				864DFA1B1DB48FDE004EDDEA /* LibraryAPI.m in Sources */,
 				864DFA1D1DB48FDE004EDDEA /* DataClient.m in Sources */,
+				86A690631DB7CD1C009CB1E0 /* TwoLabelCell.m in Sources */,
 				864DF9F81DB47511004EDDEA /* ValetModel.m in Sources */,
 				864DFA1F1DB48FDE004EDDEA /* UIButton+Status.m in Sources */,
 				864DF9F91DB47511004EDDEA /* CarModel.m in Sources */,
 				864DF9EC1DB474B3004EDDEA /* OrderViewController.m in Sources */,
 				864DF9E71DB473E9004EDDEA /* ForgetPasswordViewController.m in Sources */,
 				864DFA1C1DB48FDE004EDDEA /* HttpClient.m in Sources */,
+				86A690601DB7CCFD009CB1E0 /* CarStatusViewController.m in Sources */,
 				864DF9AB1DB28A81004EDDEA /* AppDelegate.m in Sources */,
 				864DF9A81DB28A81004EDDEA /* main.m in Sources */,
 				8679DED11DB733A200BEE59E /* AddOrderViewController.m in Sources */,

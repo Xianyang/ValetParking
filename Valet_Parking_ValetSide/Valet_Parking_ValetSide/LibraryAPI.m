@@ -160,4 +160,18 @@
                                          }];
 }
 
+- (void)endAnOrder:(OrderModel *)orderModel
+           byValet:(ValetModel *)valetModel
+           success:(void (^)(OrderModel *order))successBlock
+              fail:(void (^)(NSError *error))failBlock{
+    [self.httpClient endAnOrder:orderModel
+                        byValet:valetModel
+                        success:^(OrderModel *order) {
+                            successBlock(orderModel);
+                        }
+                           fail:^(NSError *error) {
+                               failBlock(error);
+                           }];
+}
+
 @end

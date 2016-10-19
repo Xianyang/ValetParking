@@ -11,13 +11,14 @@
 #import "LibraryAPI.h"
 #import "APIMessage.h"
 #import "OrderModel.h"
+#import "CarStatusViewController.h"
 #import <QRCodeReaderViewController/QRCodeReader.h>
 #import <QRCodeReaderViewController/QRCodeReaderViewController.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
 static NSString * const OrderCellIdentifier = @"OrderCell";
 
-@interface OrderViewController () <WelcomeViewControllerDelegate, QRCodeReaderDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface OrderViewController () <WelcomeViewControllerDelegate, QRCodeReaderDelegate, UITableViewDelegate, UITableViewDataSource, CarStatusViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MBProgressHUD *hud;
@@ -69,6 +70,26 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
     }
 }
 
+- (void)loadOrders {
+    // get all the orders
+    [[LibraryAPI sharedInstance] getAllOpeningOrders:[[LibraryAPI sharedInstance] getCurrentValetModel]
+                                             success:^(NSArray *orders) {
+                                                 [self.hud hideAnimated:YES];
+                                                 [self assignOrders:orders];
+                                             }
+                                                fail:^(NSError *error) {
+                                                    self.hud.mode = MBProgressHUDModeText;
+                                                    self.hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
+                                                    [self.hud hideAnimated:YES afterDelay:2];
+                                                }];
+}
+
+#pragma mark - CarStatusViewControllerDelegate
+
+- (void)endOrderSuccessfully {
+    [self loadOrders];
+}
+
 #pragma mark - QRCodeReader Delegate Methods
 
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
@@ -95,7 +116,8 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
                                                               hud.mode = MBProgressHUDModeText;
                                                               hud.label.text = @"Done";
                                                               [hud hideAnimated:YES afterDelay:2];
-                                                              NSLog(@"%@", orderModel.carColor);
+                                                              
+                                                              [self loadOrders];
                                                           }
                                                              fail:^(NSError *error) {
                                                                  hud.mode = MBProgressHUDModeText;
@@ -132,7 +154,24 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    // TODO action to order
+    if (indexPath.section == 0) {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        CarStatusViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"CarStatusViewController"];
+        vc.delegate = self;
+        
+        OrderModel *order;
+        if (indexPath.section) {
+            order = self.newlyCreatedOrders[indexPath.row];
+        } else {
+            order = self.requestingOrders[indexPath.row];
+        }
+        
+        [vc setAnOrder:order];
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,20 +199,12 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    // get all the orders
-    [[LibraryAPI sharedInstance] getAllOpeningOrders:[[LibraryAPI sharedInstance] getCurrentValetModel]
-                                             success:^(NSArray *orders) {
-                                                 [self.hud hideAnimated:YES];
-                                                 [self assignOrders:orders];
-                                             }
-                                                fail:^(NSError *error) {
-                                                    self.hud.mode = MBProgressHUDModeText;
-                                                    self.hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
-                                                    [self.hud hideAnimated:YES afterDelay:2];
-                                                }];
+    [self loadOrders];
 }
 
 - (void)assignOrders:(NSArray *)orders {
+    [self.requestingOrders removeAllObjects];
+    [self.newlyCreatedOrders removeAllObjects];
     for (OrderModel *order in orders) {
         if (order.userRequestAt) {
             [self.requestingOrders addObject:order];
