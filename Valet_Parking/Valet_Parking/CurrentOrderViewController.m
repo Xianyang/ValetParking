@@ -66,7 +66,6 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 - (void)noCurrentOrder:(MBProgressHUD *)hud {
     hud.mode = MBProgressHUDModeText;
     hud.label.text = @"You do not have unfinished orders";
-    [hud hideAnimated:YES afterDelay:1.5];
 }
 
 - (void)recallSuccessfully {
