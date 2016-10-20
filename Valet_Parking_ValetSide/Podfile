@@ -14,6 +14,7 @@ target 'Valet_Parking_ValetSide' do
   pod 'AFNetworking', '~> 3.1.0'
   pod 'JSONModel', '~> 1.3.0'
   pod 'QRCodeReaderViewController', '~> 4.0.2'
+  pod 'CBStoreHouseRefreshControl'
 
   target 'Valet_Parking_ValetSideTests' do
     inherit! :search_paths

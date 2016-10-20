@@ -34,6 +34,7 @@
 		8679DED41DB735EB00BEE59E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED31DB735EB00BEE59E /* OrderModel.m */; };
 		86A690601DB7CCFD009CB1E0 /* CarStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A6905F1DB7CCFD009CB1E0 /* CarStatusViewController.m */; };
 		86A690631DB7CD1C009CB1E0 /* TwoLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A690621DB7CD1C009CB1E0 /* TwoLabelCell.m */; };
+		86DB494D1DB87546001B142F /* lkf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86DB494C1DB87546001B142F /* lkf.plist */; };
 		DC65DBF6EE7A6AB00AC949ED /* libPods-Valet_Parking_ValetSideUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 880BDD180E9413B01023C588 /* libPods-Valet_Parking_ValetSideUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		86A6905F1DB7CCFD009CB1E0 /* CarStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarStatusViewController.m; sourceTree = "<group>"; };
 		86A690611DB7CD1C009CB1E0 /* TwoLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelCell.h; sourceTree = "<group>"; };
 		86A690621DB7CD1C009CB1E0 /* TwoLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelCell.m; sourceTree = "<group>"; };
+		86DB494C1DB87546001B142F /* lkf.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lkf.plist; sourceTree = "<group>"; };
 		880BDD180E9413B01023C588 /* libPods-Valet_Parking_ValetSideUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_Parking_ValetSideUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA810CD10E12303E8A7C2931 /* Pods-Valet_Parking_ValetSideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking_ValetSideUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking_ValetSideUITests/Pods-Valet_Parking_ValetSideUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCB9FC6F5D6A36050F7F6EEA /* Pods-Valet_Parking_ValetSideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valet_Parking_ValetSideTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Valet_Parking_ValetSideTests/Pods-Valet_Parking_ValetSideTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				864DFA0E1DB4758D004EDDEA /* PrefixHeader.pch */,
 				864DF9B51DB28A81004EDDEA /* Assets.xcassets */,
 				864DF9B71DB28A81004EDDEA /* LaunchScreen.storyboard */,
+				86DB494C1DB87546001B142F /* lkf.plist */,
 				864DF9BA1DB28A81004EDDEA /* Info.plist */,
 				864DF9B21DB28A81004EDDEA /* Valet_Parking_ValetSide.xcdatamodeld */,
 				864DF9A61DB28A81004EDDEA /* Supporting Files */,
@@ -422,6 +425,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86DB494D1DB87546001B142F /* lkf.plist in Resources */,
 				864DF9B91DB28A81004EDDEA /* LaunchScreen.storyboard in Resources */,
 				864DF9B61DB28A81004EDDEA /* Assets.xcassets in Resources */,
 				864DF9B11DB28A81004EDDEA /* Main.storyboard in Resources */,

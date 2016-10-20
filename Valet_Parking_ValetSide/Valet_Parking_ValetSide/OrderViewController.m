@@ -12,6 +12,7 @@
 #import "APIMessage.h"
 #import "OrderModel.h"
 #import "CarStatusViewController.h"
+#import <CBStoreHouseRefreshControl/CBStoreHouseRefreshControl.h>
 #import <QRCodeReaderViewController/QRCodeReader.h>
 #import <QRCodeReaderViewController/QRCodeReaderViewController.h>
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -24,6 +25,8 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
 @property (strong, nonatomic) MBProgressHUD *hud;
 @property (strong, nonatomic) NSMutableArray *newlyCreatedOrders;
 @property (strong, nonatomic) NSMutableArray *requestingOrders;
+@property (strong, nonatomic) NSTimer *timer;
+@property (nonatomic, strong) CBStoreHouseRefreshControl *storeHouseRefreshControl;
 @end
 
 @implementation OrderViewController
@@ -32,6 +35,8 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
     [super viewDidLoad];
     
     [self setNavigationBar];
+    [self setPullToRefresh];
+    [self setRefreshTimer];
     
     // Step1 check if logged in
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -42,6 +47,9 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
                                                          [self.hud hideAnimated:YES];
                                                          [self popUpWelcomeView];
                                                      }];
+    
+    
+
 }
 
 - (IBAction)addOrder:(id)sender {
@@ -71,17 +79,47 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
 }
 
 - (void)loadOrders {
+    [self.timer setFireDate:[NSDate distantFuture]];
     // get all the orders
     [[LibraryAPI sharedInstance] getAllOpeningOrders:[[LibraryAPI sharedInstance] getCurrentValetModel]
                                              success:^(NSArray *orders) {
                                                  [self.hud hideAnimated:YES];
+                                                 [self finishRefreshControl];
+                                                 [self.timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60.0f]];
                                                  [self assignOrders:orders];
                                              }
                                                 fail:^(NSError *error) {
                                                     self.hud.mode = MBProgressHUDModeText;
                                                     self.hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
                                                     [self.hud hideAnimated:YES afterDelay:2];
+                                                    [self.timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60.0f]];
                                                 }];
+}
+
+#pragma mark - Notifying refresh control of scrolling
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.storeHouseRefreshControl scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.storeHouseRefreshControl scrollViewDidEndDragging];
+}
+
+#pragma mark - Listening for the user to trigger a refresh
+
+- (void)refreshTriggered:(id)sender
+{
+    [self.timer setFireDate:[NSDate distantFuture]];
+    [self loadOrders];
+    [self performSelector:@selector(finishRefreshControl) withObject:nil afterDelay:3 inModes:@[NSRunLoopCommonModes]];
+}
+
+- (void)finishRefreshControl
+{
+    [self.storeHouseRefreshControl finishingLoading];
 }
 
 #pragma mark - CarStatusViewControllerDelegate
@@ -217,6 +255,33 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
 }
 
 #pragma mark - View
+
+- (void)setPullToRefresh {
+    self.tableView.alwaysBounceVertical = YES;
+    self.storeHouseRefreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView
+                                                                            target:self
+                                                                     refreshAction:@selector(refreshTriggered:)
+                                                                             plist:@"lkf"
+                                                                             color:[UIColor colorWithRed:153.0f / 255.0f
+                                                                                                   green:102.0f / 255.0f
+                                                                                                    blue:51.0f / 255.0f
+                                                                                                   alpha:1]
+                                                                         lineWidth:5
+                                                                        dropHeight:40
+                                                                             scale:1
+                                                              horizontalRandomness:150
+                                                           reverseLoadingAnimation:YES
+                                                           internalAnimationFactor:0.5];
+}
+
+- (void)setRefreshTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0f
+                                                  target:self
+                                                selector:@selector(loadOrders)
+                                                userInfo:nil
+                                                 repeats:YES];
+    [self.timer setFireDate:[NSDate distantFuture]];
+}
 
 - (void)popUpWelcomeView {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

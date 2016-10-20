@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CBStoreHouseRefreshControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>INTULocationManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,11 +57,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>160E61E3FD73F29A7996CC84BE923E33</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>471E14E96FA40C7432856F57B743262A</key>
 		<dict>
 			<key>primary</key>
@@ -67,17 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>743CC717E339F0B882F0988CD23DFE1D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>907470F5851D79443388546B1D776B0B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B4A3E08D49931371F7247521A50EAF79</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CD8B07D3EC90285E758726A9CACE28FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,6 +98,11 @@
 			<true/>
 		</dict>
 		<key>E89EA0620E22EDB775A7C107518644DD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA25BF9F7B95BFCAFD52D537D16B6924</key>
 		<dict>
 			<key>primary</key>
 			<true/>
