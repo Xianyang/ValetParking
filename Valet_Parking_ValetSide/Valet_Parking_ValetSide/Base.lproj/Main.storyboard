@@ -220,7 +220,7 @@
         <scene sceneID="3xF-UB-vut">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NLj-jt-pCq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Orders" id="SdF-Tp-14b"/>
+                    <tabBarItem key="tabBarItem" title="Orders" image="order-color" id="SdF-Tp-14b"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="URz-ye-hMs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -239,7 +239,7 @@
         <scene sceneID="Ago-F5-itP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cky-03-N4e" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" id="A7s-t8-Nek"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="user" id="A7s-t8-Nek"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="avq-ru-z84">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -292,13 +292,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_account" translatesAutoresizingMaskIntoConstraints="NO" id="D4a-Rb-SEn">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="D4a-Rb-SEn">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="6UJ-7s-IC4"/>
                                             <constraint firstAttribute="height" constant="25" id="V5u-X2-Uux"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_pw" translatesAutoresizingMaskIntoConstraints="NO" id="GM3-sD-IqJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="GM3-sD-IqJ">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="WbO-cF-v5g"/>
                                             <constraint firstAttribute="width" constant="25" id="zht-Ed-QvU"/>
@@ -468,19 +468,19 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_account" translatesAutoresizingMaskIntoConstraints="NO" id="36v-WK-DBJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="36v-WK-DBJ">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="bxd-yB-6ag"/>
                                             <constraint firstAttribute="height" constant="25" id="h1d-Oe-C7T"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_pw" translatesAutoresizingMaskIntoConstraints="NO" id="WXa-sN-dZS">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" translatesAutoresizingMaskIntoConstraints="NO" id="WXa-sN-dZS">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="Tpx-Cv-ZwW"/>
                                             <constraint firstAttribute="width" constant="25" id="kt5-Us-CVg"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_pw" translatesAutoresizingMaskIntoConstraints="NO" id="AhR-Fc-xvc">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="AhR-Fc-xvc">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="Pen-gy-iTc"/>
                                             <constraint firstAttribute="height" constant="25" id="gIL-c7-J5B"/>
@@ -576,7 +576,10 @@
     </scenes>
     <resources>
         <image name="bg1_blur" width="889" height="1276"/>
-        <image name="login_account" width="22" height="22"/>
-        <image name="login_pw" width="32" height="32"/>
+        <image name="message" width="25" height="25"/>
+        <image name="order-color" width="24" height="24"/>
+        <image name="password" width="25" height="25"/>
+        <image name="phone" width="25" height="25"/>
+        <image name="user" width="25" height="25"/>
     </resources>
 </document>
