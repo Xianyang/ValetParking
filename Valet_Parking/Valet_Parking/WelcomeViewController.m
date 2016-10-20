@@ -27,7 +27,12 @@
     [super viewDidLoad];
     
     [self setupInputView];
+    // [self setNeedsStatusBarAppearanceUpdate];
 }
+
+//- (UIStatusBarStyle) preferredStatusBarStyle {
+//    return UIStatusBarStyleLightContent;
+//}
 
 - (void)loginBtnPressed {
     [self.loginBtn setDisableStatus];

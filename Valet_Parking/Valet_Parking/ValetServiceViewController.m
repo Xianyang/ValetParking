@@ -29,6 +29,8 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     
     [self setNavigationBar];
     
+    // [self setNeedsStatusBarAppearanceUpdate];
+    
     // Step0 delete all cars in local database
     [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
     
@@ -45,6 +47,10 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     
     [self.tableView reloadData];
 }
+
+//- (UIStatusBarStyle) preferredStatusBarStyle {
+//    return UIStatusBarStyleLightContent;
+//}
 
 - (void)setNavigationBar {
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar"]
