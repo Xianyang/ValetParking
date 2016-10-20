@@ -12,6 +12,7 @@
 #import "MyProfileViewController.h"
 #import "MyOrdersViewController.h"
 #import "MyCarsViewController.h"
+#import "SettingViewController.h"
 #import "WelcomeViewController.h"
 #import "LibraryAPI.h"
 
@@ -83,6 +84,9 @@ static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
             MyCarsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyCarsViewController"];
             [vc setEditable:YES chosenCar:nil];
             [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 3) {
+            SettingViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     } else if (indexPath.section == 1) {
         UIAlertController *alert =
@@ -111,7 +115,7 @@ static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section?1:3;
+    return section?1:4;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -160,11 +164,11 @@ static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 }
 
 + (NSArray *)textForTableView {
-    return @[@"My Profile", @"My Orders", @"My Cars"];
+    return @[@"My Profile", @"My Orders", @"My Cars", @"Settings"];
 }
 
 + (NSArray *)imageNameForTableView {
-    return @[@"user-color", @"order-color", @"car-color"];
+    return @[@"user-color", @"order-color", @"car-color", @"setting-color"];
 }
 
 

@@ -412,8 +412,6 @@
 			children = (
 				944E64F81D4711F20024B977 /* UserInfoViewController.h */,
 				944E64F91D4711F20024B977 /* UserInfoViewController.m */,
-				944E64FA1D4711F20024B977 /* SettingViewController.h */,
-				944E64FB1D4711F20024B977 /* SettingViewController.m */,
 				944E64FC1D4711F20024B977 /* MyProfileViewController.h */,
 				944E64FD1D4711F20024B977 /* MyProfileViewController.m */,
 				944E64FE1D4711F20024B977 /* MyOrdersViewController.h */,
@@ -422,6 +420,8 @@
 				944E65011D4711F20024B977 /* MyCarsViewController.m */,
 				944E65021D4711F20024B977 /* AddCarViewController.h */,
 				944E65031D4711F20024B977 /* AddCarViewController.m */,
+				944E64FA1D4711F20024B977 /* SettingViewController.h */,
+				944E64FB1D4711F20024B977 /* SettingViewController.m */,
 			);
 			name = Tab2;
 			sourceTree = "<group>";
