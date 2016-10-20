@@ -63,6 +63,9 @@
         case COULD_NOT_UPDATE_ORDER:
             messageToShow = @"fail to update order";
             break;
+        case VERIFY_CODE_FAIL:
+            messageToShow = @"wrong verification code";
+            break;
         default:
             break;
     }

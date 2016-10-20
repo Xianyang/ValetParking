@@ -13,6 +13,7 @@
 		864DFA231DB4AB80004EDDEA /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA221DB4AB80004EDDEA /* OrderModel.m */; };
 		8679DED71DB73D7500BEE59E /* CurrentOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED61DB73D7500BEE59E /* CurrentOrderViewController.m */; };
 		8679DEDA1DB753A900BEE59E /* CarStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED91DB753A900BEE59E /* CarStatusViewController.m */; };
+		86DB49501DB880C0001B142F /* MBProgressHUD+ValetShowAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DB494F1DB880C0001B142F /* MBProgressHUD+ValetShowAlert.m */; };
 		9446570E1D4B35DC004AB5D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */; };
 		9446570F1D4B35DC004AB5D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */; };
 		944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944657121D4B3A24004AB5D2 /* EditItemViewController.m */; };
@@ -91,6 +92,8 @@
 		8679DED61DB73D7500BEE59E /* CurrentOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentOrderViewController.m; sourceTree = "<group>"; };
 		8679DED81DB753A900BEE59E /* CarStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarStatusViewController.h; sourceTree = "<group>"; };
 		8679DED91DB753A900BEE59E /* CarStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarStatusViewController.m; sourceTree = "<group>"; };
+		86DB494E1DB880C0001B142F /* MBProgressHUD+ValetShowAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+ValetShowAlert.h"; sourceTree = "<group>"; };
+		86DB494F1DB880C0001B142F /* MBProgressHUD+ValetShowAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+ValetShowAlert.m"; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424E8841D47494800051EFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
@@ -356,6 +359,8 @@
 				8635F48A1DB129B4007830D0 /* APIMessage.m */,
 				8635F48C1DB13344007830D0 /* UIButton+Status.h */,
 				8635F48D1DB13344007830D0 /* UIButton+Status.m */,
+				86DB494E1DB880C0001B142F /* MBProgressHUD+ValetShowAlert.h */,
+				86DB494F1DB880C0001B142F /* MBProgressHUD+ValetShowAlert.m */,
 				944E65101D4711F30024B977 /* KeychainItemWrapper.h */,
 				944E65111D4711F30024B977 /* KeychainItemWrapper.m */,
 			);
@@ -843,6 +848,7 @@
 				864DF94D1DB224DB004EDDEA /* DataClient.m in Sources */,
 				944E64931D4711840024B977 /* main.m in Sources */,
 				94FE2BDA1D4858840096B408 /* CarCell.m in Sources */,
+				86DB49501DB880C0001B142F /* MBProgressHUD+ValetShowAlert.m in Sources */,
 				944E651D1D4711F30024B977 /* MyCarsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

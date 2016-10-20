@@ -73,4 +73,6 @@
 // qr
 - (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height;
 
+- (UIColor *)themeColor;
+
 @end

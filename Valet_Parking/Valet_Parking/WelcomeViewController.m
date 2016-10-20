@@ -9,7 +9,7 @@
 #import "WelcomeViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
-
+#import "MBProgressHUD+ValetShowAlert.h"
 
 @interface WelcomeViewController () <RegisterViewControllerDelegate, ForgetPasswordViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *inputView;
@@ -26,32 +26,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.inputView.layer setCornerRadius:3.0];
-    [self.loginBtn.layer setCornerRadius:3.0];
-    
-    [self.loginBtn addTarget:self
-                      action:@selector(loginBtnPressed)
-            forControlEvents:UIControlEventTouchUpInside];
-    [self.signupBtn addTarget:self
-                       action:@selector(signupBtnPressed)
-             forControlEvents:UIControlEventTouchUpInside];
-    [self.userAccountTextField addTarget:self
-                                  action:@selector(textFieldDidChange:)
-                        forControlEvents:UIControlEventEditingChanged];
-    [self.userPasswordTextField addTarget:self
-                                  action:@selector(textFieldDidChange:)
-                        forControlEvents:UIControlEventEditingChanged];
-    
-    [self.loginBtn setDisableStatus];
-    [self.userAccountTextField becomeFirstResponder];
+    [self setupInputView];
 }
 
 - (void)loginBtnPressed {
+    [self.loginBtn setDisableStatus];
+    
     NSString *userAccount = self.userAccountTextField.text;
     NSString *userPassword = self.userPasswordTextField.text;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self.loginBtn setDisableStatus];
     [[LibraryAPI sharedInstance] loginWithPhone:userAccount
                                        password:userPassword
                                         success:^(UserModel *userModel) {
@@ -61,40 +45,37 @@
                                         }
                                            fail:^(NSError *error) {
                                                [self.loginBtn setEnableStatus];
-                                               hud.mode = MBProgressHUDModeText;
-                                               hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
-                                               [hud hideAnimated:YES afterDelay:1];
+                                               [hud showErrorMessage:error];
                                            }];
 }
 
 - (void)signupBtnPressed {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RegisterViewController *viewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
-    [self.navigationController presentViewController:viewcontroller
-                                            animated:YES
-                                          completion:nil];
+    [self.navigationController presentViewController:viewcontroller animated:YES completion:nil];
 }
 
-# pragma mark - RegisterViewControllerDelegate
-- (void)registerSucceed:(UserModel *)userModel {
-    [self.delegate loginSuccessfully:userModel];
+- (void)setupInputView {
+    [self.inputView.layer setCornerRadius:3.0];
+    [self.loginBtn.layer setCornerRadius:3.0];
+    
+    [self.loginBtn addTarget:self
+                      action:@selector(loginBtnPressed)
+            forControlEvents:UIControlEventTouchUpInside];
+    [self.signupBtn addTarget:self
+                       action:@selector(signupBtnPressed)
+             forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.userAccountTextField addTarget:self
+                                  action:@selector(textFieldDidChange:)
+                        forControlEvents:UIControlEventEditingChanged];
+    [self.userPasswordTextField addTarget:self
+                                   action:@selector(textFieldDidChange:)
+                         forControlEvents:UIControlEventEditingChanged];
+    
+    [self.loginBtn setDisableStatus];
+    [self.userAccountTextField becomeFirstResponder];
 }
-
-- (void)cancelRegister {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-# pragma mark - ForgetPasswordViewControllerDelegate
-
-- (void)cancelSetNewPassword {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)resetSucceed:(UserModel *)userModel {
-    [self.delegate loginSuccessfully:userModel];
-}
-
-# pragma mark - 
 
 - (void)textFieldDidChange:(UITextField *)textField {
     if ([self.userAccountTextField.text isEqualToString:@""] ||
@@ -105,11 +86,25 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+# pragma mark - RegisterViewControllerDelegate
+
+- (void)registerSucceed:(UserModel *)userModel {
+    [self.delegate loginSuccessfully:userModel];
 }
 
+- (void)cancelRegister {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+# pragma mark - ForgetPasswordViewControllerDelegate
+
+- (void)resetSucceed:(UserModel *)userModel {
+    [self.delegate loginSuccessfully:userModel];
+}
+
+- (void)cancelSetNewPassword {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Navigation
 
@@ -122,8 +117,10 @@
         RegisterViewController *viewcontroller = segue.destinationViewController;
         viewcontroller.delegate = self;
     }
-    
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
 
 @end

@@ -12,5 +12,7 @@
 
 - (void)setDisableStatus;
 - (void)setEnableStatus;
+- (void)setVerificationButtonCountingStatus;
+- (void)setVerificationButtonReadyStatus;
 
 @end

@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, ServerErrorMessage){
 
 typedef NS_ENUM(NSInteger, LocalErrorMessage){
     CAR_ALREADY_EXISTS = 201,
+    VERIFY_CODE_FAIL = 202,
 };
 
 @interface APIMessage : NSObject

@@ -20,4 +20,14 @@
     [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
 }
 
+- (void)setVerificationButtonCountingStatus {
+    [self setEnabled:NO];
+    [self setTitleColor:[[LibraryAPI sharedInstance] themeColor] forState:UIControlStateDisabled];
+}
+
+- (void)setVerificationButtonReadyStatus {
+    [self setEnabled:YES];
+    [self setTitleColor:[[LibraryAPI sharedInstance] themeColor] forState:UIControlStateNormal];
+}
+
 @end

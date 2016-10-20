@@ -24,6 +24,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSContactsUsageDescription</key>
+	<string>To contact valet</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchImage</string>
 	<key>UIMainStoryboardFile</key>

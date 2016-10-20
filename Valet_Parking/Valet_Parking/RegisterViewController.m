@@ -26,7 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *getVerificationCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
 @property (weak, nonatomic) IBOutlet UIButton *termsBtn;
-
+@property (strong, nonatomic) NSTimer *timer;
+@property (assign, nonatomic) NSInteger countDownTime;
 @end
 
 @implementation RegisterViewController
@@ -34,6 +35,79 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupInputView];
+    self.getVerificationCodeBtn.titleLabel.text = @"aaa";
+}
+
+
+#pragma mark - Verification Code
+
+- (void)changeTextByTimer {
+    if (self.countDownTime > 1) {
+        self.countDownTime -= 1;
+        NSString *timeString = [[NSString stringWithFormat:@"%ld", (long)self.countDownTime] stringByAppendingString:@"s"];
+        [self.getVerificationCodeBtn setTitle:timeString forState:UIControlStateDisabled];
+    } else {
+        [self.timer setFireDate:[NSDate distantFuture]];
+        [self.getVerificationCodeBtn setTitle:@"Verification Code" forState:UIControlStateNormal];
+        [self.getVerificationCodeBtn setVerificationButtonReadyStatus];
+    }
+}
+
+- (void)getVC {
+    // TODO set a timer
+    self.countDownTime = 11;
+    [self.timer setFireDate:[NSDate date]];
+    [self.getVerificationCodeBtn setVerificationButtonCountingStatus];
+
+    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS
+                            phoneNumber:self.userAccountTextField.text
+                                   zone:@"852"
+                       customIdentifier:nil
+                                 result:nil];
+}
+
+
+- (void)cancalBtnPressed {
+    [self.view endEditing:YES];
+    [self.delegate cancelRegister];
+}
+
+- (void)signupBtnPressed {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.signUpBtn setDisableStatus];
+    
+    // TODO check verification code firstly
+    
+    [SMSSDK commitVerificationCode:self.verificationCodeTextField.text
+                       phoneNumber:self.userAccountTextField.text
+                              zone:@"852"
+                            result:^(NSError *error) {
+                                if (!error) {
+                                    // verify successfully
+                                    [[LibraryAPI sharedInstance] registerWithPhone:self.userAccountTextField.text
+                                                                         firstName:self.userFirstNameTextField.text
+                                                                          lastName:self.userLastNameTextField.text
+                                                                          password:self.userPasswordTextField.text
+                                                                           success:^(UserModel *userModel) {
+                                                                               [hud hideAnimated:YES];
+                                                                               [self.delegate registerSucceed:userModel];
+                                                                           }
+                                                                              fail:^(NSError *error) {
+                                                                                  [hud showErrorMessage:error];
+                                                                                  [self.signUpBtn setEnableStatus];
+                                                                              }];
+
+                                } else {
+                                    NSError *error = [NSError errorWithDomain:@"error"
+                                                                         code:VERIFY_CODE_FAIL
+                                                                     userInfo:nil];
+                                    [hud showErrorMessage:error];
+                                }
+                            }];
+}
+
+- (void)setupInputView {
     [self.inputView.layer setCornerRadius:3.0];
     
     [self.cancelBtn addTarget:self
@@ -53,30 +127,13 @@
                                   self.userAccountTextField, self.verificationCodeTextField, self.userPasswordTextField]];
     
     // set verficate button
-    [self.getVerificationCodeBtn setEnabled:NO];
-    [self.getVerificationCodeBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:227.0/255.0
-                                                               alpha:1.0]
-                                      forState:UIControlStateNormal];
+    [self.getVerificationCodeBtn setVerificationButtonReadyStatus];
     [self.getVerificationCodeBtn addTarget:self
                                     action:@selector(getVC)
                           forControlEvents:UIControlEventTouchUpInside];
     
     [self.userFirstNameTextField becomeFirstResponder];
 }
-
-- (void)getVC {
-    [self.getVerificationCodeBtn setEnabled:NO];
-    [self.getVerificationCodeBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:227.0/255.0
-                                                               alpha:1.0]
-                                      forState:UIControlStateNormal];
-    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS
-                            phoneNumber:self.userAccountTextField.text
-                                   zone:@"852"
-                       customIdentifier:nil
-                                 result:nil];
-}
-
-
 
 - (void)addTargetToTextFields:(NSArray *)textfields {
     for (UITextField *textfield in textfields) {
@@ -86,46 +143,14 @@
     }
 }
 
-- (void)cancalBtnPressed {
-    [self.view endEditing:YES];
-    [self.delegate cancelRegister];
-}
-
-- (void)signupBtnPressed {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self.signUpBtn setDisableStatus];
-    
-    // TODO check verification code firstly
-    
-    [[LibraryAPI sharedInstance] registerWithPhone:self.userAccountTextField.text
-                                         firstName:self.userFirstNameTextField.text
-                                          lastName:self.userLastNameTextField.text
-                                          password:self.userPasswordTextField.text
-                                           success:^(UserModel *userModel) {
-                                               [hud hideAnimated:YES];
-                                               [self.delegate registerSucceed:userModel];
-                                           }
-                                              fail:^(NSError *error) {
-                                                  hud.mode = MBProgressHUDModeText;
-                                                  hud.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
-                                                  [hud hideAnimated:YES afterDelay:1];
-                                                  
-                                                  [self.signUpBtn setEnableStatus];
-                                              }];
-}
-
 - (void)textFieldDidChange:(UITextField *)textField {
-    if ([self.userAccountTextField.text isEqualToString:@""]) {
-        [self.getVerificationCodeBtn setEnabled:NO];
-        [self.getVerificationCodeBtn setTitleColor:[UIColor colorWithRed:241.0/255.0 green:235.0/255.0 blue:227.0/255.0
-                                                                   alpha:1.0]
-                                          forState:UIControlStateNormal];
-    } else {
-        [self.getVerificationCodeBtn setEnabled:YES];
-        [self.getVerificationCodeBtn setTitleColor:[UIColor colorWithRed:186.0/255.0 green:138.0/255.0 blue:87.0/255.0
-                                                                   alpha:1.0]
-                                          forState:UIControlStateNormal];
-    }
+//    if ([self.userAccountTextField.text isEqualToString:@""]) {
+//        [self.getVerificationCodeBtn setDisableStatus];
+//    } else {
+//        [self.getVerificationCodeBtn setEnableStatus];
+//        [self.getVerificationCodeBtn setTitleColor:[[LibraryAPI sharedInstance] themeColor]
+//                                          forState:UIControlStateNormal];
+//    }
     
     if ([self.userFirstNameTextField.text isEqualToString:@""] ||
         [self.userLastNameTextField.text isEqualToString:@""] ||
@@ -136,6 +161,19 @@
     } else {
         [self.signUpBtn setEnableStatus];
     }
+}
+
+- (NSTimer *)timer {
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                  target:self
+                                                selector:@selector(changeTextByTimer)
+                                                userInfo:nil
+                                                 repeats:YES];
+        [_timer setFireDate:[NSDate distantFuture]];
+    }
+    
+    return _timer;
 }
 
 

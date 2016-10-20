@@ -13,6 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #include <CoreData/CoreData.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "MBProgressHUD+ValetShowAlert.h"
 #import "LibraryAPI.h"
 #import "APIMessage.h"
 #import "UIButton+Status.h"

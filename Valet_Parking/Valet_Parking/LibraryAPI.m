@@ -326,6 +326,11 @@
     return qrFilter.outputImage;
 }
 
-
+- (UIColor *)themeColor {
+    return [UIColor colorWithRed:186.0/255.0
+                           green:138.0/255.0
+                            blue:87.0/255.0
+                           alpha:1.0];
+}
 
 @end
