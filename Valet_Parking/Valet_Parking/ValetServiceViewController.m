@@ -10,13 +10,19 @@
 #import "WelcomeViewController.h"
 #import "ParkNowViewController.h"
 #import "CurrentOrderViewController.h"
+#import "TopScroller.h"
+#import "TopImageView.h"
 
+#define DEVICE_FRAME [UIScreen mainScreen].bounds.size
+#define TOPIMAGE_HEIGHT 213.0f
 
 static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIdentifier";
 
-@interface ValetServiceViewController () <WelcomeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ValetServiceViewController () <WelcomeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, TopScrollerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (weak, nonatomic) IBOutlet TopScroller *topScroller;
+@property (strong, nonatomic) NSMutableArray *topImageViews;
+@property (strong, nonatomic) NSMutableArray *topImages;
 @end
 
 @implementation ValetServiceViewController
@@ -28,6 +34,15 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     [super viewDidLoad];
     
     [self setNavigationBar];
+    
+    // temp code
+    [self.topImages addObjectsFromArray:@[[UIImage imageNamed:@"scroller1"], [UIImage imageNamed:@"scroller2"], [UIImage imageNamed:@"scroller3"]]];
+    
+    self.topScroller.delegate = self;
+    [self.topScroller setupScroller];
+    [self.topScroller reload];
+
+    
     
     // [self setNeedsStatusBarAppearanceUpdate];
     
@@ -48,25 +63,62 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     [self.tableView reloadData];
 }
 
+
+
 //- (UIStatusBarStyle) preferredStatusBarStyle {
 //    return UIStatusBarStyleLightContent;
 //}
 
-- (void)setNavigationBar {
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar"]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    NSDictionary * dict=[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-    [self.navigationController.navigationBar setTitleTextAttributes:dict];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+#pragma mark - TopScrollerDelegate
+
+- (NSInteger)numberOfViewsForTopScroller:(TopScroller *)scroller
+{
+    return self.topImageViews.count;
 }
 
-- (void)popUpWelcomeView {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    WelcomeViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
-    viewController.delegate = self;
-    [self.navigationController presentViewController:viewController
-                                            animated:YES
-                                          completion:nil];
+- (UIView *)topScroller:(TopScroller *)scroller viewAtIndex:(int)index
+{
+    UIImageView *topImageView = self.topImageViews[index];
+    
+    if ([topImageView isEqual:[NSNull null]]) {
+//        XYTopImage *topImage = self.topImages[index];
+//        topImageView = [[TopImageView alloc] initWithImageUrl:topImage.pic title:topImage.title articleID:topImage.id];
+        topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, DEVICE_FRAME.width, TOPIMAGE_HEIGHT)];
+        [topImageView setImage:self.topImages[index]];
+        [self.topImageViews replaceObjectAtIndex:index withObject:topImageView];
+    }
+    
+    return topImageView;
+}
+
+- (UIView *)topScroller:(TopScroller *)scroller viewAtFirstOfLast:(BOOL)isFirst
+{
+    UIImageView *topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, DEVICE_FRAME.width, TOPIMAGE_HEIGHT)];
+    
+    if (isFirst) {
+        [topImageView setImage:self.topImages[0]];
+    } else {
+        [topImageView setImage:[self.topImages lastObject]];
+    }
+    
+    return topImageView;
+}
+
+- (void)topScroller:(TopScroller *)scroller clickedViewAtIndex:(int)index
+{
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    ArticleDetailViewController *articleDetailViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"ArticleDetailViewController"];
+//    
+//    XYTopImage *topImage = self.topImages[index];
+//    NSString *articleID = topImage.id;
+//    [articleDetailViewController setArticleID:[articleID integerValue]
+//                                    thumbnail:@""
+//                                  isFirstPage:YES];
+//    
+//    //    [articleDetailViewController setThumbnail:article.imageUrl];
+//    
+//    [self.navigationController pushViewController:articleDetailViewController animated:YES];
+    NSLog(@"click on scroller");
 }
 
 # pragma mark - UITableView
@@ -110,6 +162,45 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 
 + (NSArray *)textForTableView {
     return @[@"Parking Now", @"Current Orders"];
+}
+
+# pragma mark - Some settings
+
+- (void)setNavigationBar {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    NSDictionary * dict=[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [self.navigationController.navigationBar setTitleTextAttributes:dict];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
+
+- (void)popUpWelcomeView {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WelcomeViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
+    viewController.delegate = self;
+    [self.navigationController presentViewController:viewController
+                                            animated:YES
+                                          completion:nil];
+}
+
+- (NSMutableArray *)topImageViews
+{
+    if (!_topImageViews)
+    {
+        _topImageViews = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 3; i++) {
+            [_topImageViews addObject:[NSNull null]];
+        }
+    }
+    return _topImageViews;
+}
+
+- (NSMutableArray *)topImages {
+    if (!_topImages) {
+        _topImages = [[NSMutableArray alloc] init];
+    }
+    
+    return _topImages;
 }
 
 #pragma mark - WelcomeViewControllerDelegate
