@@ -142,10 +142,16 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.rightLabel.text = self.chosenPlace;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         } else if (indexPath.row == 1) {
             cell.rightLabel.text = [[self.userModel.firstName stringByAppendingString:@" "] stringByAppendingString:self.userModel.lastName];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         } else if (indexPath.row == 2) {
             cell.rightLabel.text = self.userModel.phone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         } else if (indexPath.row == 3) {
             if (self.chosenCar != nil) {
                 cell.rightLabel.text = self.chosenCar.plate;

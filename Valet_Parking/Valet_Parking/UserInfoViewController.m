@@ -15,7 +15,7 @@
 #import "WelcomeViewController.h"
 #import "LibraryAPI.h"
 
-
+static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIdentifier";
 static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 
 @interface UserInfoViewController () <UITableViewDelegate, UITableViewDataSource, WelcomeViewControllerDelegate>
@@ -124,9 +124,21 @@ static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        ImageTextCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ImageTextCellIdentifier
-                                                                  forIndexPath:indexPath];
-        [self configureImageCell:cell atIndexPath:indexPath];
+//        ImageTextCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ImageTextCellIdentifier
+//                                                                  forIndexPath:indexPath];
+//        [self configureImageCell:cell atIndexPath:indexPath];
+//        
+//        return cell;
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleTableViewCellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                          reuseIdentifier:@"CellForService"];
+        }
+        
+        cell.textLabel.text = [UserInfoViewController textForTableView][indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:[UserInfoViewController imageNameForTableView][indexPath.row]];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         return cell;
     } else {
@@ -142,16 +154,16 @@ static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 
 - (void)configureImageCell:(ImageTextCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    cell.cellTitle.text = [UserInfoViewController titleForCell][indexPath.row];
-    cell.cellImage.image = [UIImage imageNamed:[UserInfoViewController imageNameForCell][indexPath.row]];
+    cell.cellTitle.text = [UserInfoViewController textForTableView][indexPath.row];
+    cell.cellImage.image = [UIImage imageNamed:[UserInfoViewController imageNameForTableView][indexPath.row]];
     // [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
-+ (NSArray *)titleForCell {
++ (NSArray *)textForTableView {
     return @[@"My Profile", @"My Orders", @"My Cars"];
 }
 
-+ (NSArray *)imageNameForCell {
++ (NSArray *)imageNameForTableView {
     return @[@"user-color", @"order-color", @"car-color"];
 }
 
