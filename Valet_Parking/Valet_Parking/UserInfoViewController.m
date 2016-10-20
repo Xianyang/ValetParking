@@ -8,7 +8,7 @@
 
 #import "UserInfoViewController.h"
 #import "UserModel.h"
-#import "UserInfoCell.h"
+#import "ImageTextCell.h"
 #import "MyProfileViewController.h"
 #import "MyOrdersViewController.h"
 #import "MyCarsViewController.h"
@@ -16,7 +16,7 @@
 #import "LibraryAPI.h"
 
 
-static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
+static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 
 @interface UserInfoViewController () <UITableViewDelegate, UITableViewDataSource, WelcomeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -124,7 +124,7 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        UserInfoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:UserInfoCellIdentifier
+        ImageTextCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ImageTextCellIdentifier
                                                                   forIndexPath:indexPath];
         [self configureImageCell:cell atIndexPath:indexPath];
         
@@ -140,14 +140,19 @@ static NSString * const UserInfoCellIdentifier = @"UserInfoCell";
     
 }
 
-- (void)configureImageCell:(UserInfoCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureImageCell:(ImageTextCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     cell.cellTitle.text = [UserInfoViewController titleForCell][indexPath.row];
+    cell.cellImage.image = [UIImage imageNamed:[UserInfoViewController imageNameForCell][indexPath.row]];
     // [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
 + (NSArray *)titleForCell {
     return @[@"My Profile", @"My Orders", @"My Cars"];
+}
+
++ (NSArray *)imageNameForCell {
+    return @[@"user-color", @"order-color", @"car-color"];
 }
 
 

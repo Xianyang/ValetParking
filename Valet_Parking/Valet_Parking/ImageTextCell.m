@@ -6,9 +6,9 @@
 //  Copyright © 2016 xianyang. All rights reserved.
 //
 
-#import "UserInfoCell.h"
+#import "ImageTextCell.h"
 
-@implementation UserInfoCell
+@implementation ImageTextCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

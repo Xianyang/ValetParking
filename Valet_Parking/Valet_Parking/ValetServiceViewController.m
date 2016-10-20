@@ -149,6 +149,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     }
     
     cell.textLabel.text = [ValetServiceViewController textForTableView][indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:[ValetServiceViewController imageNameForTableView][indexPath.row]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -160,6 +161,10 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 
 + (NSArray *)textForTableView {
     return @[@"Parking Now", @"Current Orders"];
+}
+
++ (NSArray *)imageNameForTableView {
+    return @[@"valet-color", @"order-color"];
 }
 
 # pragma mark - Some settings

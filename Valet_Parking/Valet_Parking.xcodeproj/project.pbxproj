@@ -37,7 +37,7 @@
 		944E651C1D4711F30024B977 /* MyOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E64FF1D4711F20024B977 /* MyOrdersViewController.m */; };
 		944E651D1D4711F30024B977 /* MyCarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65011D4711F20024B977 /* MyCarsViewController.m */; };
 		944E651E1D4711F30024B977 /* AddCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65031D4711F20024B977 /* AddCarViewController.m */; };
-		944E651F1D4711F30024B977 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65051D4711F30024B977 /* UserInfoCell.m */; };
+		944E651F1D4711F30024B977 /* ImageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65051D4711F30024B977 /* ImageTextCell.m */; };
 		944E65201D4711F30024B977 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65071D4711F30024B977 /* UserModel.m */; };
 		944E65211D4711F30024B977 /* ValetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E65091D4711F30024B977 /* ValetModel.m */; };
 		944E65221D4711F30024B977 /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 944E650B1D4711F30024B977 /* CarModel.m */; };
@@ -143,8 +143,8 @@
 		944E65011D4711F20024B977 /* MyCarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCarsViewController.m; sourceTree = "<group>"; };
 		944E65021D4711F20024B977 /* AddCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCarViewController.h; sourceTree = "<group>"; };
 		944E65031D4711F20024B977 /* AddCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCarViewController.m; sourceTree = "<group>"; };
-		944E65041D4711F20024B977 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
-		944E65051D4711F30024B977 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
+		944E65041D4711F20024B977 /* ImageTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextCell.h; sourceTree = "<group>"; };
+		944E65051D4711F30024B977 /* ImageTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextCell.m; sourceTree = "<group>"; };
 		944E65061D4711F30024B977 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		944E65071D4711F30024B977 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		944E65081D4711F30024B977 /* ValetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValetModel.h; sourceTree = "<group>"; };
@@ -326,8 +326,8 @@
 		944E65281D4713CD0024B977 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				944E65041D4711F20024B977 /* UserInfoCell.h */,
-				944E65051D4711F30024B977 /* UserInfoCell.m */,
+				944E65041D4711F20024B977 /* ImageTextCell.h */,
+				944E65051D4711F30024B977 /* ImageTextCell.m */,
 				94FE2BD81D4858840096B408 /* CarCell.h */,
 				94FE2BD91D4858840096B408 /* CarCell.m */,
 				94FE2BDB1D48ABC20096B408 /* TwoLabelCell.h */,
@@ -835,7 +835,7 @@
 				944E651C1D4711F30024B977 /* MyOrdersViewController.m in Sources */,
 				8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */,
 				944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */,
-				944E651F1D4711F30024B977 /* UserInfoCell.m in Sources */,
+				944E651F1D4711F30024B977 /* ImageTextCell.m in Sources */,
 				944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */,
 				944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */,
 				944E65201D4711F30024B977 /* UserModel.m in Sources */,
@@ -988,7 +988,7 @@
 			baseConfigurationReference = 97DED36F8CD5826CE7FF58E1 /* Pods-Valet_Parking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Valet_Parking/Valet_Parking.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1008,7 +1008,7 @@
 			baseConfigurationReference = 75682B0B016C5B7619E375A4 /* Pods-Valet_Parking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Valet_Parking/Valet_Parking.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

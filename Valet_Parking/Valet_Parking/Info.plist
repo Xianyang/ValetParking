@@ -26,8 +26,6 @@
 	<true/>
 	<key>NSContactsUsageDescription</key>
 	<string>To contact valet</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchImage</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
