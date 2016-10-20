@@ -41,8 +41,6 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     self.topScroller.delegate = self;
     [self.topScroller setupScroller];
     [self.topScroller reload];
-
-    
     
     // [self setNeedsStatusBarAppearanceUpdate];
     
@@ -127,24 +125,19 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    if (indexPath.section == 0) {
+    if (indexPath.row == 0) {
         // park now
         ParkNowViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ParkNowViewController"];
         [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.row== 1) {
         // current orders view controller
         CurrentOrderViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CurrentOrderViewController"];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // if there is orders, then show the second section
-    return 2;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -155,9 +148,14 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                                        reuseIdentifier:@"CellForService"];
     }
     
-    cell.textLabel.text = [ValetServiceViewController textForTableView][indexPath.section];
+    cell.textLabel.text = [ValetServiceViewController textForTableView][indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0f;
 }
 
 + (NSArray *)textForTableView {
