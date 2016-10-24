@@ -16,7 +16,24 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0]
+                                              forKey:@"is_ValetParking_Valet_login"];
+    
+//    [self createItemsWithIcons];
+//    
+//    // determine whether we've launched from a shortcut item or not
+//    UIApplicationShortcutItem *item = [launchOptions valueForKey:UIApplicationLaunchOptionsShortcutItemKey];
+//    if (item) {
+//        NSLog(@"We've launched from shortcut item: %@", item.localizedTitle);
+//    } else {
+//        NSLog(@"We've launched properly.");
+//    }
+//    
+//    // have we launched Deep Link Level 1
+//    if ([item.type isEqualToString:@"com.luoxianyang.addOrder"]) {
+//        [self launchAddOrder];
+//    }
+    
     return YES;
 }
 
@@ -48,6 +65,60 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+# pragma mark - Springboard Shortcut Items (dynamic)
+
+- (void)createItemsWithIcons {
+    
+    // icons with my own images
+    UIApplicationShortcutIcon *icon1 = [UIApplicationShortcutIcon iconWithTemplateImageName:@"qr"];
+    
+    // create several (dynamic) shortcut items
+    UIMutableApplicationShortcutItem *item1 = [[UIMutableApplicationShortcutItem alloc]initWithType:@"com.luoxianyang.addOrder" localizedTitle:@"Add an Order" localizedSubtitle:nil icon:icon1 userInfo:nil];
+    
+    // add all items to an array
+    NSArray *items = @[item1];
+    
+    // add this array to the potentially existing static UIApplicationShortcutItems
+    NSArray *existingItems = [UIApplication sharedApplication].shortcutItems;
+    if (!existingItems.count) {
+        NSArray *updatedItems = [existingItems arrayByAddingObjectsFromArray:items];
+        [UIApplication sharedApplication].shortcutItems = updatedItems;
+    }
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    
+    // react to shortcut item selections
+    NSLog(@"A shortcut item was pressed. It was %@.", shortcutItem.localizedTitle);
+    
+    if ([shortcutItem.type isEqualToString:@"com.luoxianyang.addOrder"]) {
+        [self launchAddOrder];
+    }
+}
+
+// TODO login here
+- (void)launchAddOrder {
+    // grab our storyboard
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    // instantiate our tabbar controller
+    UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"MainTab"];
+    
+    // instantiate our navigation controller
+    UINavigationController *controller = tabBarController.viewControllers[0];
+    
+    // instantiate second view controller
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AddOrderViewController"];
+    
+    // now push both controllers onto the stack
+    [controller pushViewController:vc animated:NO];
+    
+    // make the nav controller visible
+    self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
+}
+
 
 
 #pragma mark - Core Data stack

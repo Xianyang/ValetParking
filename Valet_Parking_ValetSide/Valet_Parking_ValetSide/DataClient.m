@@ -54,6 +54,24 @@ static NSString * const AccountNameInKeychain = @"Valet_Parking_Valet_Login";
 }
 
 #pragma mark - Account
+- (BOOL)isUserLogin {
+    NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"is_ValetParking_Valet_login"];
+    if ([num intValue] == 0) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (void)setLogoutInShareApplication {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0]
+                                              forKey:@"is_ValetParking_Valet_login"];
+}
+
+- (void)setLoginInShareApplication {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1]
+                                              forKey:@"is_ValetParking_Valet_login"];
+}
 
 - (BOOL)saveValetModelToCoreData:(ValetModel *)valetModel {
     NSManagedObject *valetMO = [NSEntityDescription insertNewObjectForEntityForName:@"Valet"

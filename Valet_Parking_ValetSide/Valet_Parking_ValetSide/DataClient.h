@@ -15,6 +15,10 @@
 - (id)init;
 
 // Account
+- (BOOL)isUserLogin;
+- (void)setLogoutInShareApplication;
+- (void)setLoginInShareApplication;
+
 - (NSString *)getAccountInKeychain;
 - (NSString *)getPasswordInKeychain;
 - (BOOL)saveValetModelToCoreData:(ValetModel *)valetModel;

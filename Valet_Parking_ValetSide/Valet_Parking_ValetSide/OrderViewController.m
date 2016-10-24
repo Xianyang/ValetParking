@@ -40,16 +40,19 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
     
     // Step1 check if logged in
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(ValetModel *valetModel) {
-        [self loginSuccessfully:valetModel];
-    }
-                                                     fail:^(NSError *error) {
-                                                         [self.hud hideAnimated:YES];
-                                                         [self popUpWelcomeView];
-                                                     }];
     
-    
+    if (![[LibraryAPI sharedInstance] isUserLogin]) {
+        [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(ValetModel *valetModel) {
+            [self loginSuccessfully:valetModel];
+        }
+                                                         fail:^(NSError *error) {
+                                                             [self.hud hideAnimated:YES];
+                                                             [self popUpWelcomeView];
+                                                         }];
 
+    } else {
+        [self loadOrders];
+    }
 }
 
 - (IBAction)addOrder:(id)sender {
@@ -70,8 +73,7 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
         }];
         
         [self presentViewController:vc animated:YES completion:NULL];
-    }
-    else {
+    } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Reader not supported by the current device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [alert show];

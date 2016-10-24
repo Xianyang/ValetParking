@@ -160,7 +160,7 @@
 }
 
 - (void)logout {
-    // set log out
+    // set log out session
     [self.dataClient setLogoutInShareApplication];
     
     // delete user mo
