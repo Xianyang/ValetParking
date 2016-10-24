@@ -44,28 +44,22 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     
     // [self setNeedsStatusBarAppearanceUpdate];
     
-    // Step0 delete all cars in local database
-    [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
+    [self.tableView reloadData];
     
     // Step1 check if logged in
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
-        [hud hideAnimated:YES];
-        [self loginSuccessfully:userModel];
+    if (![[LibraryAPI sharedInstance] isUserLogin]) {
+        [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
+            [hud hideAnimated:YES];
+            [self loginSuccessfully:userModel];
+        }
+                                                         fail:^(NSError *error) {
+                                                             [hud hideAnimated:YES];
+                                                             [self popUpWelcomeView];
+                                                         }];
     }
-                                                     fail:^(NSError *error) {
-                                                         [hud hideAnimated:YES];
-                                                         [self popUpWelcomeView];
-                                                     }];
-    
-    [self.tableView reloadData];
 }
-
-
-
-//- (UIStatusBarStyle) preferredStatusBarStyle {
-//    return UIStatusBarStyleLightContent;
-//}
 
 #pragma mark - TopScrollerDelegate
 

@@ -49,6 +49,10 @@
 
 # pragma mark - Log in and Sign up
 
+- (BOOL)isUserLogin {
+    return [self.dataClient isUserLogin];
+}
+
 - (void)tryLoginWithLocalAccount:(void (^)(UserModel *userModel))successBlock
                             fail:(void (^)(NSError *error))failBlock{
         
@@ -77,6 +81,9 @@
     [self.httpClient loginWithPhone:phone
                            password:password
                             success:^(UserModel *userModel) {
+                                // save login seesion
+                                [self.dataClient setLoginInShareApplication];
+                                
                                 // save the user's account and password
                                 [self.dataClient saveAccountToKeychain:phone password:password];
                                 
@@ -106,6 +113,9 @@
                               lastName:lastName
                               password:password
                                success:^(UserModel *userModel) {
+                                   // save login seesion
+                                   [self.dataClient setLoginInShareApplication];
+                                   
                                    // save the user's account and password
                                    [self.dataClient saveAccountToKeychain:phone password:password];
                                    
@@ -130,6 +140,9 @@
     [self.httpClient resetPasswordWithPhone:phone
                                    password:password
                                     success:^(UserModel *userModel) {
+                                        // save login seesion
+                                        [self.dataClient setLoginInShareApplication];
+                                        
                                         // save the user's account and password
                                         [self.dataClient saveAccountToKeychain:phone password:password];
                                         
@@ -147,6 +160,9 @@
 }
 
 - (void)logout {
+    // set log out
+    [self.dataClient setLogoutInShareApplication];
+    
     // delete user mo
     [self.dataClient deleteUserMO];
     

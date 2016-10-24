@@ -11,13 +11,14 @@
 #import "ParkTicketViewController.h"
 #import "EditItemViewController.h"
 #import "MyCarsViewController.h"
+#import "WelcomeViewController.h"
 #import "TwoLabelCell.h"
 #import "UserModel.h"
 #import "CarModel.h"
 
 static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
-@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, EditItemViewControllerDelegate, MyCarsViewControllerDelegate>
+@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, EditItemViewControllerDelegate, MyCarsViewControllerDelegate, WelcomeViewControllerDelegate>
 @property (strong, nonatomic) NSArray *cars;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UserModel *userModel;
@@ -32,6 +33,24 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Step1 check if logged in
+    if (![[LibraryAPI sharedInstance] isUserLogin]) {
+        [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
+            [hud hideAnimated:YES];
+            [self loginSuccessfully:userModel];
+        }
+                                                         fail:^(NSError *error) {
+                                                             [hud hideAnimated:YES];
+                                                             [self popUpWelcomeView];
+                                                         }];
+    } else {
+        [self settingsAfterViewDidLoad];
+    }
+}
+
+- (void)settingsAfterViewDidLoad {
     // Step1 - Let user chooses its info
     self.userModel = [[LibraryAPI sharedInstance] getCurrentUserModel];
     self.userCars = [[LibraryAPI sharedInstance] getAllCarModelsInCoreData];
@@ -44,6 +63,8 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     if (self.userCars.count) {
         self.chosenCar = [self.userCars lastObject];
     }
+    
+    [self.tableView reloadData];
 }
 
 - (void)checkCars {
@@ -58,9 +79,42 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     }
 }
 
+- (void)popUpWelcomeView {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WelcomeViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
+    viewController.delegate = self;
+    [self.navigationController presentViewController:viewController
+                                            animated:YES
+                                          completion:nil];
+}
+
+
 - (void)finishChangeText:(NSString *)newText {
     
 }
+
+#pragma mark - WelcomeViewControllerDelegate
+
+- (void)loginSuccessfully:(UserModel *)userModel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // get user's car
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[LibraryAPI sharedInstance] getCarsForUser:userModel
+                                        success:^(NSArray *cars) {
+                                            NSLog(@"Get %lu cars from server", (unsigned long)[cars count]);
+                                            [hud hideAnimated:YES];
+                                            [self settingsAfterViewDidLoad];
+                                        }
+                                           fail:^(NSError *error) {
+                                               hud.mode = MBProgressHUDModeText;
+                                               hud.label.text = @"fail to fetch cars";
+                                               [hud hideAnimated:YES afterDelay:1];
+                                           }];
+}
+
 
 # pragma mark - My Car Viewcontroller Delegate
 - (void)setChosenCarModel:(CarModel *)aCarModel {

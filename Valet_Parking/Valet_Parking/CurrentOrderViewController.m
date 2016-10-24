@@ -8,12 +8,13 @@
 
 #import "CurrentOrderViewController.h"
 #import "CarStatusViewController.h"
+#import "WelcomeViewController.h"
 #import "OrderModel.h"
 #import "TwoLabelCell.h"
 
 static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
-@interface CurrentOrderViewController () <UITableViewDelegate, UITableViewDataSource, CarStatusViewControllerDelegate>
+@interface CurrentOrderViewController () <UITableViewDelegate, UITableViewDataSource, CarStatusViewControllerDelegate, WelcomeViewControllerDelegate>
 {
 //    NSUInteger _numberOfOrder;
 }
@@ -28,9 +29,29 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.orders = [[NSMutableArray alloc] init];
-    
-    [self loadOrders];
+    if (![[LibraryAPI sharedInstance] isUserLogin]) {
+        [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
+            [hud hideAnimated:YES];
+            [self loginSuccessfully:userModel];
+        }
+                                                         fail:^(NSError *error) {
+                                                             [hud hideAnimated:YES];
+                                                             [self popUpWelcomeView];
+                                                         }];
+    } else {
+        [self loadOrders];
+    }
+}
+
+- (void)popUpWelcomeView {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WelcomeViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
+    viewController.delegate = self;
+    [self.navigationController presentViewController:viewController
+                                            animated:YES
+                                          completion:nil];
 }
 
 - (void)loadOrders {
@@ -72,6 +93,29 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     [self loadOrders];
 }
 
+#pragma mark - WelcomeViewControllerDelegate
+
+- (void)loginSuccessfully:(UserModel *)userModel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // TODO some instruction
+    
+    // get user's car
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[LibraryAPI sharedInstance] getCarsForUser:userModel
+                                        success:^(NSArray *cars) {
+                                            NSLog(@"Get %lu cars from server", (unsigned long)[cars count]);
+                                            [hud hideAnimated:YES];
+                                            [self loadOrders];
+                                        }
+                                           fail:^(NSError *error) {
+                                               hud.mode = MBProgressHUDModeText;
+                                               hud.label.text = @"fail to fetch cars";
+                                               [hud hideAnimated:YES afterDelay:1];
+                                           }];
+}
+
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.orders.count;
@@ -109,6 +153,14 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     } else {
         cell.rightLabel.text = @"in parking lot";
     }
+}
+
+- (NSMutableArray *)orders {
+    if (!_orders) {
+        _orders = [[NSMutableArray alloc] init];
+    }
+    
+    return _orders;
 }
 
 - (void)didReceiveMemoryWarning {
