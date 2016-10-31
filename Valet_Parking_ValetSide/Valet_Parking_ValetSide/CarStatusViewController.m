@@ -32,6 +32,17 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     self.order = order;
 }
 
+- (IBAction)callCustomer:(id)sender {
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@", self.order.userPhone]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    } else {
+        UIAlertView *calert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Call facility is not available!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        [calert show];
+    }
+}
+
 #pragma mark UITableView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,7 +75,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section?1:3;
+    return section?1:5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -73,8 +84,16 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
                                                        reuseIdentifier:@"section1"];
         
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.text = @"End this Order";
-        cell.textLabel.textColor = [UIColor redColor];
+        
+        if (self.order.userRequestAt) {
+            cell.textLabel.text = @"End this Order";
+            cell.textLabel.textColor = [UIColor redColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        } else {
+            cell.textLabel.text = @"In the parking lot";
+            cell.textLabel.textColor = [UIColor greenColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
         
         return cell;
     } else {
@@ -90,19 +109,25 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 - (void)configureCell:(TwoLabelCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.leftLabel.text = [CarStatusViewController titleArray][indexPath.row];
     
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
     if (indexPath.row == 0) {
         cell.rightLabel.text = self.order.carPlate;
     } else if (indexPath.row == 1) {
         cell.rightLabel.text = self.order.carBrand;
-    } else {
+    } else if (indexPath.row == 2) {
         cell.rightLabel.text = self.order.carColor;
+    } else if (indexPath.row == 3) {
+        cell.rightLabel.text = [self.order.userFirstName stringByAppendingString:self.order.userLastName];
+    } else {
+        cell.rightLabel.text = self.order.userPhone;
     }
     
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    
 }
 
 + (NSArray *)titleArray {
-    return @[@"Plate", @"Brand", @"Color"];
+    return @[@"Plate", @"Brand", @"Color", @"User Name", @"Use Phone"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,4 +10,8 @@
 
 @interface OrderViewController : UIViewController
 
+- (void)loadOrders;
+- (void)stopTimer;
+- (void)restartTimer;
+
 @end

@@ -204,6 +204,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 
 - (void)loginSuccessfully:(UserModel *)userModel
 {
+    [self.tabBarController setSelectedIndex:0];
     [self dismissViewControllerAnimated:YES completion:nil];
     // TODO some instruction
     

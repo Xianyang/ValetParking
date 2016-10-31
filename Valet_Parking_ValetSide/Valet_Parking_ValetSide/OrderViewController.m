@@ -81,6 +81,7 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
 }
 
 - (void)loadOrders {
+    NSLog(@"start load orders");
     [self.timer setFireDate:[NSDate distantFuture]];
     // get all the orders
     [[LibraryAPI sharedInstance] getAllOpeningOrders:[[LibraryAPI sharedInstance] getCurrentValetModel]
@@ -96,6 +97,14 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
                                                     [self.hud hideAnimated:YES afterDelay:2];
                                                     [self.timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60.0f]];
                                                 }];
+}
+
+- (void)stopTimer {
+    [self.timer setFireDate:[NSDate distantFuture]];
+}
+
+- (void)restartTimer {
+    [self.timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:60.0f]];
 }
 
 #pragma mark - Notifying refresh control of scrolling
@@ -194,22 +203,23 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 0) {
-        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        CarStatusViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"CarStatusViewController"];
-        vc.delegate = self;
-        
-        OrderModel *order;
-        if (indexPath.section) {
-            order = self.newlyCreatedOrders[indexPath.row];
-        } else {
-            order = self.requestingOrders[indexPath.row];
-        }
-        
-        [vc setAnOrder:order];
-        
-        [self.navigationController pushViewController:vc animated:YES];
+//    if (indexPath.section == 0) {
+//        
+//    }
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CarStatusViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"CarStatusViewController"];
+    vc.delegate = self;
+    
+    OrderModel *order;
+    if (indexPath.section) {
+        order = self.newlyCreatedOrders[indexPath.row];
+    } else {
+        order = self.requestingOrders[indexPath.row];
     }
+    
+    [vc setAnOrder:order];
+    
+    [self.navigationController pushViewController:vc animated:YES];
     
     
 }
@@ -229,6 +239,8 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
     }
     
     cell.textLabel.text = [[order.carPlate stringByAppendingString:@"-"] stringByAppendingString:order.carBrand];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
@@ -237,6 +249,7 @@ static NSString * const OrderCellIdentifier = @"OrderCell";
 
 - (void)loginSuccessfully:(ValetModel *)valetModel
 {
+    [self.tabBarController setSelectedIndex:0];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     [self loadOrders];

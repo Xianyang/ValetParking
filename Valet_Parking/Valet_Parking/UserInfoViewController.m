@@ -9,6 +9,7 @@
 #import "UserInfoViewController.h"
 #import "UserModel.h"
 #import "ImageTextCell.h"
+#import "ValetServiceViewController.h"
 #import "MyProfileViewController.h"
 #import "MyOrdersViewController.h"
 #import "MyCarsViewController.h"
@@ -19,7 +20,7 @@
 static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIdentifier";
 static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 
-@interface UserInfoViewController () <UITableViewDelegate, UITableViewDataSource, WelcomeViewControllerDelegate>
+@interface UserInfoViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -37,34 +38,17 @@ static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 }
 
 - (void)popUpWelcomeView {
+    UINavigationController *nav = self.tabBarController.viewControllers[0];
+    ValetServiceViewController *vc = (ValetServiceViewController *)nav.topViewController;
+
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WelcomeViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
-    viewController.delegate = self;
+    viewController.delegate = (id)vc;
     [self.navigationController presentViewController:viewController
                                             animated:YES
                                           completion:nil];
 }
 
-- (void)loginSuccessfully:(UserModel *)userModel
-{
-    [self.tabBarController setSelectedIndex:0];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    // get user's car
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [[LibraryAPI sharedInstance] getCarsForUser:userModel
-                                        success:^(NSArray *cars) {
-                                            NSLog(@"Get %lu cars from server", (unsigned long)[cars count]);
-                                            [hud hideAnimated:YES];
-                                        }
-                                           fail:^(NSError *error) {
-                                               hud.mode = MBProgressHUDModeText;
-                                               hud.label.text = @"fail to fetch cars";
-                                               [hud hideAnimated:YES afterDelay:1];
-                                           }];
-
-}
 
 # pragma mark - UITableViewDelegate
 

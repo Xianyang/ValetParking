@@ -37,8 +37,6 @@
     [self.cancelAddCarBtn setAction:@selector(cancelAddCar)];
     [self.finishAddCarBtn setAction:@selector(finishAddCar)];
     
-    [self.plateTextField becomeFirstResponder];
-    
     self.userPhone = [[[LibraryAPI sharedInstance] getCurrentUserModel] phone];
     
     if (_editMode) {
@@ -55,6 +53,8 @@
         self.colorTextField.text = _oldCar.color;
         
         [self.brandTextField becomeFirstResponder];
+    } else {
+        [self.plateTextField becomeFirstResponder];
     }
 }
 
