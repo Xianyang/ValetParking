@@ -23,6 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"Back")
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [self.navigationItem setBackBarButtonItem:backButton];
+    
 //    NSError *err;
 //    NSDictionary *dic = @{@"a":@"b"};
 //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&err];

@@ -35,6 +35,13 @@ static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
     NSDictionary * dict=[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     [self.navigationController.navigationBar setTitleTextAttributes:dict];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"Back")
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [self.navigationItem setBackBarButtonItem:backButton];
 }
 
 - (void)popUpWelcomeView {

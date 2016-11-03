@@ -9,16 +9,18 @@
 #import "ParkNowViewController.h"
 #import "AddCarViewController.h"
 #import "ParkTicketViewController.h"
+#import "PlaceListViewController.h"
 #import "EditItemViewController.h"
 #import "MyCarsViewController.h"
 #import "WelcomeViewController.h"
+#import "MapViewController.h"
 #import "TwoLabelCell.h"
 #import "UserModel.h"
 #import "CarModel.h"
 
 static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
-@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, EditItemViewControllerDelegate, MyCarsViewControllerDelegate, WelcomeViewControllerDelegate>
+@interface ParkNowViewController () <AddCarViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, EditItemViewControllerDelegate, MyCarsViewControllerDelegate, WelcomeViewControllerDelegate, MapViewControllerDelegate>
 @property (strong, nonatomic) NSArray *cars;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UserModel *userModel;
@@ -32,6 +34,13 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"Back")
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [self.navigationItem setBackBarButtonItem:backButton];
     
     // Step1 check if logged in
     if (![[LibraryAPI sharedInstance] isUserLogin]) {
@@ -59,7 +68,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     [self checkCars];
     
     // TODO set chosen car and place
-    self.chosenPlace = @"California Tower";
+    self.chosenPlace = [ListForCell placeArray][0];
     if (self.userCars.count) {
         self.chosenCar = [self.userCars lastObject];
     }
@@ -91,6 +100,13 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
 - (void)finishChangeText:(NSString *)newText {
     
+}
+
+#pragma mark - MapViewControllerDelegate
+
+- (void)refreshPlace:(NSString *)place {
+    self.chosenPlace = place;
+    [self.tableView reloadData];
 }
 
 #pragma mark - WelcomeViewControllerDelegate
@@ -151,7 +167,11 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
             [self.navigationController pushViewController:vc animated:YES];
         }
          */
-        if (indexPath.row == 3) {
+        if (indexPath.row == 0) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            PlaceListViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PlaceListViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 3) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             MyCarsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MyCarsViewController"];
             [vc setDelegate:self];
@@ -170,7 +190,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50.0f;
+    return CELL_HEIGHT;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -196,7 +216,6 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.rightLabel.text = self.chosenPlace;
-            cell.accessoryType = UITableViewCellAccessoryNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         } else if (indexPath.row == 1) {
             cell.rightLabel.text = [[self.userModel.firstName stringByAppendingString:@" "] stringByAppendingString:self.userModel.lastName];

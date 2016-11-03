@@ -17,5 +17,8 @@
 #import "LibraryAPI.h"
 #import "APIMessage.h"
 #import "UIButton+Status.h"
+#import "ListForCell.h"
+
+#define CELL_HEIGHT 50.0f
 
 #endif /* PrefixHeader_pch */

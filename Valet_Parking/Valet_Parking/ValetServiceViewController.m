@@ -157,7 +157,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50.0f;
+    return CELL_HEIGHT;
 }
 
 + (NSArray *)textForTableView {
@@ -177,6 +177,13 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     [self.navigationController.navigationBar setTitleTextAttributes:dict];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"Back")
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [self.navigationItem setBackBarButtonItem:backButton];
 }
 
 - (void)popUpWelcomeView {

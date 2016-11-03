@@ -22,6 +22,13 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"Back")
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    [self.navigationItem setBackBarButtonItem:backButton];
+    
     [self loadOrders];
 }
 

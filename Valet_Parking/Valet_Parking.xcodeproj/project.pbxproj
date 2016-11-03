@@ -11,6 +11,9 @@
 		8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 8635F48D1DB13344007830D0 /* UIButton+Status.m */; };
 		864DF94D1DB224DB004EDDEA /* DataClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DF94C1DB224DB004EDDEA /* DataClient.m */; };
 		864DFA231DB4AB80004EDDEA /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 864DFA221DB4AB80004EDDEA /* OrderModel.m */; };
+		8674C98A1DCB547900AA6D42 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8674C9891DCB547900AA6D42 /* MapViewController.m */; };
+		8674C98D1DCB54CF00AA6D42 /* PlaceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8674C98C1DCB54CF00AA6D42 /* PlaceListViewController.m */; };
+		8674C9901DCB6ABA00AA6D42 /* ListForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8674C98F1DCB6ABA00AA6D42 /* ListForCell.m */; };
 		8679DED71DB73D7500BEE59E /* CurrentOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED61DB73D7500BEE59E /* CurrentOrderViewController.m */; };
 		8679DEDA1DB753A900BEE59E /* CarStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED91DB753A900BEE59E /* CarStatusViewController.m */; };
 		86853A8F1DB8D47F0048905A /* TopScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 86853A8D1DB8D47F0048905A /* TopScroller.m */; };
@@ -90,6 +93,12 @@
 		864DF94C1DB224DB004EDDEA /* DataClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataClient.m; sourceTree = "<group>"; };
 		864DFA211DB4AB80004EDDEA /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		864DFA221DB4AB80004EDDEA /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		8674C9881DCB547900AA6D42 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		8674C9891DCB547900AA6D42 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		8674C98B1DCB54CF00AA6D42 /* PlaceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceListViewController.h; sourceTree = "<group>"; };
+		8674C98C1DCB54CF00AA6D42 /* PlaceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceListViewController.m; sourceTree = "<group>"; };
+		8674C98E1DCB6ABA00AA6D42 /* ListForCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListForCell.h; sourceTree = "<group>"; };
+		8674C98F1DCB6ABA00AA6D42 /* ListForCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListForCell.m; sourceTree = "<group>"; };
 		8679DED51DB73D7500BEE59E /* CurrentOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentOrderViewController.h; sourceTree = "<group>"; };
 		8679DED61DB73D7500BEE59E /* CurrentOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentOrderViewController.m; sourceTree = "<group>"; };
 		8679DED81DB753A900BEE59E /* CarStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarStatusViewController.h; sourceTree = "<group>"; };
@@ -365,6 +374,8 @@
 				944E650F1D4711F30024B977 /* HttpClient.m */,
 				864DF94B1DB224DB004EDDEA /* DataClient.h */,
 				864DF94C1DB224DB004EDDEA /* DataClient.m */,
+				8674C98E1DCB6ABA00AA6D42 /* ListForCell.h */,
+				8674C98F1DCB6ABA00AA6D42 /* ListForCell.m */,
 				8635F4891DB129B4007830D0 /* APIMessage.h */,
 				8635F48A1DB129B4007830D0 /* APIMessage.m */,
 				8635F48C1DB13344007830D0 /* UIButton+Status.h */,
@@ -397,8 +408,12 @@
 				944E64F31D4711F20024B977 /* ValetServiceViewController.m */,
 				944E64F41D4711F20024B977 /* ParkNowViewController.h */,
 				944E64F51D4711F20024B977 /* ParkNowViewController.m */,
+				8674C98B1DCB54CF00AA6D42 /* PlaceListViewController.h */,
+				8674C98C1DCB54CF00AA6D42 /* PlaceListViewController.m */,
 				9448F4901D49F27E008AD1E2 /* ParkTicketViewController.h */,
 				9448F4911D49F27E008AD1E2 /* ParkTicketViewController.m */,
+				8674C9881DCB547900AA6D42 /* MapViewController.h */,
+				8674C9891DCB547900AA6D42 /* MapViewController.m */,
 				8679DED51DB73D7500BEE59E /* CurrentOrderViewController.h */,
 				8679DED61DB73D7500BEE59E /* CurrentOrderViewController.m */,
 				8679DED81DB753A900BEE59E /* CarStatusViewController.h */,
@@ -830,12 +845,14 @@
 			files = (
 				86853A921DB8D9270048905A /* TopImageView.m in Sources */,
 				944E65221D4711F30024B977 /* CarModel.m in Sources */,
+				8674C9901DCB6ABA00AA6D42 /* ListForCell.m in Sources */,
 				86853A8F1DB8D47F0048905A /* TopScroller.m in Sources */,
 				944E65141D4711F30024B977 /* RegisterViewController.m in Sources */,
 				944E651C1D4711F30024B977 /* MyOrdersViewController.m in Sources */,
 				8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */,
 				944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */,
 				944E651F1D4711F30024B977 /* ImageTextCell.m in Sources */,
+				8674C98D1DCB54CF00AA6D42 /* PlaceListViewController.m in Sources */,
 				944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */,
 				944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */,
 				944E65201D4711F30024B977 /* UserModel.m in Sources */,
@@ -855,6 +872,7 @@
 				8679DED71DB73D7500BEE59E /* CurrentOrderViewController.m in Sources */,
 				944E651A1D4711F30024B977 /* SettingViewController.m in Sources */,
 				94FE2BDD1D48ABC20096B408 /* TwoLabelCell.m in Sources */,
+				8674C98A1DCB547900AA6D42 /* MapViewController.m in Sources */,
 				944E651B1D4711F30024B977 /* MyProfileViewController.m in Sources */,
 				9448F4921D49F27E008AD1E2 /* ParkTicketViewController.m in Sources */,
 				864DF94D1DB224DB004EDDEA /* DataClient.m in Sources */,

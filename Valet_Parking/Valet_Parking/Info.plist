@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSContactsUsageDescription</key>
 	<string>To contact valet</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Use your location to determine how far you are from drop-off point</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
