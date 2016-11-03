@@ -12,7 +12,6 @@
 @implementation MBProgressHUD (ValetShowAlert)
 
 - (void)showErrorMessage:(NSError *)error {
-    
     self.mode = MBProgressHUDModeText;
     self.label.text = [[APIMessage sharedInstance] messageToShowWithError:error.code];
     [self hideAnimated:YES afterDelay:2];

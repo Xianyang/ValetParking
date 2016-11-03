@@ -36,7 +36,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     // Step1 check if logged in
     if (![[LibraryAPI sharedInstance] isUserLogin]) {
         [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
         [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
             [hud hideAnimated:YES];
             [self loginSuccessfully:userModel];
@@ -100,7 +100,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     [self dismissViewControllerAnimated:YES completion:nil];
     
     // get user's car
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
     
     [[LibraryAPI sharedInstance] getCarsForUser:userModel
                                         success:^(NSArray *cars) {

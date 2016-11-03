@@ -76,4 +76,10 @@
 
 - (UIColor *)themeColor;
 
+// check data & transformation
+- (BOOL)isPhoneNumberValid:(NSString *)phoneStr;
+- (NSString *)transferOrderDateToYYYYMMDDAndTime:(NSString *)orderDate;
+- (NSString *)transferOrderDateToMMDDAndTime:(NSString *)orderDate;
+- (NSTimeInterval)calculateTimeIntervalSinceTime:(NSString *)datetime;
+
 @end

@@ -154,7 +154,7 @@ static NSString * const CarCellIdentifier = @"CarCell";
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete && _isEditable) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
         
         [[LibraryAPI sharedInstance] deleteCarWithCarModel:self.cars[indexPath.row]
                                                    success:^(NSString *msg) {

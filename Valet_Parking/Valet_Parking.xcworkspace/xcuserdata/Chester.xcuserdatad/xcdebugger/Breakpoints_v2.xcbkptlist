@@ -20,13 +20,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Valet_Parking/HttpClient.m"
-            timestampString = "498649120.591206"
+            timestampString = "499764937.550217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "-registerWithPhone:firstName:lastName:password:success:fail:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__73-[HttpClient registerWithPhone:firstName:lastName:password:success:fail:]_block_invoke.110"
+                  moduleName = "Valet_Parking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Chester/Dissertation/Valet_Parking/Valet_Parking/Valet_Parking/HttpClient.m"
+                  timestampString = "499861783.674064"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.111"
+                  moduleName = "Valet_Parking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Chester/Dissertation/Valet_Parking/Valet_Parking/Valet_Parking/HttpClient.m"
+                  timestampString = "499861783.676005"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.112"
+                  moduleName = "Valet_Parking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Chester/Dissertation/Valet_Parking/Valet_Parking/Valet_Parking/HttpClient.m"
+                  timestampString = "499861783.677853"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

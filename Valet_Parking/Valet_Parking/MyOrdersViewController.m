@@ -27,7 +27,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
 - (void)loadOrders {
     [self.orders removeAllObjects];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
     [[LibraryAPI sharedInstance] getCurrentOrdersForUser:[[LibraryAPI sharedInstance] getCurrentUserModel]
                                                  success:^(NSArray *orders) {
                                                      if (orders.count) {
@@ -78,15 +78,9 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 - (void)configureCell:(TwoLabelCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     OrderModel *order = self.orders[indexPath.row];
     cell.leftLabel.text = [[order.carPlate stringByAppendingString:@" "] stringByAppendingString:order.carBrand];
-    
-//    cell.rightLabel.text = order.createAt;
+
     // Convert string to date object
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"EE MMM d yyyy HH:mm:ss 'GMT'ZZZZ '(CST)'"];
-    NSDate *date = [dateFormat dateFromString:order.createAt];
-    [dateFormat setDateFormat:@"MM/d/yyyy HH:mm"];
-    NSString *dateString = [dateFormat stringFromDate:date];
-    
+    NSString *dateString = [[LibraryAPI sharedInstance] transferOrderDateToYYYYMMDDAndTime:order.createAt];
     
     cell.rightLabel.text = dateString;
 }

@@ -81,7 +81,7 @@
         // user wants to edit this car
         newCar._id = _oldCar._id;
         
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
         [[LibraryAPI sharedInstance] updateACar:_oldCar
                                     newCarModel:newCar
                                         success:^(CarModel *carModel) {
@@ -98,7 +98,7 @@
         
     } else {
         // user wants to add a new car
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
         [[LibraryAPI sharedInstance] addACar:newCar
                                      succeed:^(CarModel *carModel) {
                                          [self.view endEditing:YES];

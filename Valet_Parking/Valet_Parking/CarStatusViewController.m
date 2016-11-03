@@ -34,7 +34,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section && !self.order.userRequestAt) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
         [[LibraryAPI sharedInstance] recallACar:self.order
                                         success:^(OrderModel *orderModel) {
                                             [hud hideAnimated:YES];
@@ -59,7 +59,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section?1:3;
+    return section?1:5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,7 +68,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
                                                        reuseIdentifier:@"section1"];
         
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.text = self.order.userRequestAt?@"returning with valet":@"Recall";
+        cell.textLabel.text = self.order.userRequestAt?@"The car is on its way back":@"Get your car back";
         cell.textLabel.textColor = [UIColor greenColor];
         
         return cell;
@@ -83,21 +83,30 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 }
 
 - (void)configureCell:(TwoLabelCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.leftLabel.text = [CarStatusViewController titleArray][indexPath.row];
     
     if (indexPath.row == 0) {
         cell.rightLabel.text = self.order.carPlate;
     } else if (indexPath.row == 1) {
         cell.rightLabel.text = self.order.carBrand;
-    } else {
+    } else if (indexPath.row == 2) {
         cell.rightLabel.text = self.order.carColor;
+    } else if (indexPath.row == 3) {
+        cell.rightLabel.text = [[LibraryAPI sharedInstance] transferOrderDateToMMDDAndTime:self.order.createAt];
+    } else if (indexPath.row == 4) {
+        NSTimeInterval timeInterval = [[LibraryAPI sharedInstance] calculateTimeIntervalSinceTime:self.order.createAt];
+        int hour = timeInterval / 3600;
+        int minute = (timeInterval - hour * 3600) / 60;
+        NSString *timeString = [NSString stringWithFormat:@"%d h %d m", hour, minute];
+        cell.rightLabel.text = timeString;
     }
     
     cell.accessoryType = UITableViewCellAccessoryNone;
 }
 
 + (NSArray *)titleArray {
-    return @[@"Plate", @"Brand", @"Color"];
+    return @[@"Plate", @"Brand", @"Color", @"Start Time", @"Parking Time"];
 }
 
 - (void)didReceiveMemoryWarning {

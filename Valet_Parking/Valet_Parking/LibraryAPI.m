@@ -13,6 +13,8 @@
 #import "DataClient.h"
 #import "UserModel.h"
 
+#define NUMBER_LENGTH_HK 8
+
 @interface LibraryAPI()
 @property (strong, nonatomic) HttpClient *httpClient;
 @property (strong, nonnull) DataClient *dataClient;
@@ -61,6 +63,7 @@
     
     if ([userAccount isEqualToString:@""] || [userPassword isEqualToString:@""]) {
         failBlock(nil);
+        return;
     }
     
     [self loginWithPhone:userAccount
@@ -347,6 +350,57 @@
                            green:138.0/255.0
                             blue:87.0/255.0
                            alpha:1.0];
+}
+
+# pragma mark - Check Validity
+- (BOOL)isPhoneNumberValid:(NSString *)phoneStr {
+    // check length
+    if (phoneStr.length != NUMBER_LENGTH_HK) {
+        return NO;
+    }
+    
+    // check if number
+    NSInteger number = [phoneStr integerValue];
+    if (!number) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (NSDate *)dateFromOrderDateString:(NSString *)dateString {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"EE MMM d yyyy HH:mm:ss 'GMT'ZZZZ '(CST)'"];
+    NSDate *date = [dateFormat dateFromString:dateString];
+    return date;
+}
+
+- (NSString *)transferOrderDateToYYYYMMDDAndTime:(NSString *)orderDate {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDate *date = [self dateFromOrderDateString:orderDate];
+    [dateFormat setDateFormat:@"d/MM/yyyy HH:mm"];
+    NSString *dateString = [dateFormat stringFromDate:date];
+    
+    return dateString;
+}
+
+- (NSString *)transferOrderDateToMMDDAndTime:(NSString *)orderDate {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDate *date = [self dateFromOrderDateString:orderDate];
+    [dateFormat setDateFormat:@"d/MM HH:mm"];
+    NSString *dateString = [dateFormat stringFromDate:date];
+    
+    return dateString;
+}
+
+- (NSTimeInterval)calculateTimeIntervalSinceTime:(NSString *)datetime {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDate *date = [self dateFromOrderDateString:datetime];
+    
+    NSDate *nowDate = [NSDate date];
+    NSTimeInterval timeInterval = [nowDate timeIntervalSinceDate:date];
+    
+    return timeInterval;
 }
 
 @end

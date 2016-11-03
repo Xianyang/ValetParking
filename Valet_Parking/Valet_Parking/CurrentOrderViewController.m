@@ -31,7 +31,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     
     if (![[LibraryAPI sharedInstance] isUserLogin]) {
         [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
         [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
             [hud hideAnimated:YES];
             [self loginSuccessfully:userModel];
@@ -56,7 +56,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
 
 - (void)loadOrders {
     [self.orders removeAllObjects];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
     [[LibraryAPI sharedInstance] getCurrentOrdersForUser:[[LibraryAPI sharedInstance] getCurrentUserModel]
                                                  success:^(NSArray *orders) {
                                                      if (orders.count) {
@@ -101,7 +101,7 @@ static NSString * const TwoLabelCellIdentifier = @"TwoLabelCell";
     // TODO some instruction
     
     // get user's car
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
     
     [[LibraryAPI sharedInstance] getCarsForUser:userModel
                                         success:^(NSArray *cars) {

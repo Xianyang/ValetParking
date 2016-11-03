@@ -23,6 +23,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 @property (weak, nonatomic) IBOutlet TopScroller *topScroller;
 @property (strong, nonatomic) NSMutableArray *topImageViews;
 @property (strong, nonatomic) NSMutableArray *topImages;
+@property (strong, nonnull) MBProgressHUD *hud;
 @end
 
 @implementation ValetServiceViewController
@@ -34,22 +35,12 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     [super viewDidLoad];
     
     [self setNavigationBar];
-    
-    // temp code
-    [self.topImages addObjectsFromArray:@[[UIImage imageNamed:@"scroller1"], [UIImage imageNamed:@"scroller2"], [UIImage imageNamed:@"scroller3"]]];
-    
-    self.topScroller.delegate = self;
-    [self.topScroller setupScroller];
-    [self.topScroller reload];
-    
-    // [self setNeedsStatusBarAppearanceUpdate];
-    
     [self.tableView reloadData];
     
     // Step1 check if logged in
     if (![[LibraryAPI sharedInstance] isUserLogin]) {
         [[LibraryAPI sharedInstance] deleteAllCarsInCoreData];
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
         [[LibraryAPI sharedInstance] tryLoginWithLocalAccount:^(UserModel *userModel) {
             [hud hideAnimated:YES];
             [self loginSuccessfully:userModel];
@@ -59,6 +50,22 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                                              [self popUpWelcomeView];
                                                          }];
     }
+    
+    // Step 2 refresh the scroller
+    [self setScroller];
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+- (void)setScroller {
+    // temp code
+    [self.topImages addObjectsFromArray:@[[UIImage imageNamed:@"scroller1"], [UIImage imageNamed:@"scroller2"], [UIImage imageNamed:@"scroller3"]]];
+    
+    self.topScroller.delegate = self;
+    [self.topScroller setupScroller];
+    [self.topScroller reload];
 }
 
 #pragma mark - TopScrollerDelegate
@@ -169,6 +176,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
     NSDictionary * dict=[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     [self.navigationController.navigationBar setTitleTextAttributes:dict];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)popUpWelcomeView {
@@ -206,10 +214,9 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
 {
     [self.tabBarController setSelectedIndex:0];
     [self dismissViewControllerAnimated:YES completion:nil];
-    // TODO some instruction
     
     // get user's car
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
     
     [[LibraryAPI sharedInstance] getCarsForUser:userModel
                                         success:^(NSArray *cars) {
@@ -217,9 +224,7 @@ static NSString * const SimpleTableViewCellIdentifier = @"SimpleTableViewCellIde
                                             [hud hideAnimated:YES];
                                         }
                                            fail:^(NSError *error) {
-                                               hud.mode = MBProgressHUDModeText;
-                                               hud.label.text = @"fail to fetch cars";
-                                               [hud hideAnimated:YES afterDelay:1];
+                                               [hud showErrorMessage:error];
                                            }];
 }
 

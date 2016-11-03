@@ -148,7 +148,7 @@ static NSString * const ImageTextCellIdentifier = @"ImageTextCell";
 }
 
 + (NSArray *)textForTableView {
-    return @[@"My Profile", @"My Orders", @"My Cars", @"Settings"];
+    return @[@"My Profile", @"Historical Orders", @"My Cars", @"Settings"];
 }
 
 + (NSArray *)imageNameForTableView {

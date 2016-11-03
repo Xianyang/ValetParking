@@ -9,9 +9,8 @@
 #import "WelcomeViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
-#import "MBProgressHUD+ValetShowAlert.h"
 
-@interface WelcomeViewController () <RegisterViewControllerDelegate, ForgetPasswordViewControllerDelegate>
+@interface WelcomeViewController () <UITextFieldDelegate, RegisterViewControllerDelegate, ForgetPasswordViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *inputView;
 @property (weak, nonatomic) IBOutlet UITextField *userAccountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userPasswordTextField;
@@ -27,14 +26,19 @@
     [super viewDidLoad];
     
     [self setupInputView];
-    // [self setNeedsStatusBarAppearanceUpdate];
 }
 
-//- (UIStatusBarStyle) preferredStatusBarStyle {
-//    return UIStatusBarStyleLightContent;
-//}
-
 - (void)loginBtnPressed {
+    // check the phone number
+    if (![[LibraryAPI sharedInstance] isPhoneNumberValid:self.userAccountTextField.text]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"Please input an valid number in HK";
+        [hud hideAnimated:YES afterDelay:1.5];
+        
+        return;
+    }
+    
     [self.loginBtn setDisableStatus];
     
     NSString *userAccount = self.userAccountTextField.text;
@@ -77,6 +81,7 @@
     [self.userPasswordTextField addTarget:self
                                    action:@selector(textFieldDidChange:)
                          forControlEvents:UIControlEventEditingChanged];
+    [self.userPasswordTextField setDelegate:self];
     
     [self.loginBtn setDisableStatus];
     [self.userAccountTextField becomeFirstResponder];
@@ -89,6 +94,14 @@
     } else {
         [self.loginBtn setEnableStatus];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.userPasswordTextField) {
+        [self loginBtnPressed];
+    }
+    
+    return YES;
 }
 
 # pragma mark - RegisterViewControllerDelegate

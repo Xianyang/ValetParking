@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <SMS_SDK/SMSSDK.h>
+@import GoogleMaps;
+@import GooglePlaces;
 
 @interface AppDelegate ()
 
@@ -23,6 +25,8 @@
     
 //    [SMSSDK registerApp:@"158a3305baeaa"
 //             withSecret:@"a905df802b5e5f23c4bf5707055ee030"];
+    [GMSServices provideAPIKey:@"AIzaSyA0NPAaiCykYkF1h8Cvpa2hRtxKbmiHQwg"];
+    [GMSPlacesClient provideAPIKey:@"AIzaSyA0NPAaiCykYkF1h8Cvpa2hRtxKbmiHQwg"];
     
     [self createItemsWithIcons];
     

@@ -55,7 +55,16 @@
 }
 
 - (void)getVC {
-    // TODO set a timer
+    // check the phone number
+    if (![[LibraryAPI sharedInstance] isPhoneNumberValid:self.userAccountTextField.text]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"Please input an valid number in HK";
+        [hud hideAnimated:YES afterDelay:1.5];
+        
+        return;
+    }
+    
     self.countDownTime = 11;
     [self.timer setFireDate:[NSDate date]];
     [self.getVerificationCodeBtn setVerificationButtonCountingStatus];

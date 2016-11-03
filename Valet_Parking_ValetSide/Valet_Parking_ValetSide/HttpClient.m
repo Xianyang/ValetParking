@@ -1,6 +1,6 @@
 //
 //  HttpClient.m
-//  ValetParking
+//  ValetParkinge
 //
 //  Created by WangYili on 7/26/16.
 //  Copyright © 2016 xianyang. All rights reserved.
@@ -9,8 +9,8 @@
 #import "HttpClient.h"
 #import <AFNetworking/AFNetworking.h>
 
-//static NSString * const kIPAdress = @"http://147.8.91.254:3001/";
-static NSString * const kIPAdress = @"http://192.168.1.100:3001/";
+static NSString * const kIPAdress = @"http://147.8.203.207:3001/";
+//static NSString * const kIPAdress = @"http://192.168.1.100:3001/";
 
 @interface HttpClient()
 
