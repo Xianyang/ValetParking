@@ -71,6 +71,12 @@
            success:(void (^)(OrderModel *orderModel))successBlock
               fail:(void (^)(NSError *error))failBlock;
 
+- (void)checkOrderWithParkingPlace:(NSString *)parkingPlace
+                         userPhone:(NSString *)userPhone
+                          carPlate:(NSString *)carPlate
+                           success:(void (^)(OrderModel *orderModel))successBlock
+                              fail:(void (^)(NSError *error))failBlock;
+
 // qr
 - (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height;
 

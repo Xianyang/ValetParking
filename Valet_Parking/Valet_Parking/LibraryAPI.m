@@ -319,6 +319,22 @@
                            }];
 }
 
+- (void)checkOrderWithParkingPlace:(NSString *)parkingPlace
+                         userPhone:(NSString *)userPhone
+                          carPlate:(NSString *)carPlate
+                           success:(void (^)(OrderModel *orderModel))successBlock
+                              fail:(void (^)(NSError *error))failBlock {
+    [self.httpClient checkOrderWithParkingPlace:parkingPlace
+                                      userPhone:userPhone
+                                       carPlate:carPlate
+                                        success:^(OrderModel *orderModel) {
+                                            successBlock(orderModel);
+                                        }
+                                           fail:^(NSError *error) {
+                                               failBlock(error);
+                                           }];
+}
+
 # pragma mark - QR 
 - (UIImage *)qrImageForString:(NSString *)qrString withImageWidth:(CGFloat)width imageHeight:(CGFloat)height
 {

@@ -8,8 +8,12 @@
 
 #import "ParkTicketViewController.h"
 #import "OrderModel.h"
+#import "AppDelegate.h"
 
 @interface ParkTicketViewController ()
+{
+    
+}
 
 @property (strong, nonatomic) NSString *place;
 @property (strong, nonatomic) UserModel *user;
@@ -30,16 +34,10 @@
                                     action:nil];
     [self.navigationItem setBackBarButtonItem:backButton];
     
-//    NSError *err;
-//    NSDictionary *dic = @{@"a":@"b"};
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&err];
-//    NSString *myString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//    
-//    NSError *err2;
-//    NSData *data = [myString dataUsingEncoding:NSUTF8StringEncoding];
-//    NSDictionary *res;
-//    res = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:data options:0 error:&err2];
-    
+    [self checkIfTheOrderPlacedForTheFirstTime];
+}
+
+- (void)createQR {
     OrderModel *order = [[OrderModel alloc] initWithParkingPlace:self.place
                                                   userIdentifier:self.user.identifier
                                                    userFirstName:self.user.firstName
@@ -49,7 +47,7 @@
                                                         carPlate:self.car.plate
                                                         carBrand:self.car.brand
                                                         carColor:self.car.color];
-
+    
     NSDictionary *parkingTicketDic = [order createTicketDic];
     NSError *error;
     NSData *parkingTicketData = [NSJSONSerialization dataWithJSONObject:parkingTicketDic
@@ -62,6 +60,43 @@
                                                          imageHeight:150.0f];
     
     [self.qrImageView setImage:qrImage];
+}
+
+- (void)checkIfTheOrderPlacedForTheFirstTime {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [[LibraryAPI sharedInstance] checkOrderWithParkingPlace:self.place
+                                                  userPhone:self.user.phone
+                                                   carPlate:self.car.plate
+                                                    success:^(OrderModel *orderModel) {
+                                                        hud.mode = MBProgressHUDModeText;
+                                                        hud.label.text = @"You already have this order, change a car";
+                                                        [hud hideAnimated:YES
+                                                               afterDelay:2];
+                                                        
+                                                        [self.navigationController popViewControllerAnimated:YES];
+                                                    }
+                                                       fail:^(NSError *error) {
+                                                           [self createQR];
+                                                           [hud hideAnimated:YES];
+                                                           [self checkIfTheOrderPlaced];
+                                                       }];
+}
+
+- (void)checkIfTheOrderPlaced {
+    [[LibraryAPI sharedInstance] checkOrderWithParkingPlace:self.place
+                                                  userPhone:self.user.phone
+                                                   carPlate:self.car.plate
+                                                    success:^(OrderModel *orderModel) {
+                                                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                                                        hud.mode = MBProgressHUDModeText;
+                                                        hud.label.text = @"Create order successfully, enjoy";
+                                                        [hud hideAnimated:YES afterDelay:2.0f];
+                                                        [self.navigationController popToRootViewControllerAnimated:YES];
+                                                        
+                                                    }
+                                                       fail:^(NSError *error) {
+                                                           [self checkIfTheOrderPlaced];
+                                                       }];
 }
 
 - (void)setPlace:(NSString *)place userModel:(UserModel *)user carModel:(CarModel *)car {

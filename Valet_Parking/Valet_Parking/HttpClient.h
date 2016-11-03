@@ -63,4 +63,10 @@ static NSString * const NetworkErrorDomain = @"com.luoxianyang";
            success:(void (^)(OrderModel *orderModel))successBlock
               fail:(void (^)(NSError *error))failBlock;
 
+- (void)checkOrderWithParkingPlace:(NSString *)parkingPlace
+                         userPhone:(NSString *)userPhone
+                          carPlate:(NSString *)carPlate
+                           success:(void (^)(OrderModel *orderModel))successBlock
+                              fail:(void (^)(NSError *error))failBlock;
+
 @end

@@ -22,6 +22,18 @@ router.route('/order/add').post(function (req, res) {
     });
 });
 
+router.route('/order/check_redundance').post(function (req, res) {
+    console.log('----------get a check redundance order post----------');
+    // var order = new OrderCreation(req.body);
+    var order = new Order(req.body);
+
+    res.set("Access-Control-Allow-Origin", "http://localhost:42550");   // Enable CORS in dev environment.
+
+    orderController.check(order, function (err, response) {
+        return res.send(response);
+    });
+});
+
 router.route('/order/get_all_opening_orders').post(function (req, res) {
     console.log('----------get a fetch all orders post----------');
     // var order = new OrderCreation(req.body);

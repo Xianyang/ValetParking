@@ -80,6 +80,52 @@ OrderController.prototype.add = function (newOrder, callback) {
     });
 };
 
+OrderController.prototype.check = function (newOrder, callback) {
+    var me = this;
+
+    // Step 1 - check if the user exist
+    me.User.findOne({ phone: newOrder.userPhone }, function (err, user) {
+        if (err) {
+            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+        }
+        if (user) {
+            // Step 2 - check if the car exist
+            me.Car.findOne({ plate: newOrder.carPlate}, function (err, car) {
+                if (err) {
+                    return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+                }
+
+                if (car) {
+                    // Step 3 - check if the order exist
+                    me.Order.find({userPhone: newOrder.userPhone, carPlate: newOrder.carPlate}, function (err, orders) {
+                        if (err) {
+                            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.DB_ERROR } }));
+                        }
+
+                        if (orders.length) {
+                            for (var i = 0; i < orders.length; i++) {
+                                if (orders[i].endAt == undefined) {
+                                    console.log('order exist, create at ' + orders[i].createAt);
+                                    return callback(err, new me.ApiResponse({ success: true, extras: { orderProfileModel: orders[i] }}));
+                                }
+                            }
+                        }
+
+                        return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.COULD_NOT_FIND_ORDER } }));
+                    });
+                } else {
+                    console.log('can not fine this car');
+                    return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.COULD_NOT_FIND_CAR } }));
+                }
+            });
+        } else {
+            console.log('can not find this user');
+            return callback(err, new me.ApiResponse({ success: false, extras: { msg: me.ApiMessages.ACCOUNT_NOT_FOUND } }));
+        }
+    });
+};
+
+
 OrderController.prototype.getOrderForUser = function (userProfile, callback) {
     var me = this;
 

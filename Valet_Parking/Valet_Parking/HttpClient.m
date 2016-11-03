@@ -25,6 +25,7 @@ static NSString * const kIPAdress = @"http://192.168.1.102:3001/";
 
 @property (strong, nonatomic) NSString *kGetOrderURL;
 @property (strong, nonatomic) NSString *kRecallCarURL;
+@property (strong, nonatomic) NSString *kCheckRedundance;
 @end
 
 @implementation HttpClient
@@ -40,6 +41,7 @@ static NSString * const kIPAdress = @"http://192.168.1.102:3001/";
         self.kDeleteCarURL = [kIPAdress stringByAppendingString:@"api/car/delete"];
         self.kGetOrderURL = [kIPAdress stringByAppendingString:@"api/order/get_orders_for_user"];
         self.kRecallCarURL = [kIPAdress stringByAppendingString:@"api/order/recall_by_user"];
+        self.kCheckRedundance = [kIPAdress stringByAppendingString:@"api/order/check_redundance"];
     }
     
     return self;
@@ -485,6 +487,53 @@ static NSString * const kIPAdress = @"http://192.168.1.102:3001/";
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               failBlock(error);
           }];
+}
+
+- (void)checkOrderWithParkingPlace:(NSString *)parkingPlace
+                         userPhone:(NSString *)userPhone
+                          carPlate:(NSString *)carPlate
+                           success:(void (^)(OrderModel *orderModel))successBlock
+                              fail:(void (^)(NSError *error))failBlock{
+    NSURL *url = [NSURL URLWithString:self.kCheckRedundance];
+    NSDictionary *parameters = @{@"parkingPlace": parkingPlace,
+                                 @"userPhone": userPhone,
+                                 @"carPlate":carPlate};
+    
+    AFHTTPSessionManager *manager = [self newManager];
+    
+    [manager POST:[url absoluteString]
+       parameters:parameters
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSError *error = nil;
+              // get response from the server successfully
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  BOOL isSuccess = [responseObject[@"success"] boolValue];
+                  if (isSuccess) {
+                      NSError *error;
+                      OrderModel *orderModel = [[OrderModel alloc] initWithDictionary:responseObject[@"extras"][@"orderProfileModel"]
+                                                                                error:&error];
+                      if (error) {
+                          failBlock(error);
+                      } else {
+                          successBlock(orderModel);
+                      }
+                  } else {
+                      // reset failed
+                      ServerErrorMessage failMessage = (ServerErrorMessage)[responseObject[@"extras"][@"msg"] integerValue];
+                      error = [NSError errorWithDomain:NetworkErrorDomain
+                                                  code:failMessage
+                                              userInfo:nil];
+                      failBlock(error);
+                  }
+              } else {
+                  failBlock(nil);
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failBlock(error);
+          }];
+
 }
 
 - (AFHTTPSessionManager *)newManager {
