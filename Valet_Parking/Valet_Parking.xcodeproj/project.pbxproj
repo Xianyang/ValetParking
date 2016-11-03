@@ -18,6 +18,8 @@
 		8679DEDA1DB753A900BEE59E /* CarStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679DED91DB753A900BEE59E /* CarStatusViewController.m */; };
 		86853A8F1DB8D47F0048905A /* TopScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 86853A8D1DB8D47F0048905A /* TopScroller.m */; };
 		86853A921DB8D9270048905A /* TopImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86853A911DB8D9270048905A /* TopImageView.m */; };
+		86C1A2451DCB92B2001D4570 /* BrandListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A2441DCB92B2001D4570 /* BrandListViewController.m */; };
+		86C1A2481DCB94E8001D4570 /* ColorListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A2471DCB94E8001D4570 /* ColorListViewController.m */; };
 		86DB49501DB880C0001B142F /* MBProgressHUD+ValetShowAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DB494F1DB880C0001B142F /* MBProgressHUD+ValetShowAlert.m */; };
 		9446570E1D4B35DC004AB5D2 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570C1D4B35DC004AB5D2 /* MOBFoundation.framework */; };
 		9446570F1D4B35DC004AB5D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9446570D1D4B35DC004AB5D2 /* SMS_SDK.framework */; };
@@ -107,6 +109,10 @@
 		86853A8D1DB8D47F0048905A /* TopScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopScroller.m; sourceTree = "<group>"; };
 		86853A901DB8D9270048905A /* TopImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopImageView.h; sourceTree = "<group>"; };
 		86853A911DB8D9270048905A /* TopImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopImageView.m; sourceTree = "<group>"; };
+		86C1A2431DCB92B2001D4570 /* BrandListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandListViewController.h; sourceTree = "<group>"; };
+		86C1A2441DCB92B2001D4570 /* BrandListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandListViewController.m; sourceTree = "<group>"; };
+		86C1A2461DCB94E8001D4570 /* ColorListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorListViewController.h; sourceTree = "<group>"; };
+		86C1A2471DCB94E8001D4570 /* ColorListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorListViewController.m; sourceTree = "<group>"; };
 		86DB494E1DB880C0001B142F /* MBProgressHUD+ValetShowAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+ValetShowAlert.h"; sourceTree = "<group>"; };
 		86DB494F1DB880C0001B142F /* MBProgressHUD+ValetShowAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+ValetShowAlert.m"; sourceTree = "<group>"; };
 		90D0A705898DBCD078A31136 /* libPods-Valet_ParkingUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Valet_ParkingUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -435,6 +441,10 @@
 				944E65011D4711F20024B977 /* MyCarsViewController.m */,
 				944E65021D4711F20024B977 /* AddCarViewController.h */,
 				944E65031D4711F20024B977 /* AddCarViewController.m */,
+				86C1A2431DCB92B2001D4570 /* BrandListViewController.h */,
+				86C1A2441DCB92B2001D4570 /* BrandListViewController.m */,
+				86C1A2461DCB94E8001D4570 /* ColorListViewController.h */,
+				86C1A2471DCB94E8001D4570 /* ColorListViewController.m */,
 				944E64FA1D4711F20024B977 /* SettingViewController.h */,
 				944E64FB1D4711F20024B977 /* SettingViewController.m */,
 			);
@@ -849,10 +859,12 @@
 				86853A8F1DB8D47F0048905A /* TopScroller.m in Sources */,
 				944E65141D4711F30024B977 /* RegisterViewController.m in Sources */,
 				944E651C1D4711F30024B977 /* MyOrdersViewController.m in Sources */,
+				86C1A2451DCB92B2001D4570 /* BrandListViewController.m in Sources */,
 				8635F48E1DB13344007830D0 /* UIButton+Status.m in Sources */,
 				944E649F1D4711840024B977 /* Valet_Parking.xcdatamodeld in Sources */,
 				944E651F1D4711F30024B977 /* ImageTextCell.m in Sources */,
 				8674C98D1DCB54CF00AA6D42 /* PlaceListViewController.m in Sources */,
+				86C1A2481DCB94E8001D4570 /* ColorListViewController.m in Sources */,
 				944E65251D4711F30024B977 /* KeychainItemWrapper.m in Sources */,
 				944657131D4B3A24004AB5D2 /* EditItemViewController.m in Sources */,
 				944E65201D4711F30024B977 /* UserModel.m in Sources */,

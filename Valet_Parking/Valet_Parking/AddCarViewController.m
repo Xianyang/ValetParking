@@ -7,6 +7,8 @@
 //
 
 #import "AddCarViewController.h"
+#import "BrandListViewController.h"
+#import "ColorListViewController.h"
 #import "CarModel.h"
 #import "LibraryAPI.h"
 
@@ -18,6 +20,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *plateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *brandTextField;
 @property (weak, nonatomic) IBOutlet UITextField *colorTextField;
+@property (weak, nonatomic) IBOutlet UIButton *brandButton;
+@property (weak, nonatomic) IBOutlet UIButton *colorButton;
+
+@property (strong, nonatomic) NSString *chosenBrand;
+@property (strong, nonatomic) NSString *chosenColor;
 
 @end
 
@@ -36,12 +43,22 @@
     [self.finishAddCarBtn setTarget:self];
     [self.cancelAddCarBtn setAction:@selector(cancelAddCar)];
     [self.finishAddCarBtn setAction:@selector(finishAddCar)];
+    [self.brandButton addTarget:self
+                         action:@selector(brandBtnClicked)
+               forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.colorButton addTarget:self
+                         action:@selector(colorBtnClicked)
+               forControlEvents:UIControlEventTouchUpInside];
+    
+    self.chosenBrand = @"";
+    self.chosenColor = @"";
     
     self.userPhone = [[[LibraryAPI sharedInstance] getCurrentUserModel] phone];
     
     if (_editMode) {
         self.navigationItem.title = @"Edit";
-        // self.plateTextField.text = _oldCar.plate;
+        self.plateTextField.text = _oldCar.plate;
         [self.plateTextField setHidden:YES];
         UILabel *label = [[UILabel alloc] initWithFrame:self.plateTextField.frame];
         label.text = _oldCar.plate;
@@ -49,10 +66,12 @@
         label.textColor = [UIColor lightGrayColor];
         [self.backView addSubview:label];
         
-        self.brandTextField.text = _oldCar.brand;
-        self.colorTextField.text = _oldCar.color;
+        self.chosenBrand = _oldCar.brand;
+        self.chosenColor = _oldCar.color;
+        [self.brandButton setTitle:self.chosenBrand forState:UIControlStateNormal];
+        [self.colorButton setTitle:self.chosenColor forState:UIControlStateNormal];
         
-        [self.brandTextField becomeFirstResponder];
+        // [self.brandTextField becomeFirstResponder];
     } else {
         [self.plateTextField becomeFirstResponder];
     }
@@ -70,11 +89,21 @@
 }
 
 - (void)finishAddCar {
+    if ([self.plateTextField.text isEqualToString:@""] ||
+        [self.chosenBrand isEqualToString:@""] ||
+        [self.chosenColor isEqualToString:@""]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"Please fulfill information";
+        [hud hideAnimated:YES afterDelay:1.5];
+        return;
+    }
+    
     CarModel *newCar = [[CarModel alloc] initWithIdentifier:@""
                                                   userPhone:self.userPhone
                                                       plate:self.plateTextField.text
-                                                      brand:self.brandTextField.text
-                                                      color:self.colorTextField.text];
+                                                      brand:self.brandButton.titleLabel.text
+                                                      color:self.colorButton.titleLabel.text];
     
     [self.finishAddCarBtn setEnabled:NO];
     if (_editMode) {
@@ -112,6 +141,18 @@
                                             [hud hideAnimated:YES afterDelay:1];
                                         }];
     }
+}
+
+- (void)brandBtnClicked {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    BrandListViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"BrandListViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)colorBtnClicked {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ColorListViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ColorListViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

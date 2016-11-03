@@ -18,4 +18,12 @@
     return @[@[@22.280908, @114.155501], @[@22.296935, @114.172049]];
 }
 
++ (NSArray *)carBrandArray {
+    return @[@[@"Audi", @"Audi", @"Audi", @"Audi", @"Audi"],
+             @[@"BMW"],
+             @[@"Casdf", @"Casdf", @"Casdf", @"Casdf", @"Casdf"],
+             @[@"Dad", @"Dad", @"Dad", @"Dad", @"Dad", @"Dad", @"Dad", @"Dad", @"Dad", @"Dad"],
+             @[@"Volvo"]];
+}
+
 @end

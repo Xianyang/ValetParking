@@ -13,4 +13,6 @@
 + (NSArray *)placeArray;
 + (NSArray *)coordinatorArray;
 
++ (NSArray *)carBrandArray;
+
 @end
