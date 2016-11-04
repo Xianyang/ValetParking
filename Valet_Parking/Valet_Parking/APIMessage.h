@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, ServerErrorMessage){
     ORDER_ALREADY_EXISTS = 16,
     ORDER_ALREADY_RECALLED = 17,
     COULD_NOT_UPDATE_ORDER = 18,
+    COULD_NOT_FIND_ORDER = 19,
 };
 
 typedef NS_ENUM(NSInteger, LocalErrorMessage){
