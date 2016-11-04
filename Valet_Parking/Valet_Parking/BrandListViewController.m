@@ -22,7 +22,9 @@
 #pragma mark - UITableView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.delegate refreshBrand:[ListForCell carBrandArray][indexPath.section][indexPath.row]];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -60,7 +62,13 @@
                                       reuseIdentifier:@"car_list_cell"];
     }
     
-    cell.textLabel.text = [ListForCell carBrandArray][indexPath.section][indexPath.row];
+    NSString *carBrand = [ListForCell carBrandArray][indexPath.section][indexPath.row];
+    cell.textLabel.text = carBrand;
+    cell.imageView.image = [UIImage imageNamed:[@"Logo_" stringByAppendingString:carBrand]];
+//    cell.imageView.image = [UIImage imageNamed:@"Logo_Acura1"];
+//    [cell.imageView setFrame:CGRectMake(cell.imageView.frame.origin.x
+//                                        , cell.imageView.frame.origin.y
+//                                        , 5.0f, 5.0f)];
     
     return cell;
 }

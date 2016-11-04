@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSString *place;
 @property (strong, nonatomic) UserModel *user;
 @property (strong, nonatomic) CarModel *car;
+@property (strong, nonatomic) NSTimer *timer;
 @property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
 
 @end
@@ -35,6 +36,10 @@
     [self.navigationItem setBackBarButtonItem:backButton];
     
     [self checkIfTheOrderPlacedForTheFirstTime];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.timer setFireDate:[NSDate distantFuture]];
 }
 
 - (void)createQR {
@@ -78,7 +83,7 @@
                                                        fail:^(NSError *error) {
                                                            [self createQR];
                                                            [hud hideAnimated:YES];
-                                                           [self checkIfTheOrderPlaced];
+                                                           [self.timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1]];
                                                        }];
 }
 
@@ -92,11 +97,23 @@
                                                         hud.label.text = @"Create order successfully, enjoy";
                                                         [hud hideAnimated:YES afterDelay:2.0f];
                                                         [self.navigationController popToRootViewControllerAnimated:YES];
-                                                        
                                                     }
                                                        fail:^(NSError *error) {
-                                                           [self checkIfTheOrderPlaced];
+                                                           
                                                        }];
+}
+
+- (NSTimer *)timer {
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                  target:self
+                                                selector:@selector(checkIfTheOrderPlaced)
+                                                userInfo:nil
+                                                 repeats:YES];
+        [_timer setFireDate:[NSDate distantFuture]];
+    }
+    
+    return _timer;
 }
 
 - (void)setPlace:(NSString *)place userModel:(UserModel *)user carModel:(CarModel *)car {

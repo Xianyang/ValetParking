@@ -14,5 +14,7 @@
 + (NSArray *)coordinatorArray;
 
 + (NSArray *)carBrandArray;
++ (NSArray *)carColorArray;
++ (NSArray *)carColorValueArray;
 
 @end

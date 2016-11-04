@@ -1540,7 +1540,7 @@
             </objects>
             <point key="canvasLocation" x="1808.8" y="2614.5427286356826"/>
         </scene>
-        <!--Title-->
+        <!--Choose a Brand-->
         <scene sceneID="pZy-0J-kzo">
             <objects>
                 <viewController storyboardIdentifier="BrandListViewController" id="ZG8-no-3F8" customClass="BrandListViewController" sceneMemberID="viewController">
@@ -1569,12 +1569,51 @@
                             <constraint firstItem="krh-uQ-hk1" firstAttribute="top" secondItem="geX-yY-JAu" secondAttribute="top" id="gs8-Wg-zIc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="RYr-6j-KKa"/>
+                    <navigationItem key="navigationItem" title="Choose a Brand" id="RYr-6j-KKa"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BfZ-xJ-5H9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2509.5999999999999" y="2614.5427286356826"/>
+        </scene>
+        <!--Choose a Color-->
+        <scene sceneID="SM9-eX-0B8">
+            <objects>
+                <viewController storyboardIdentifier="ColorListViewController" id="lOf-kF-0u9" customClass="ColorListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dJS-q3-2uy"/>
+                        <viewControllerLayoutGuide type="bottom" id="jzP-jA-dtf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vye-Dk-x89">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="udG-oi-FGi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lOf-kF-0u9" id="MGO-Hw-hXD"/>
+                                    <outlet property="delegate" destination="lOf-kF-0u9" id="ymw-hC-4Sa"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="udG-oi-FGi" secondAttribute="trailing" id="PwR-KZ-rZh"/>
+                            <constraint firstItem="udG-oi-FGi" firstAttribute="leading" secondItem="vye-Dk-x89" secondAttribute="leading" id="UTS-dr-Tg7"/>
+                            <constraint firstItem="udG-oi-FGi" firstAttribute="top" secondItem="vye-Dk-x89" secondAttribute="top" id="yum-Vk-TWZ"/>
+                            <constraint firstItem="jzP-jA-dtf" firstAttribute="top" secondItem="udG-oi-FGi" secondAttribute="bottom" id="z8h-29-14L"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Choose a Color" id="KPP-Wm-9ly"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="udG-oi-FGi" id="JDG-eu-d5k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2xA-8w-Sem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3248.8000000000002" y="2614.5427286356826"/>
         </scene>
         <!--Service-->
         <scene sceneID="t4H-XV-fhG">
@@ -1582,7 +1621,7 @@
                 <navigationController storyboardIdentifier="MainNav" automaticallyAdjustsScrollViewInsets="NO" id="546-4z-M52" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Service" image="valet" id="vzZ-Hg-Wy7"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="tqo-hD-6jR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tqo-hD-6jR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1600,7 +1639,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Udn-9k-cE2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="x0i-l6-Vbh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x0i-l6-Vbh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1638,7 +1677,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k5q-vd-haM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="User" image="user" id="JnI-u8-SJv"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0a0-NW-ltR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0a0-NW-ltR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

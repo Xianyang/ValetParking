@@ -12,7 +12,7 @@
 #import "CarModel.h"
 #import "LibraryAPI.h"
 
-@interface AddCarViewController ()
+@interface AddCarViewController () <BrandListViewControllerDelegate, ColorListViewControllerDelegate>
 @property (strong, nonatomic) NSString *userPhone;
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelAddCarBtn;
@@ -143,15 +143,31 @@
     }
 }
 
+#pragma mark - BrandListViewControllerDelegate
+
+- (void)refreshBrand:(NSString *)brand {
+    [self.brandButton setTitle:brand forState:UIControlStateNormal];
+    self.chosenBrand = brand;
+}
+
+#pragma mark - ColorListViewControllerDelegate
+
+- (void)refreshColor:(NSString *)color {
+    [self.colorButton setTitle:color forState:UIControlStateNormal];
+    self.chosenColor = color;
+}
+
 - (void)brandBtnClicked {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     BrandListViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"BrandListViewController"];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)colorBtnClicked {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ColorListViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ColorListViewController"];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

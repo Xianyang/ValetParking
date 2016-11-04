@@ -238,12 +238,6 @@
        newCarModel:(CarModel *)newCarModel
            success:(void(^)(CarModel *carModel))successBlock
               fail:(void(^)(NSError *error))failBlock {
-    // Step0 - check redundancy
-    if ([self.dataClient checkRedundantCar:newCarModel]) {
-        NSError *error = [NSError errorWithDomain:@"reduplicate car" code:CAR_ALREADY_EXISTS userInfo:nil];
-        failBlock(error);
-        return;
-    }
     
     id me = self;
     

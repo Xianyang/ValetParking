@@ -9,8 +9,8 @@
 #import "HttpClient.h"
 #import <AFNetworking/AFNetworking.h>
 
-//static NSString * const kIPAdress = @"http://147.8.203.207:3001/";
-static NSString * const kIPAdress = @"http://192.168.1.102:3001/";
+static NSString * const kIPAdress = @"http://147.8.234.136:3001/";
+//static NSString * const kIPAdress = @"http://192.168.1.102:3001/";
 
 @interface HttpClient()
 

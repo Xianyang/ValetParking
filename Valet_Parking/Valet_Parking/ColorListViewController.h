@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ColorListViewControllerDelegate
+
+- (void)refreshColor:(NSString *)color;
+
+@end
+
 @interface ColorListViewController : UIViewController
+
+@property (assign, nonatomic) id <ColorListViewControllerDelegate> delegate;
 
 @end
