@@ -30,12 +30,9 @@ app.use(expressSession({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use('/api', [accountRoutes, bookingRoutes]);
-// set routers
 app.get('/', function (req, res) {
-	res.send('<html><body><h1>Hello World</h1></body></html>');
+	res.send('<html><body><h1>Valet Parking</h1></body></html>');
 });
-
 app.use('/api', [accountRoute, carRoute, valetRoute, orderRoute]);
 
 var server = app.listen(port, function () {
