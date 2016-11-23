@@ -92,10 +92,10 @@
                                                   userPhone:self.user.phone
                                                    carPlate:self.car.plate
                                                     success:^(OrderModel *orderModel) {
-                                                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-                                                        hud.mode = MBProgressHUDModeText;
-                                                        hud.label.text = @"Create order successfully, enjoy";
-                                                        [hud hideAnimated:YES afterDelay:2.0f];
+//                                                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+//                                                        hud.mode = MBProgressHUDModeText;
+//                                                        hud.label.text = @"Create order successfully, enjoy";
+//                                                        [hud hideAnimated:YES afterDelay:2.0f];
                                                         [self.navigationController popToRootViewControllerAnimated:YES];
                                                     }
                                                        fail:^(NSError *error) {
